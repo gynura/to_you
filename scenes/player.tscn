@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6p6x8iafg34y"]
+
+[ext_resource type="Texture2D" uid="uid://c036hrbklwkp8" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
+
+[node name="player" type="CharacterBody2D"]
+texture_filter = 1
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_js555")
+hframes = 4
+vframes = 7
