@@ -1,11 +1,14 @@
 extends CharacterBody2D
 
+@export var player: CharacterBody2D
+
 # States of the state-machine 
 enum{
 	IDLE,
 	MOVE,
 	NEW_DIRECTION
 }
+signal pet_dog
 const SPEED = 30.0
 const MAX_PIXELS_TO_MOVE = 25
 const RECALCULATED_MAX_PIXELS_TO_MOVE = MAX_PIXELS_TO_MOVE - 0.01
@@ -13,10 +16,16 @@ var current_state = IDLE
 var direction = Vector2.RIGHT
 # With this variable we can control that it never goes out of bounds when randomly moving 
 var start_position 
+var canInteract = false 
 
 func _ready():
 	start_position = position
 	randomize()  
+	
+func _physics_process(delta):
+	if Input.is_action_just_pressed("interact_button"):
+		if canInteract:
+			petTheDoggy()
 
 func _process(delta): 
 	match current_state:
@@ -67,18 +76,29 @@ func _on_area_2d_body_entered(body):
 		if $Heart.visible == false: 
 			$Bubble.visible = true
 			$Bubble.play("default")
-		#if $HeartTimer.is_stopped():
-			#$Heart.visible = true
-			#$HeartTimer.start()
-		if Input.is_action_just_pressed("interact_button"):
-			print("yije")
-	pass # Replace with function body.
+			canInteract = true 
+	elif current_state == MOVE: 
+		direction = direction * -1
 
+func petTheDoggy():
+	set_process(false)
+	$AnimatedSprite2D.play("idle")
+	pet_dog.emit()
+	controlHeartParticle()
+
+func controlHeartParticle():
+	if $HeartTimer.is_stopped():
+			$Bubble.stop()
+			$Bubble.visible = false 
+			$Heart.visible = true
+			$HeartTimer.start()
 
 func _on_heart_timer_timeout():
+	set_process(true)
 	$Heart.visible = false
 
 func _on_area_2d_body_exited(body):
 	if body.name == "player": 
 		$Bubble.stop()
 		$Bubble.visible = false 
+		canInteract = false 

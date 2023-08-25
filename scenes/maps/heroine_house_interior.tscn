@@ -3726,9 +3726,12 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 3
 layer_4/tile_data = PackedInt32Array(131075, 524291, 7, 131076, 589827, 7, 131077, 196611, 7, 131083, 1900548, 11, 131084, 1966084, 11, 458754, 3, 7, 524290, 3, 8, 262146, 1048580, 14, 327682, 1048580, 15)
 
-[node name="Doggy" parent="." instance=ExtResource("7_aik6a")]
+[node name="Doggy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_aik6a")]
 y_sort_enabled = true
 position = Vector2(81, 96)
+player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("4_50fkm")]
 position = Vector2(120, 101)
+
+[connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]

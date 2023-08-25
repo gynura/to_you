@@ -142,10 +142,12 @@ texture = ExtResource("2_t3j38")
 
 [node name="Heart" type="AnimatedSprite2D" parent="."]
 visible = false
+y_sort_enabled = true
 position = Vector2(-1, -12)
+scale = Vector2(1.125, 1.125)
 sprite_frames = SubResource("SpriteFrames_ldatc")
 autoplay = "default"
-frame_progress = 0.874366
+frame_progress = 0.393817
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -157,9 +159,12 @@ one_shot = true
 
 [node name="Bubble" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(3, -10)
-scale = Vector2(0.375, 0.375)
+z_index = 3
+y_sort_enabled = true
+position = Vector2(2.375, -11.5)
+scale = Vector2(0.5625, 0.5625)
 sprite_frames = SubResource("SpriteFrames_fvvkm")
+frame_progress = 0.155693
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
