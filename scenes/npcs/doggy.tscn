@@ -1,0 +1,167 @@
+[gd_scene load_steps=22 format=3 uid="uid://clp5qbbop4ame"]
+
+[ext_resource type="Script" path="res://scenes/npcs/doggy.gd" id="1_0dump"]
+[ext_resource type="Texture2D" uid="uid://cnynui6yu4xka" path="res://assets/sprites/characters/doggy.png" id="1_e67cn"]
+[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_t3j38"]
+[ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="4_tifdj"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="5_3yons"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ek2c"]
+atlas = ExtResource("1_e67cn")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urhj1"]
+atlas = ExtResource("1_e67cn")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vp1g"]
+atlas = ExtResource("1_e67cn")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0eutg"]
+atlas = ExtResource("1_e67cn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gsdd3"]
+atlas = ExtResource("1_e67cn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onwr7"]
+animations = [{
+"frames": [{
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_0ek2c")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_urhj1")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_6vp1g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_0eutg")
+}, {
+"duration": 1.1,
+"texture": SubResource("AtlasTexture_gsdd3")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7hhnw"]
+size = Vector2(15, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqw6a"]
+atlas = ExtResource("4_tifdj")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpfx7"]
+atlas = ExtResource("4_tifdj")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldatc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqw6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpfx7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_blbfx"]
+radius = 11.0454
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnnbe"]
+atlas = ExtResource("5_3yons")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jvj0"]
+atlas = ExtResource("5_3yons")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haaru"]
+atlas = ExtResource("5_3yons")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4skk"]
+atlas = ExtResource("5_3yons")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fvvkm"]
+animations = [{
+"frames": [{
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_lnnbe")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_4jvj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haaru")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_n4skk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Doggy" type="CharacterBody2D"]
+z_index = 1
+position = Vector2(1, -7)
+script = ExtResource("1_0dump")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_onwr7")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_7hhnw")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Shadow" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1, 4)
+texture = ExtResource("2_t3j38")
+
+[node name="Heart" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-1, -12)
+sprite_frames = SubResource("SpriteFrames_ldatc")
+autoplay = "default"
+frame_progress = 0.874366
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_blbfx")
+
+[node name="HeartTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Bubble" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3, -10)
+scale = Vector2(0.375, 0.375)
+sprite_frames = SubResource("SpriteFrames_fvvkm")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="HeartTimer" to="." method="_on_heart_timer_timeout"]
