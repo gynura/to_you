@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpc3uv2h0ppfo"]
+
+[ext_resource type="Texture2D" uid="uid://cg1g0o5c7s2xe" path="res://assets/sprites/particles/Leaf.png" id="1_se7l2"]
+
+[node name="FallingLeaves" type="CPUParticles2D"]
+position = Vector2(72, 25)
+amount = 10
+speed_scale = 0.5
+texture = ExtResource("1_se7l2")
+emission_shape = 2
+emission_sphere_radius = 1.0
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)

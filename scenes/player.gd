@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
-@export var speed: int = 45
+@export var speed: int = 55
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDirection * speed 
-	
+
+# Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
+# called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
 func _ready():
 	configureCameraLimits() 
 	pass 
