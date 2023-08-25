@@ -1,11 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwgdnxq0stih8"]
+[gd_scene load_steps=4 format=3 uid="uid://bwgdnxq0stih8"]
 
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_ebr85"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="1_tgu7y"]
+[ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="3_4b6nf"]
 
 [node name="world" type="Node2D"]
 y_sort_enabled = true
 position = Vector2(1, -5)
+
+[node name="FallingLeaves" parent="." instance=ExtResource("3_4b6nf")]
+z_index = 4
+position = Vector2(112, 26)
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
