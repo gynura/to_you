@@ -142,6 +142,7 @@ texture = ExtResource("2_t3j38")
 
 [node name="Heart" type="AnimatedSprite2D" parent="."]
 visible = false
+z_index = 4
 y_sort_enabled = true
 position = Vector2(-1, -12)
 scale = Vector2(1.125, 1.125)

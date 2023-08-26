@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed: int = 55
+var speed = 55
 var animationDirection
 
 func handleInput():
