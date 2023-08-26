@@ -144,8 +144,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
 size = Vector2(14, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lygob"]
-size = Vector2(14, 8)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3pby"]
+radius = 7.0
+height = 14.0
 
 [node name="FlameEnemy" type="CharacterBody2D"]
 z_index = 1
@@ -180,8 +181,8 @@ shape = SubResource("RectangleShape2D_1wlou")
 [node name="HitBox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(-0.5, -5)
-shape = SubResource("RectangleShape2D_lygob")
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_w3pby")
 
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

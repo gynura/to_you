@@ -1,9 +1,14 @@
 extends CharacterBody2D
 
 const MAX_HEALTH = 12
+
 var speed = 55
 var animationDirection
 var currentHealth: int = 12 
+# This could even come from the enemy's node so each enemy could define its own knockback
+@export var knockbackPower: int = 500
+var isHurt: bool = false 
+var enemyCollisions = []
 
 signal health_change 
 
@@ -21,6 +26,9 @@ func _physics_process(delta):
 	handleInput()
 	move_and_slide()
 	updateAnimation()
+	if !isHurt:
+		for enemy in enemyCollisions:
+			enemyHit(enemy)
 
 func updateAnimation(): 
 	if velocity.length() == 0:
@@ -44,29 +52,41 @@ func configureCameraLimits():
 	$Camera2D.limit_top = tilemap_rect.position.y * tilemap_cell_size.y
 	$Camera2D.limit_bottom = tilemap_rect.end.y * tilemap_cell_size.y
 
-
 func _on_doggy_pet_dog():
 	set_physics_process(false)
-	$Timer.start()
+	$ActionAnimations.start()
 	if get_parent().get_node("Doggy").position.x >= position.x: 
 		$AnimationPlayer.play("pet_doggy_right")
 	else: 
 		$AnimationPlayer.play("pet_doggy_left")
 
-func handleCollisions():
-	for i in get_slide_collision_count():
-		var collision = get_slide_collision(i)
-		var collider = collision.get_collider()
-		print_debug(collider.name)
-
-func _on_timer_timeout():
-	set_physics_process(true)
+func enemyHit(enemy):
+	currentHealth -= 1
+	# REMOVE LATER 
+	if currentHealth <= 0:
+		currentHealth = MAX_HEALTH
+	health_change.emit()
+	isHurt = true 
+	knockback(enemy.get_parent().get_velocity())
+	$EffectsAnimation.play("hurt_blink")
+	$HurtTimer.start()
 
 func _on_hurt_box_area_entered(area):
 	if area.name == "HitBox": 
-		currentHealth -= 1
-		# REMOVE LATER 
-		if currentHealth <= 0:
-			currentHealth = MAX_HEALTH
-		health_change.emit()
-		print_debug(currentHealth)
+		enemyCollisions.append(area)
+		
+func knockback(enemyVelocity: Vector2): 
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
+
+func _on_action_animations_timeout():
+	set_physics_process(true)
+
+func _on_hurt_timer_timeout():
+	$EffectsAnimation.play("RESET")
+	isHurt = false 
+
+
+func _on_hurt_box_area_exited(area):
+	enemyCollisions.erase(area)

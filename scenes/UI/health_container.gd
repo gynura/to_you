@@ -14,12 +14,10 @@ func setMaxFlowers(maxHealth: int):
 		var flower = flowerGUIClass.instantiate()
 		add_child(flower)
 
-# Flowers begin depleted and have to be filled
-# They are filled from left to right
+# Flowers are filled from left to right
 func updateFlowers(currentHealth: int):
 	var flowers = get_children()
 	var fullFlowers = currentHealth/4 
-	
 	for i in range (flowers.size()):
 		if i < fullFlowers:
 			flowers[i].update(4)
