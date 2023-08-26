@@ -40,13 +40,18 @@ layer_2/tile_data = PackedInt32Array(9, 393217, 8, 10, 393217, 8, 11, 393217, 8,
 position = Vector2(113, 53)
 
 [node name="FlameEnemy" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("4_pjeim")]
-visible = false
-position = Vector2(36, 51)
+position = Vector2(202, 42)
+flame_type = 1
 endPoint = NodePath("Marker2D")
 
 [node name="Marker2D" type="Marker2D" parent="FlameEnemy"]
-position = Vector2(0, 86)
+position = Vector2(2, 63)
+
+[node name="FlameEnemy3" parent="." instance=ExtResource("4_pjeim")]
+position = Vector2(35, 68)
 
 [node name="FlameEnemy2" parent="." instance=ExtResource("4_pjeim")]
-position = Vector2(133, 105)
-flame_type = 1
+position = Vector2(90, 101)
+
+[node name="FlameEnemy4" parent="." instance=ExtResource("4_pjeim")]
+position = Vector2(135, 111)

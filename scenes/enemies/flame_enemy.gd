@@ -10,8 +10,8 @@ var animationDirection
 var limitBeforeChangingDirection = 0.5
 # Definition of the behaviour types of this enemy 
 enum{
-	MOVE_POINT,
-	MOVE_FREELY
+	MOVE_FREELY,
+	MOVE_TO_POINT
 }
 enum{
 	IDLE,
@@ -26,10 +26,9 @@ var current_state = IDLE
 func _ready():
 	startPosition = position 
 	match flame_type:
-		MOVE_POINT: 
+		MOVE_TO_POINT: 
 			endPosition = endPoint.global_position
 		MOVE_FREELY: 
-			print("Timer started")
 			$Timer.start()
 			randomize()
 
@@ -41,7 +40,7 @@ func changeDirection():
 	
 func _process(delta): 
 	match flame_type:
-		MOVE_POINT: 
+		MOVE_TO_POINT: 
 			pass
 		MOVE_FREELY: 
 			match current_state:
@@ -55,7 +54,7 @@ func _process(delta):
 
 func _physics_process(_delta):
 	match flame_type:
-		MOVE_POINT: 
+		MOVE_TO_POINT: 
 			updateVelocity()
 			move_and_slide()
 			updateAnimation()
@@ -64,26 +63,17 @@ func _physics_process(_delta):
 	
 func move(delta):
 	position += direction * SPEED * delta 
-	updateAnimation()
+	redirectSprite()
 	controlPositionNotOutOfBounds()
 	
 func updateAnimation(): 
 	match flame_type:
-		MOVE_POINT: 
+		MOVE_TO_POINT: 
 				animationDirection = "down"
 				if velocity.y < 0: animationDirection = "up"
 				$AnimatedSprite2D.play("walk_" + animationDirection)
 		MOVE_FREELY: 
-				print("gonna update animation")
-				if velocity.length() == 0:
-					# We use walk_down as iddle in this enemy
-					$AnimatedSprite2D.play("walk_down")
-				else: 
-					animationDirection = "down"
-					if velocity.x < 0: animationDirection = "left"
-					elif velocity.x > 0: animationDirection = "right"
-					elif velocity.y < 0: animationDirection = "up"
-					$AnimatedSprite2D.play("walk_" + animationDirection)
+			pass 
 
 func updateVelocity():
 	var moveDirection = endPosition - position
@@ -106,10 +96,17 @@ func controlPositionNotOutOfBounds():
 		position.y = startPosition.y - RECALCULATED_MAX_PIXELS_TO_MOVE  
 
 func _on_area_2d_body_entered(body):
-	if flame_type != MOVE_POINT:
+	if flame_type != MOVE_TO_POINT:
 		if body.name != "player" && current_state == MOVE: 
 			direction = direction * -1
 
+func redirectSprite():
+	if direction.x == 1:
+		$AnimatedSprite2D.flip_h = true
+		$Shadow.flip_h = true
+	elif direction.x == -1:
+		$AnimatedSprite2D.flip_h = false
+		$Shadow.flip_h = false
 
 func _on_timer_timeout():
 	$Timer.wait_time = chooseRandomly([0.5, 1, 2, 1.5, 3])
