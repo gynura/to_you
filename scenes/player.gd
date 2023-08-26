@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-const MAX_HEALTH = 3
+const MAX_HEALTH = 12
 var speed = 55
 var animationDirection
-var currentHealth: int = 3 
+var currentHealth: int = 7 
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

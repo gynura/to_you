@@ -1,14 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://vxm4syuckrm0"]
+[gd_scene load_steps=3 format=3 uid="uid://vxm4syuckrm0"]
 
 [ext_resource type="Texture2D" uid="uid://d13ny4fbj7t38" path="res://assets/sprites/UI/life_hud.png" id="1_3tpbk"]
+[ext_resource type="Script" path="res://scenes/UI/flower_gui.gd" id="1_36qfw"]
 
 [node name="FlowerGUI" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(15, 15)
 offset_right = 15.0
 offset_bottom = 15.0
+script = ExtResource("1_36qfw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3tpbk")
 centered = false
 hframes = 5
+frame = 4
