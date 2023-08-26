@@ -3,7 +3,9 @@ extends CharacterBody2D
 const MAX_HEALTH = 12
 var speed = 55
 var animationDirection
-var currentHealth: int = 7 
+var currentHealth: int = 12 
+
+signal health_change 
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -63,4 +65,8 @@ func _on_timer_timeout():
 func _on_hurt_box_area_entered(area):
 	if area.name == "HitBox": 
 		currentHealth -= 1
+		# REMOVE LATER 
+		if currentHealth <= 0:
+			currentHealth = MAX_HEALTH
+		health_change.emit()
 		print_debug(currentHealth)

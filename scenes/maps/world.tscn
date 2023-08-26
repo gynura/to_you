@@ -58,3 +58,5 @@ position = Vector2(90, 101)
 position = Vector2(135, 111)
 
 [node name="GUI" parent="." instance=ExtResource("5_usumc")]
+
+[connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]

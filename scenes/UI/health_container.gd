@@ -18,14 +18,16 @@ func setMaxFlowers(maxHealth: int):
 # They are filled from left to right
 func updateFlowers(currentHealth: int):
 	var flowers = get_children()
-	var fullFlowers = currentHealth/4
-	print(fullFlowers)
-	# First we fill the hearts that will be full
-	for i in range(fullFlowers):
-		flowers[i].update(4)
-	if fullFlowers == flowers.size():
-		return
-	##var remainingFlowersToUpdate = flowers.size() - fullFlowers 
-	var remainingLife = currentHealth - fullFlowers * 4
-	flowers[fullFlowers].update(remainingLife)
+	var fullFlowers = currentHealth/4 
+	
+	for i in range (flowers.size()):
+		if i < fullFlowers:
+			flowers[i].update(4)
+		else:
+			var remainingLife = currentHealth - fullFlowers * 4
+			# There can only be one flower between 0 and 4 petals at the time:
+			if remainingLife != 0 && i < flowers.size():
+				flowers[i].update(remainingLife)
+				return
+			flowers[i].update(remainingLife)
 
