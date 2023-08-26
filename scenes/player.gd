@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
+const MAX_HEALTH = 3
 var speed = 55
 var animationDirection
+var currentHealth: int = 3 
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -49,6 +51,16 @@ func _on_doggy_pet_dog():
 	else: 
 		$AnimationPlayer.play("pet_doggy_left")
 
+func handleCollisions():
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+		print_debug(collider.name)
 
 func _on_timer_timeout():
 	set_physics_process(true)
+
+func _on_hurt_box_area_entered(area):
+	if area.name == "HitBox": 
+		currentHealth -= 1
+		print_debug(currentHealth)

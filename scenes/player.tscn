@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=15 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
@@ -153,6 +153,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wqlhp"]
 size = Vector2(16, 6)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjtv6"]
+size = Vector2(12, 8)
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -185,4 +188,11 @@ texture = ExtResource("2_20v04")
 wait_time = 0.75
 one_shot = true
 
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -4)
+shape = SubResource("RectangleShape2D_jjtv6")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://27tp05alwpr6"]
+[gd_scene load_steps=24 format=3 uid="uid://27tp05alwpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b0ggaek3juiw" path="res://assets/sprites/enemies/flame_enemy.png" id="1_7mbmp"]
 [ext_resource type="Script" path="res://scenes/enemies/flame_enemy.gd" id="1_g2ofe"]
@@ -144,14 +144,17 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
 size = Vector2(14, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lygob"]
+size = Vector2(14, 8)
+
 [node name="FlameEnemy" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_g2ofe")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="CheckSurroundingsArea" type="Area2D" parent="."]
 
-[node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
+[node name="CheckArea" type="CollisionShape2D" parent="CheckSurroundingsArea"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_6k1ui")
 
@@ -174,5 +177,11 @@ texture = ExtResource("2_k1415")
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_1wlou")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-0.5, -5)
+shape = SubResource("RectangleShape2D_lygob")
+
+[connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

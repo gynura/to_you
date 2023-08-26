@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvl5rx7otydvs"]
+
+[ext_resource type="PackedScene" uid="uid://d1n6wytg7rsci" path="res://scenes/UI/health_container.tscn" id="1_subjj"]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="HealthContainer" parent="." instance=ExtResource("1_subjj")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 51.0
+offset_bottom = 17.0
+grow_horizontal = 1
+grow_vertical = 1
