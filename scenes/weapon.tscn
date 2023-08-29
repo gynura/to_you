@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://0ocf08du6ep5"]
+
+[ext_resource type="Texture2D" uid="uid://yxynev5kw0oy" path="res://assets/sprites/weapons/flower_club_in_hand.png" id="1_8mu82"]
+[ext_resource type="Script" path="res://scenes/weapon.gd" id="2_44hsx"]
+[ext_resource type="Texture2D" uid="uid://cpj2fjbytndob" path="res://assets/sprites/particles/hit_fx.png" id="2_eq2sm"]
+[ext_resource type="Script" path="res://scenes/weaponHitBox.gd" id="2_k7x57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j50tb"]
+size = Vector2(8, 11)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0gr8g"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[node name="Weapon" type="Sprite2D"]
+position = Vector2(47, 31)
+texture = ExtResource("1_8mu82")
+script = ExtResource("2_44hsx")
+
+[node name="HitBox" type="Area2D" parent="."]
+script = ExtResource("2_k7x57")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+y_sort_enabled = true
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_j50tb")
+
+[node name="HitFx" type="CPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_0gr8g")
+position = Vector2(0, 6)
+scale = Vector2(0.6, 0.6)
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("2_eq2sm")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]
+[connection signal="hit" from="HitBox" to="." method="_on_hit_box_hit"]

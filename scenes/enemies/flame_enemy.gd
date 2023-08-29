@@ -22,6 +22,7 @@ var startPosition
 var endPosition
 var direction = Vector2.RIGHT
 var current_state = IDLE
+@onready var tween = create_tween()
 
 func _ready():
 	startPosition = position 
@@ -111,3 +112,7 @@ func redirectSprite():
 func _on_timer_timeout():
 	$Timer.wait_time = chooseRandomly([0.5, 1, 2, 1.5, 3])
 	current_state = chooseRandomly([NEW_DIRECTION, MOVE])
+	
+func hittedEnemy(): 
+	tween.tween_property($Sprite2D,"modulate",Color(50,50,50),0.2)
+	tween.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)

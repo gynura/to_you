@@ -3,26 +3,35 @@ extends CharacterBody2D
 const MAX_HEALTH = 12
 
 var speed = 55
-var animationDirection
+var animationDirection = "down"
 var currentHealth: int = 12 
 # This could even come from the enemy's node so each enemy could define its own knockback
 @export var knockbackPower: int = 500
 var isHurt: bool = false 
 var enemyCollisions = []
+var blockMovement: bool = false 
 
 signal health_change 
+signal attack_position_changed(position)
+signal end_attack
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDirection * speed 
+	if Input.is_action_pressed("attack_button"):
+		# Signal that sends the position to aim the weapon' sprite
+		emit_signal("attack_position_changed", animationDirection)
+		$AnimationPlayer.play("attack_" + animationDirection)
+		blockMovement = true 
 
 # Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
 # called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
 func _ready():
 	configureCameraLimits() 
-	pass 
 
 func _physics_process(delta):
+	if blockMovement: 
+		return 
 	handleInput()
 	move_and_slide()
 	updateAnimation()
@@ -31,6 +40,8 @@ func _physics_process(delta):
 			enemyHit(enemy)
 
 func updateAnimation(): 
+	if blockMovement:
+		return
 	if velocity.length() == 0:
 		$AnimationPlayer.play("iddle")
 	else: 
@@ -72,7 +83,7 @@ func enemyHit(enemy):
 	$HurtTimer.start()
 
 func _on_hurt_box_area_entered(area):
-	if area.name == "HitBox": 
+	if area.name == "EnemyHitBox": 
 		enemyCollisions.append(area)
 		
 func knockback(enemyVelocity: Vector2): 
@@ -87,6 +98,11 @@ func _on_hurt_timer_timeout():
 	$EffectsAnimation.play("RESET")
 	isHurt = false 
 
+func endInvincibility():
+	isHurt = false 
 
 func _on_hurt_box_area_exited(area):
 	enemyCollisions.erase(area)
+
+func _on_weapon_attack_end():
+	blockMovement = false 
