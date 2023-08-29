@@ -13,6 +13,7 @@ var blockMovement: bool = false
 
 signal health_change 
 signal attack_position_changed(position)
+signal attack
 signal end_attack
 
 func handleInput():
@@ -20,7 +21,7 @@ func handleInput():
 	velocity = moveDirection * speed 
 	if Input.is_action_pressed("attack_button"):
 		# Signal that sends the position to aim the weapon' sprite
-		emit_signal("attack_position_changed", animationDirection)
+		emit_signal("attack")
 		$AnimationPlayer.play("attack_" + animationDirection)
 		blockMovement = true 
 
@@ -44,12 +45,15 @@ func updateAnimation():
 		return
 	if velocity.length() == 0:
 		$AnimationPlayer.play("iddle")
+		animationDirection = "down"
+		emit_signal("attack_position_changed", animationDirection)
 	else: 
 		animationDirection = "down"
 		if velocity.x < 0: animationDirection = "left"
 		elif velocity.x > 0: animationDirection = "right"
 		elif velocity.y < 0: animationDirection = "up"
 		$AnimationPlayer.play("walk_" + animationDirection)
+		emit_signal("attack_position_changed", animationDirection)
 		
 func configureCameraLimits(): 
 	var tilemap = get_parent().get_node("TileMap")
@@ -70,6 +74,14 @@ func _on_doggy_pet_dog():
 		$AnimationPlayer.play("pet_doggy_right")
 	else: 
 		$AnimationPlayer.play("pet_doggy_left")
+		
+func knockback(enemyVelocity: Vector2): 
+	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
+	velocity = knockbackDirection
+	move_and_slide()
+	
+func endInvincibility():
+	isHurt = false 
 
 func enemyHit(enemy):
 	currentHealth -= 1
@@ -85,20 +97,12 @@ func enemyHit(enemy):
 func _on_hurt_box_area_entered(area):
 	if area.name == "EnemyHitBox": 
 		enemyCollisions.append(area)
-		
-func knockback(enemyVelocity: Vector2): 
-	var knockbackDirection = (enemyVelocity - velocity).normalized() * knockbackPower
-	velocity = knockbackDirection
-	move_and_slide()
 
 func _on_action_animations_timeout():
 	set_physics_process(true)
 
 func _on_hurt_timer_timeout():
 	$EffectsAnimation.play("RESET")
-	isHurt = false 
-
-func endInvincibility():
 	isHurt = false 
 
 func _on_hurt_box_area_exited(area):

@@ -332,8 +332,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Weapon" parent="." instance=ExtResource("4_8lupc")]
-position = Vector2(-4, 4)
+position = Vector2(13, -5)
+rotation = -1.5708
 
+[connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
 [connection signal="end_attack" from="." to="Weapon" method="_on_player_end_attack"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]

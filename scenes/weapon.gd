@@ -6,6 +6,8 @@ var animationDirection
 var direction = 0
 var damage = 1
 var tween 
+var final_py
+var final_px
 
 func _ready():
 	disable_weapon()
@@ -21,54 +23,52 @@ func showWeapon():
 	visible = true
 	var px = 0
 	var py = 0
-	var final_py = -2
 	match animationDirection:
 		"down":
-			px = -4
-			py = 4
+			px = -6
+			py = 5
+			final_py = 4
 		"up":
 			px = -3
 			py = -21
+			final_py = -20
 		"right":
 			px = 12
+			final_px = 13
 			py = -4
 		"left":
 			px = -12
+			final_px = -13
 			py = -4
 	$HitBox/CollisionShape2D.set_deferred("disabled",false)
 	tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT_IN)
-	##tween.set_trans(Tween.TRANS_QUART)
-	tween.tween_property(self,"position",Vector2(px,py),0.2)
-	tween.tween_property(self, "position",Vector2(px,final_py),0.2)
+	tween.tween_property(self, "position",Vector2(px,py),0.2)
+	# This is really hacky but somehow needed, I wanted to simply use final_px and final_py :S
+	if animationDirection == "down" || animationDirection == "up":
+		tween.tween_property(self, "position",Vector2(px,final_py),0.2)
+	else: 
+		tween.tween_property(self, "position",Vector2(final_px,py),0.2)
 	tween.tween_callback(end_attack)
 	
 func set_weapon_position():
 	match animationDirection:
 		"down":
-			self.position = Vector2(0, 4)
+			self.position = Vector2(-6, 2)
 			flip_v = false
 			rotation = 0
 		"up":
-			self.position = Vector2(0, 4)
+			self.position = Vector2(-3, -17)
 			rotation = 0
 			flip_v = true 
 		"right":
-			self.position = Vector2(0, 4)
-			flip_v = false
-			rotation = -90
+			self.position = Vector2(10, -4)
+			flip_v = true
+			rotation_degrees = 90
 		"left":
-			self.position = Vector2(0, 4)
-			rotation = 90
+			rotation_degrees = 90
+			self.position = Vector2(-10, -4)
 			flip_v = false
-
-func set_direction(v):
-	direction = v.angle()-PI/2
-	rotation = direction
-	if v.y > 0:
-		z_index = 0
-	else:
-		z_index = -1
 	
 func end_attack():
 	visible = false
@@ -79,6 +79,10 @@ func _on_hit_box_hit():
 	$ImpactFx.emitting = true
 
 func _on_player_attack_position_changed(position):
+	print(direction)
 	self.animationDirection = position 
 	set_weapon_position()
+
+
+func _on_player_attack():
 	showWeapon()
