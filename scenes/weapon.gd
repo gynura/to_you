@@ -1,6 +1,7 @@
 extends Sprite2D
 
 signal attack_end
+signal hit_enemy
 
 var animationDirection
 var direction = 0
@@ -75,11 +76,7 @@ func end_attack():
 	emit_signal("attack_end")
 	disable_weapon()
 
-func _on_hit_box_hit():
-	$ImpactFx.emitting = true
-
 func _on_player_attack_position_changed(position):
-	print(direction)
 	self.animationDirection = position 
 	set_weapon_position()
 

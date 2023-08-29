@@ -15,6 +15,7 @@ signal health_change
 signal attack_position_changed(position)
 signal attack
 signal end_attack
+signal hurt_enemy
 
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -110,3 +111,6 @@ func _on_hurt_box_area_exited(area):
 
 func _on_weapon_attack_end():
 	blockMovement = false 
+
+func _on_weapon_hit_enemy():
+	emit_signal("hurt_enemy")

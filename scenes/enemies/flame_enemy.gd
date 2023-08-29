@@ -116,3 +116,8 @@ func _on_timer_timeout():
 func hittedEnemy(): 
 	tween.tween_property($Sprite2D,"modulate",Color(50,50,50),0.2)
 	tween.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)
+
+
+func playerHit():
+	# TODO subtract enemy's HP 
+	$HitFx.emitting = true 

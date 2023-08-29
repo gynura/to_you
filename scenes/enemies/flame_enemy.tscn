@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://27tp05alwpr6"]
+[gd_scene load_steps=26 format=3 uid="uid://27tp05alwpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b0ggaek3juiw" path="res://assets/sprites/enemies/flame_enemy.png" id="1_7mbmp"]
 [ext_resource type="Script" path="res://scenes/enemies/flame_enemy.gd" id="1_g2ofe"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_k1415"]
+[ext_resource type="Texture2D" uid="uid://cpj2fjbytndob" path="res://assets/sprites/particles/hit_fx.png" id="4_mopdu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6k1ui"]
 
@@ -148,6 +149,12 @@ size = Vector2(14, 8)
 radius = 7.0
 height = 14.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3yy1y"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
 [node name="FlameEnemy" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -179,10 +186,28 @@ position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_1wlou")
 
 [node name="EnemyHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_w3pby")
+
+[node name="HitFx" type="CPUParticles2D" parent="."]
+z_index = 8
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_3yy1y")
+position = Vector2(0, -5)
+scale = Vector2(0.8, 0.8)
+emitting = false
+amount = 1
+lifetime = 0.1
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("4_mopdu")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

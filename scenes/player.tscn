@@ -317,6 +317,8 @@ wait_time = 0.75
 one_shot = true
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -4)
@@ -344,3 +346,4 @@ rotation = -1.5708
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="attack_end" from="Weapon" to="." method="_on_weapon_attack_end"]
+[connection signal="hit_enemy" from="Weapon" to="." method="_on_weapon_hit_enemy"]
