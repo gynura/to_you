@@ -1,6 +1,7 @@
 extends Sprite2D
 
 signal attack_end
+signal next_attack
 signal hit_enemy
 
 var animationDirection
@@ -49,7 +50,7 @@ func showWeapon():
 	if animationDirection == "down" || animationDirection == "up":
 		tween.tween_property(self, "position",Vector2(px,final_py),0.2)
 	else: 
-		tween.tween_property(self, "position",Vector2(final_px,py),0.2)
+		tween.tween_property(self, "position",Vector2(final_px,py),0.1)
 	tween.tween_callback(end_attack)
 	
 func set_weapon_position():
@@ -75,11 +76,14 @@ func end_attack():
 	visible = false
 	emit_signal("attack_end")
 	disable_weapon()
+	$NextAttackTimer.start()
 
 func _on_player_attack_position_changed(position):
 	self.animationDirection = position 
 	set_weapon_position()
 
-
 func _on_player_attack():
 	showWeapon()
+
+func _on_next_attack_timer_timeout():
+	emit_signal("next_attack")

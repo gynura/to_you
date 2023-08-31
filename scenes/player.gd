@@ -10,6 +10,7 @@ var currentHealth: int = 12
 var isHurt: bool = false 
 var enemyCollisions = []
 var blockMovement: bool = false 
+var canAttack: bool = true 
 
 signal health_change 
 signal attack_position_changed(position)
@@ -20,8 +21,11 @@ signal hurt_enemy
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDirection * speed 
+	if !canAttack:
+			return 
 	if Input.is_action_pressed("attack_button"):
 		# Signal that sends the position to aim the weapon' sprite
+		canAttack = false 
 		emit_signal("attack")
 		$AnimationPlayer.play("attack_" + animationDirection)
 		blockMovement = true 
@@ -114,3 +118,6 @@ func _on_weapon_attack_end():
 
 func _on_weapon_hit_enemy():
 	emit_signal("hurt_enemy")
+
+func _on_weapon_next_attack():
+	canAttack = true 

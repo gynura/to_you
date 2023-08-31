@@ -22,7 +22,7 @@ var startPosition
 var endPosition
 var direction = Vector2.RIGHT
 var current_state = IDLE
-@onready var tween = create_tween()
+var tween 
 
 func _ready():
 	startPosition = position 
@@ -114,10 +114,12 @@ func _on_timer_timeout():
 	current_state = chooseRandomly([NEW_DIRECTION, MOVE])
 	
 func hittedEnemy(): 
-	tween.tween_property($Sprite2D,"modulate",Color(50,50,50),0.2)
-	tween.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)
+	tween = create_tween()
+	tween.tween_property(self,"modulate",Color(50,50,50),0.1)
+	tween.tween_property(self,"modulate",Color.WHITE,0.1)
 
 
 func playerHit():
 	# TODO subtract enemy's HP 
+	hittedEnemy()
 	$HitFx.emitting = true 
