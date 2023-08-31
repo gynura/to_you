@@ -116,8 +116,8 @@ func _on_hurt_box_area_exited(area):
 func _on_weapon_attack_end():
 	blockMovement = false 
 
-func _on_weapon_hit_enemy():
-	emit_signal("hurt_enemy")
-
 func _on_weapon_next_attack():
-	canAttack = true 
+	canAttack = true
+
+func _on_weapon_enemy_hit():
+	emit_signal("hurt_enemy")

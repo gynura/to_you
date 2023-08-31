@@ -8,6 +8,7 @@ const RECALCULATED_MAX_PIXELS_TO_MOVE = MAX_PIXELS_TO_MOVE - 0.01
 @export var endPoint: Marker2D
 var animationDirection
 var limitBeforeChangingDirection = 0.5
+var currentHealth = 3
 # Definition of the behaviour types of this enemy 
 enum{
 	MOVE_FREELY,
@@ -115,11 +116,15 @@ func _on_timer_timeout():
 	
 func hittedEnemy(): 
 	tween = create_tween()
-	tween.tween_property(self,"modulate",Color(50,50,50),0.1)
-	tween.tween_property(self,"modulate",Color.WHITE,0.1)
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property($AnimatedSprite2D,"scale",Vector2(1.5,1.5),0.1)
+	tween.tween_property($AnimatedSprite2D,"scale",Vector2.ONE,0.1)
+	tween.tween_property($AnimatedSprite2D,"modulate",Color(50,50,50),0.1)
+	tween.tween_property($AnimatedSprite2D,"modulate",Color.WHITE,0.1)
 
-
-func playerHit():
-	# TODO subtract enemy's HP 
+func playerHit(): 
 	hittedEnemy()
 	$HitFx.emitting = true 
+	currentHealth -= 1
+	# TODO death animation/vanishing effect

@@ -2,7 +2,7 @@ extends Sprite2D
 
 signal attack_end
 signal next_attack
-signal hit_enemy
+signal enemy_hit
 
 var animationDirection
 var direction = 0
@@ -87,3 +87,7 @@ func _on_player_attack():
 
 func _on_next_attack_timer_timeout():
 	emit_signal("next_attack")
+
+
+func _on_hit_box_enemy_hurt():
+	emit_signal("enemy_hit")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=24 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_20v04"]
+[ext_resource type="Script" path="res://scenes/screenShakeCamera.gd" id="3_o8il7"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
@@ -306,6 +307,9 @@ shape = SubResource("RectangleShape2D_wqlhp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+script = ExtResource("3_o8il7")
+
+[node name="ScreenShakeTimer" type="Timer" parent="Camera2D"]
 
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
@@ -340,11 +344,13 @@ rotation = -1.5708
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
 [connection signal="end_attack" from="." to="Weapon" method="_on_player_end_attack"]
+[connection signal="hurt_enemy" from="." to="Camera2D" method="_on_player_hurt_enemy"]
+[connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
 [connection signal="attack_end" from="Weapon" to="." method="_on_weapon_attack_end"]
-[connection signal="hit_enemy" from="Weapon" to="." method="_on_weapon_hit_enemy"]
+[connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
 [connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]

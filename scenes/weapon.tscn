@@ -27,4 +27,5 @@ wait_time = 0.2
 one_shot = true
 
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]
+[connection signal="enemy_hurt" from="HitBox" to="." method="_on_hit_box_enemy_hurt"]
 [connection signal="timeout" from="NextAttackTimer" to="." method="_on_next_attack_timer_timeout"]
