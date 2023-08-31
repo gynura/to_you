@@ -11,6 +11,8 @@ var isHurt: bool = false
 var enemyCollisions = []
 var blockMovement: bool = false 
 var canAttack: bool = true 
+var tween 
+var tween2 # TODO study a better way to paralelize tweens 
 
 signal health_change 
 signal attack_position_changed(position)
@@ -96,8 +98,20 @@ func enemyHit(enemy):
 	health_change.emit()
 	isHurt = true 
 	knockback(enemy.get_parent().get_velocity())
-	$EffectsAnimation.play("hurt_blink")
+	playHurtAnimation()
 	$HurtTimer.start()
+	
+func playHurtAnimation(): 
+	tween = create_tween()
+	tween2 = create_tween()
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween2.set_ease(tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property($Sprite2D,"scale",Vector2(1.2,1.2),0.2)
+	tween.tween_property($Sprite2D,"scale",Vector2.ONE,0.2)
+	tween2.tween_property($Sprite2D,"modulate",Color.RED,0.2)
+	tween2.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)
 
 func _on_hurt_box_area_entered(area):
 	if area.name == "EnemyHitBox": 
@@ -107,7 +121,6 @@ func _on_action_animations_timeout():
 	set_physics_process(true)
 
 func _on_hurt_timer_timeout():
-	$EffectsAnimation.play("RESET")
 	isHurt = false 
 
 func _on_hurt_box_area_exited(area):

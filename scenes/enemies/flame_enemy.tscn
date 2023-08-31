@@ -143,7 +143,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
-size = Vector2(14, 8)
+size = Vector2(13, 8)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3pby"]
 radius = 7.0
@@ -182,7 +182,7 @@ texture = ExtResource("2_k1415")
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0.5, -5)
 shape = SubResource("RectangleShape2D_1wlou")
 
 [node name="EnemyHitBox" type="Area2D" parent="."]

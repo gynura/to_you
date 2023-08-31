@@ -238,36 +238,12 @@ size = Vector2(12, 8)
 
 [sub_resource type="Animation" id="Animation_la2om"]
 length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.756863, 0, 0, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_t8581"]
 resource_name = "hurt_blink"
 length = 0.4
 loop_mode = 1
 step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D/ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0001, 0.0002, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(0.756863, 0, 0, 0.721569), Color(0.756863, 0, 0, 0.721569), Color(0.756863, 0, 0, 0.721569), Color(0.992157, 0.964706, 0.988235, 1)]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iqv87"]
 _data = {
@@ -281,6 +257,12 @@ y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_tmc20")
 
+[node name="Weapon" parent="." instance=ExtResource("4_8lupc")]
+visible = false
+y_sort_enabled = true
+position = Vector2(13, -5)
+rotation = -1.5708
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 clip_children = 2
 texture = ExtResource("1_js555")
@@ -288,13 +270,6 @@ offset = Vector2(0, -8)
 hframes = 5
 vframes = 7
 frame = 20
-
-[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
-offset_left = -20.0
-offset_top = -25.0
-offset_right = 20.0
-offset_bottom = 15.0
-color = Color(0.756863, 0, 0, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -337,20 +312,17 @@ libraries = {
 wait_time = 0.5
 one_shot = true
 
-[node name="Weapon" parent="." instance=ExtResource("4_8lupc")]
-position = Vector2(13, -5)
-rotation = -1.5708
-
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
 [connection signal="end_attack" from="." to="Weapon" method="_on_player_end_attack"]
+[connection signal="health_change" from="." to="Camera2D" method="_on_player_health_change"]
 [connection signal="hurt_enemy" from="." to="Camera2D" method="_on_player_hurt_enemy"]
+[connection signal="attack_end" from="Weapon" to="." method="_on_weapon_attack_end"]
+[connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
+[connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
-[connection signal="attack_end" from="Weapon" to="." method="_on_weapon_attack_end"]
-[connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
-[connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]

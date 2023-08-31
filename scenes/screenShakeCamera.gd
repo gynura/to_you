@@ -26,5 +26,8 @@ func _on_screen_shake_timer_timeout():
 	Tween.new().interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 func _on_player_hurt_enemy():
-	print_debug("pistacho")
+	shakeCamera(0.3, 0.65)
+
+
+func _on_player_health_change():
 	shakeCamera(0.3, 0.65)
