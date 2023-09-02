@@ -2,11 +2,11 @@ extends CharacterBody2D
 
 const MAX_HEALTH = 12
 
+# This could even come from the enemy's node so each enemy could define its own knockback
+@export var knockbackPower: int = 500
 var speed = 55
 var animationDirection = "down"
 var currentHealth: int = 12 
-# This could even come from the enemy's node so each enemy could define its own knockback
-@export var knockbackPower: int = 500
 var isHurt: bool = false 
 var enemyCollisions = []
 var blockMovement: bool = false 
@@ -91,6 +91,10 @@ func endInvincibility():
 	isHurt = false 
 
 func enemyHit(enemyArea):
+	# Because of the processing, we need to check if the appended enemyArea's enemy is still alive
+	# if not it won't damage the player
+	if enemyArea.owner.currentHealth <= 0:
+		return
 	currentHealth -= 1
 	enemyArea.owner.hitSound.play()
 	# REMOVE LATER 

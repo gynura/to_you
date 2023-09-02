@@ -15,7 +15,6 @@ func _process(delta):
 	offset = Vector2(randf_range(-1, 1) * shake_amount, randf_range(-1, 1) * shake_amount)
 
 func shakeCamera(time: float, amount: float):
-	print_debug("zanahoria")
 	$ScreenShakeTimer.wait_time = time
 	shake_amount = amount
 	set_process(true)

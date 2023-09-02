@@ -234,7 +234,7 @@ _data = {
 size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjtv6"]
-size = Vector2(12, 8)
+size = Vector2(16, 8)
 
 [sub_resource type="Animation" id="Animation_la2om"]
 length = 0.001

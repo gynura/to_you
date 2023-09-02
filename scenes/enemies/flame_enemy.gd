@@ -127,15 +127,14 @@ func hittedEnemy():
 	tween.tween_property($AnimatedSprite2D,"modulate",Color.WHITE,0.1)
 
 func playerHit(): 
-	
 	$HitFx.emitting = true 
 	currentHealth -= 1
 	if currentHealth <= 0: 
-		$EnemyHitBox/CollisionShape2D.disabled = true
 		death()
 	else: hittedEnemy() 
 
 func death():
+	$EnemyHitBox/CollisionShape2D.disabled = true
 	tween = create_tween()
 	tween.set_ease(tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CIRC)
