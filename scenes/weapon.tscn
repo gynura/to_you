@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ocf08du6ep5"]
+[gd_scene load_steps=6 format=3 uid="uid://0ocf08du6ep5"]
 
 [ext_resource type="Texture2D" uid="uid://yxynev5kw0oy" path="res://assets/sprites/weapons/flower_club_in_hand.png" id="1_8mu82"]
 [ext_resource type="Script" path="res://scenes/weapon.gd" id="2_44hsx"]
 [ext_resource type="Script" path="res://scenes/weaponHitBox.gd" id="2_k7x57"]
+[ext_resource type="AudioStream" uid="uid://dlfhglq7ca221" path="res://assets/sound/fx/PlayerHit.wav" id="4_bnn00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j50tb"]
 size = Vector2(8, 12)
@@ -25,6 +26,11 @@ shape = SubResource("RectangleShape2D_j50tb")
 [node name="NextAttackTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_bnn00")
+volume_db = -28.0
+pitch_scale = 0.79
 
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]
 [connection signal="enemy_hurt" from="HitBox" to="." method="_on_hit_box_enemy_hurt"]

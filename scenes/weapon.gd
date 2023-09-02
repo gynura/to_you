@@ -88,6 +88,6 @@ func _on_player_attack():
 func _on_next_attack_timer_timeout():
 	emit_signal("next_attack")
 
-
 func _on_hit_box_enemy_hurt():
+	$HitSound.play()
 	emit_signal("enemy_hit")

@@ -1,9 +1,10 @@
-[gd_scene load_steps=26 format=3 uid="uid://27tp05alwpr6"]
+[gd_scene load_steps=27 format=3 uid="uid://27tp05alwpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b0ggaek3juiw" path="res://assets/sprites/enemies/flame_enemy.png" id="1_7mbmp"]
 [ext_resource type="Script" path="res://scenes/enemies/flame_enemy.gd" id="1_g2ofe"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_k1415"]
 [ext_resource type="Texture2D" uid="uid://cpj2fjbytndob" path="res://assets/sprites/particles/hit_fx.png" id="4_mopdu"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="5_yitqh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6k1ui"]
 
@@ -208,6 +209,12 @@ local_coords = true
 texture = ExtResource("4_mopdu")
 anim_speed_min = 1.0
 anim_speed_max = 1.0
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_yitqh")
+volume_db = -28.657
+pitch_scale = 1.02
+attenuation = 0.933033
 
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -90,14 +90,15 @@ func knockback(enemyVelocity: Vector2):
 func endInvincibility():
 	isHurt = false 
 
-func enemyHit(enemy):
+func enemyHit(enemyArea):
 	currentHealth -= 1
+	enemyArea.owner.hitSound.play()
 	# REMOVE LATER 
 	if currentHealth <= 0:
 		currentHealth = MAX_HEALTH
 	health_change.emit()
 	isHurt = true 
-	knockback(enemy.get_parent().get_velocity())
+	knockback(enemyArea.get_parent().get_velocity())
 	playHurtAnimation()
 	$HurtTimer.start()
 	
