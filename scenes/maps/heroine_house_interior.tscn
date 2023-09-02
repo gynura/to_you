@@ -3734,7 +3734,7 @@ position = Vector2(104, 55)
 
 [node name="Doggy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_aik6a")]
 y_sort_enabled = true
-position = Vector2(81, 96)
+position = Vector2(137, 73)
 player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("4_50fkm")]

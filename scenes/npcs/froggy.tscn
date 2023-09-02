@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://b16k6lc6f58y"]
+
+[ext_resource type="Texture2D" uid="uid://bfchr17fx3y4p" path="res://assets/sprites/characters/forest_frog.png" id="1_npniw"]
+[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_o2rv1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r76st"]
+atlas = ExtResource("1_npniw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tc5b"]
+atlas = ExtResource("1_npniw")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5lyf"]
+atlas = ExtResource("1_npniw")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0w4vl"]
+atlas = ExtResource("1_npniw")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jdnr7"]
+animations = [{
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_r76st")
+}, {
+"duration": 0.6,
+"texture": SubResource("AtlasTexture_5tc5b")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_w5lyf")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_0w4vl")
+}],
+"loop": true,
+"name": &"iddle",
+"speed": 5.0
+}]
+
+[node name="Froggy" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_jdnr7")
+animation = &"iddle"
+autoplay = "iddle"
+frame_progress = 0.334879
+
+[node name="Shadow" type="Sprite2D" parent="."]
+show_behind_parent = true
+texture = ExtResource("2_o2rv1")
