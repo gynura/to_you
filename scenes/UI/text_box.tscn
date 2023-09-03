@@ -15,9 +15,9 @@ script = ExtResource("1_0oaiw")
 layout_mode = 2
 texture = ExtResource("1_ul48n")
 region_rect = Rect2(0, 0, 8, 8)
-patch_margin_left = 6
-patch_margin_top = 6
-patch_margin_right = 6
+patch_margin_left = 2
+patch_margin_top = 4
+patch_margin_right = 2
 patch_margin_bottom = 6
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
