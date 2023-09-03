@@ -70,7 +70,6 @@ func controlPositionNotOutOfBounds():
 	if position.y <= start_position.y - MAX_PIXELS_TO_MOVE:
 		position.y = start_position.y - RECALCULATED_MAX_PIXELS_TO_MOVE  
 
-
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
 		if $Heart.visible == false: 

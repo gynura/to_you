@@ -10,6 +10,7 @@ var can_advance_line = false
 
 signal dialog_start
 signal dialog_ended
+signal stop_player
 
 func _unhandled_input(event):
 	if (event.is_action_pressed("advance_dialog") && is_dialog_active && can_advance_line):

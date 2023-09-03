@@ -35,6 +35,8 @@ func handleInput():
 # Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
 # called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
 func _ready():
+	DialogManager.dialog_ended.connect(_restart_process)
+	DialogManager.stop_player.connect(_stop_player)
 	configureCameraLimits() 
 
 func _physics_process(delta):
@@ -89,6 +91,13 @@ func knockback(enemyVelocity: Vector2):
 	
 func endInvincibility():
 	isHurt = false 
+	
+func _stop_player():
+	$AnimationPlayer.play("iddle")
+	set_physics_process(false)
+
+func _restart_process(): 
+	set_physics_process(true)
 
 func enemyHit(enemyArea):
 	# Because of the processing, we need to check if the appended enemyArea's enemy is still alive

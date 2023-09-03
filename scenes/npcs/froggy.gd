@@ -14,6 +14,7 @@ func _physics_process(delta):
 			talkToFroggy()
 
 func talkToFroggy():
+	DialogManager.stop_player.emit()
 	_show_dialog_marker()
 	set_process(false)
 	var dialog_lines: Array[String] = [
