@@ -84,15 +84,7 @@ func petTheDoggy():
 	set_process(false)
 	$AnimatedSprite2D.play("idle")
 	pet_dog.emit()
-	#controlHeartParticle()
-	
-	# TODO REMOVE THIS 
-	var lines: Array[String] = [
-		"Esto es un test",
-		"Test test test test test test",
-		"Zzzzzz",
-	]
-	DialogManager.start_dialog(global_position, lines)
+	controlHeartParticle()
 
 func controlHeartParticle():
 	if $HeartTimer.is_stopped():

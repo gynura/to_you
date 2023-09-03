@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b16k6lc6f58y"]
+[gd_scene load_steps=24 format=3 uid="uid://b16k6lc6f58y"]
 
+[ext_resource type="Script" path="res://scenes/npcs/froggy.gd" id="1_cb1t2"]
 [ext_resource type="Texture2D" uid="uid://bfchr17fx3y4p" path="res://assets/sprites/characters/forest_frog.png" id="1_npniw"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_o2rv1"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="4_2s2yl"]
+[ext_resource type="Texture2D" uid="uid://1h636mb2bqum" path="res://assets/sprites/characters/baby_frog.png" id="5_31lg8"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="6_yggdo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r76st"]
 atlas = ExtResource("1_npniw")
@@ -39,7 +43,86 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_bvv6w"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5siox"]
+radius = 23.0217
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnnbe"]
+atlas = ExtResource("4_2s2yl")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jvj0"]
+atlas = ExtResource("4_2s2yl")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haaru"]
+atlas = ExtResource("4_2s2yl")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4skk"]
+atlas = ExtResource("4_2s2yl")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_22ky3"]
+animations = [{
+"frames": [{
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_lnnbe")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_4jvj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haaru")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_n4skk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lj2x"]
+atlas = ExtResource("5_31lg8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4s06u"]
+atlas = ExtResource("5_31lg8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14mxt"]
+atlas = ExtResource("5_31lg8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nt5j2"]
+atlas = ExtResource("5_31lg8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gunwr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lj2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4s06u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14mxt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nt5j2")
+}],
+"loop": true,
+"name": &"iddle",
+"speed": 7.0
+}]
+
 [node name="Froggy" type="CharacterBody2D"]
+script = ExtResource("1_cb1t2")
 
 [node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -52,3 +135,55 @@ frame_progress = 0.334879
 [node name="Shadow" type="Sprite2D" parent="."]
 show_behind_parent = true
 texture = ExtResource("2_o2rv1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_bvv6w")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_5siox")
+
+[node name="Bubble" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 3
+y_sort_enabled = true
+position = Vector2(1, -23)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_22ky3")
+
+[node name="LittleFrog1" type="AnimatedSprite2D" parent="."]
+position = Vector2(17, -5)
+sprite_frames = SubResource("SpriteFrames_gunwr")
+animation = &"iddle"
+autoplay = "iddle"
+frame = 2
+frame_progress = 0.449922
+
+[node name="Shadow" type="Sprite2D" parent="LittleFrog1"]
+show_behind_parent = true
+position = Vector2(0, 7)
+texture = ExtResource("2_o2rv1")
+
+[node name="LittleFrog2" type="AnimatedSprite2D" parent="."]
+position = Vector2(-17, -5)
+sprite_frames = SubResource("SpriteFrames_gunwr")
+animation = &"iddle"
+autoplay = "iddle"
+frame_progress = 0.511018
+
+[node name="Shadow" type="Sprite2D" parent="LittleFrog2"]
+show_behind_parent = true
+position = Vector2(0, 7)
+texture = ExtResource("2_o2rv1")
+
+[node name="DialogMarker" type="Sprite2D" parent="."]
+visible = false
+z_index = 20
+texture = ExtResource("6_yggdo")
+offset = Vector2(7, -20)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

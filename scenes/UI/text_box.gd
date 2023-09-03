@@ -17,7 +17,7 @@ var marker_position_y = 17
 
 signal finished_display() 
 
-func display_text(text_to_display: String, speaker_position: Vector2):
+func display_text(text_to_display: String):
 	text = text_to_display
 	label.text = text_to_display 
 	
@@ -31,7 +31,7 @@ func display_text(text_to_display: String, speaker_position: Vector2):
 		custom_minimum_size.y = size.y 
 	
 	global_position.x -= size.x/2
-	global_position.y -= size.y + 12
+	global_position.y -= size.y + 20
 	
 	label.text = ""
 	_display_letter()

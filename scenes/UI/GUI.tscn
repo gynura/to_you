@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvl5rx7otydvs"]
+[gd_scene load_steps=4 format=3 uid="uid://cvl5rx7otydvs"]
 
 [ext_resource type="Script" path="res://scenes/UI/GUI.gd" id="1_rfssk"]
 [ext_resource type="PackedScene" uid="uid://d1n6wytg7rsci" path="res://scenes/UI/health_container.tscn" id="1_subjj"]
+[ext_resource type="PackedScene" uid="uid://8wh183bxshql" path="res://scenes/UI/text_box.tscn" id="3_c3ad6"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_rfssk")
@@ -16,3 +17,6 @@ offset_right = 51.0
 offset_bottom = 17.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="TextBox" parent="." instance=ExtResource("3_c3ad6")]
+visible = false

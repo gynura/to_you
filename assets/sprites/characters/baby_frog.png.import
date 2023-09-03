@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw0k5a6uu6ypa"
-path="res://.godot/imported/forest_frog_v2.png-92f952ba2827419e5b26dced84d43ea4.ctex"
+uid="uid://1h636mb2bqum"
+path="res://.godot/imported/baby_frog.png-d2d04ad66864c44ba3ac562cfd218a34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/forest_frog_v2.png"
-dest_files=["res://.godot/imported/forest_frog_v2.png-92f952ba2827419e5b26dced84d43ea4.ctex"]
+source_file="res://assets/sprites/characters/baby_frog.png"
+dest_files=["res://.godot/imported/baby_frog.png-d2d04ad66864c44ba3ac562cfd218a34.ctex"]
 
 [params]
 

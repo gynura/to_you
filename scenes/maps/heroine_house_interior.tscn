@@ -3734,10 +3734,10 @@ position = Vector2(104, 55)
 
 [node name="Doggy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_aik6a")]
 y_sort_enabled = true
-position = Vector2(137, 73)
+position = Vector2(78, 95)
 player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("4_50fkm")]
-position = Vector2(120, 101)
+position = Vector2(87, 131)
 
 [connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]
