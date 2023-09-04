@@ -6,6 +6,8 @@
 [ext_resource type="Script" path="res://scenes/screenShakeCamera.gd" id="3_o8il7"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
 [ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
+[ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
+[ext_resource type="AudioStream" uid="uid://3ifbsgmgnmrc" path="res://assets/sound/fx/GetItem.wav" id="8_3v16r"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -215,6 +217,21 @@ tracks/0/keys = {
 "values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
 }
 
+[sub_resource type="Animation" id="Animation_8ib6n"]
+resource_name = "get_item"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [31]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ululp"]
 _data = {
 "RESET": SubResource("Animation_cp6nb"),
@@ -222,6 +239,7 @@ _data = {
 "attack_left": SubResource("Animation_4c0ye"),
 "attack_right": SubResource("Animation_d2kea"),
 "attack_up": SubResource("Animation_p4dio"),
+"get_item": SubResource("Animation_8ib6n"),
 "iddle": SubResource("Animation_gjwjc"),
 "pet_doggy_left": SubResource("Animation_rvruw"),
 "pet_doggy_right": SubResource("Animation_e8fmg"),
@@ -236,21 +254,6 @@ size = Vector2(16, 6)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjtv6"]
 size = Vector2(16, 8)
-
-[sub_resource type="Animation" id="Animation_la2om"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_t8581"]
-resource_name = "hurt_blink"
-length = 0.4
-loop_mode = 1
-step = 0.2
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_iqv87"]
-_data = {
-"RESET": SubResource("Animation_la2om"),
-"hurt_blink": SubResource("Animation_t8581")
-}
 
 [node name="player" type="CharacterBody2D"]
 z_index = 1
@@ -292,7 +295,7 @@ z_index = -1
 position = Vector2(0, -1)
 texture = ExtResource("2_20v04")
 
-[node name="ActionAnimations" type="Timer" parent="."]
+[node name="ActionTimer" type="Timer" parent="."]
 wait_time = 0.75
 one_shot = true
 
@@ -304,11 +307,6 @@ collision_mask = 2
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_jjtv6")
 
-[node name="EffectsAnimation" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_iqv87")
-}
-
 [node name="HurtTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
@@ -316,6 +314,17 @@ one_shot = true
 [node name="ShowWeaponSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_nlyeb")
 volume_db = -20.25
+
+[node name="GetWeaponSprite" type="Sprite2D" parent="."]
+visible = false
+z_index = 20
+y_sort_enabled = true
+position = Vector2(0, -24)
+texture = ExtResource("7_8v3td")
+
+[node name="GetItemSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_3v16r")
+volume_db = -23.636
 
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
@@ -326,8 +335,8 @@ volume_db = -20.25
 [connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
 [connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
-[connection signal="timeout" from="ActionAnimations" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_animations_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

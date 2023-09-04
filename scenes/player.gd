@@ -81,7 +81,7 @@ func configureCameraLimits():
 
 func _on_doggy_pet_dog():
 	set_physics_process(false)
-	$ActionAnimations.start()
+	$ActionTimer.start()
 	if get_parent().get_node("Doggy").position.x >= position.x: 
 		$AnimationPlayer.play("pet_doggy_right")
 	else: 
@@ -153,3 +153,20 @@ func _on_weapon_next_attack():
 func _on_weapon_enemy_hit():
 	$ShowWeaponSound.stop()
 	emit_signal("hurt_enemy")
+
+func _on_froggy_give_weapon_to_player():
+	set_physics_process(false)
+	_show_gotten_item()
+	$ActionTimer.start()
+	$AnimationPlayer.play("get_item")
+
+func _show_gotten_item():
+	$GetWeaponSprite.visible = true 
+	$GetItemSound.play()
+	var tween = create_tween()
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.6)
+	tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.6)
+	tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
+	

@@ -4,8 +4,10 @@ var canInteract = false
 @onready var speech_sound = preload("res://assets/sound/fx/FroggySpeech.wav")
 var already_gave_weapon = false 
 
+signal give_weapon_to_player
+
 func _ready():
-	DialogManager.dialog_ended.connect(_hide_dialog_marker)
+	DialogManager.dialog_ended.connect(_dialog_ended)
 	DialogManager.dialog_start.connect(_show_dialog_marker)
 
 func _physics_process(delta):
@@ -50,10 +52,12 @@ func _on_area_2d_body_exited(body):
 		$Bubble.visible = false 
 		canInteract = false 
 
-func _hide_dialog_marker():
+func _dialog_ended():
 	$DialogMarker.visible = false 
 	if !already_gave_weapon:
+		# The frog gives the heroine its weapon!
 		already_gave_weapon = true
+		give_weapon_to_player.emit()
 	else:
 		$Heart.visible = true
 		$LittleFrog1/Heart.visible = true
