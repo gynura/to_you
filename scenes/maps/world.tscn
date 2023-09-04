@@ -11,6 +11,10 @@
 y_sort_enabled = true
 position = Vector2(1, -5)
 
+[node name="FallingLeaves2" parent="." instance=ExtResource("3_4b6nf")]
+z_index = 4
+position = Vector2(414, -17)
+
 [node name="FallingLeaves" parent="." instance=ExtResource("3_4b6nf")]
 z_index = 4
 position = Vector2(112, 26)

@@ -13,6 +13,7 @@ var blockMovement: bool = false
 var canAttack: bool = true 
 var tween 
 var tween2 # TODO study a better way to paralelize tweens 
+var has_weapon: bool = false 
 
 signal health_change 
 signal attack_position_changed(position)

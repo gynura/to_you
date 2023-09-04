@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=25 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_20v04"]
 [ext_resource type="Script" path="res://scenes/screenShakeCamera.gd" id="3_o8il7"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
+[ext_resource type="AudioStream" uid="uid://b364ph3vcbbdt" path="res://assets/sound/fx/WalkingSound.wav" id="6_cl62g"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -312,6 +313,11 @@ libraries = {
 wait_time = 0.5
 one_shot = true
 
+[node name="ShowWeaponSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_cl62g")
+volume_db = -30.928
+pitch_scale = 0.95
+
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
 [connection signal="end_attack" from="." to="Weapon" method="_on_player_end_attack"]
@@ -321,8 +327,9 @@ one_shot = true
 [connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
 [connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
-[connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]
 [connection signal="timeout" from="ActionAnimations" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ActionAnimations" to="." method="_on_action_animations_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="finished" from="ShowWeaponSound" to="." method="_on_walking_sound_finished"]

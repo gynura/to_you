@@ -8,6 +8,8 @@ var text_box_position: Vector2
 var is_dialog_active = false
 var can_advance_line = false
 
+var sound_effect: AudioStream
+
 signal dialog_start
 signal dialog_ended
 signal stop_player
@@ -26,12 +28,13 @@ func _unhandled_input(event):
 		
 		_show_text_box() 
 
-func start_dialog(position: Vector2, lines: Array[String]):
+func start_dialog(position: Vector2, lines: Array[String], speech_effect: AudioStream):
 	if is_dialog_active: 
 		return 
 		
 	dialog_lines = lines
 	text_box_position = position
+	sound_effect = speech_effect
 	_show_text_box()
 	
 	is_dialog_active = true 
@@ -41,7 +44,7 @@ func _show_text_box():
 	text_box.finished_display.connect(_on_text_box_finished_displaying)
 	get_tree().root.add_child(text_box)
 	text_box.global_position = text_box_position
-	text_box.display_text(dialog_lines[current_line_index])
+	text_box.display_text(dialog_lines[current_line_index], sound_effect)
 	can_advance_line = false 
 
 func _on_text_box_finished_displaying():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://b16k6lc6f58y"]
+[gd_scene load_steps=28 format=3 uid="uid://b16k6lc6f58y"]
 
 [ext_resource type="Script" path="res://scenes/npcs/froggy.gd" id="1_cb1t2"]
 [ext_resource type="Texture2D" uid="uid://bfchr17fx3y4p" path="res://assets/sprites/characters/forest_frog.png" id="1_npniw"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_o2rv1"]
 [ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="4_2s2yl"]
 [ext_resource type="Texture2D" uid="uid://1h636mb2bqum" path="res://assets/sprites/characters/baby_frog.png" id="5_31lg8"]
+[ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="6_omyh1"]
 [ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="6_yggdo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r76st"]
@@ -121,6 +122,28 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqw6a"]
+atlas = ExtResource("6_omyh1")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpfx7"]
+atlas = ExtResource("6_omyh1")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4le5y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqw6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpfx7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Froggy" type="CharacterBody2D"]
 script = ExtResource("1_cb1t2")
 
@@ -162,6 +185,15 @@ autoplay = "iddle"
 frame = 2
 frame_progress = 0.449922
 
+[node name="Heart" type="AnimatedSprite2D" parent="LittleFrog1"]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(0, -4)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_4le5y")
+autoplay = "default"
+
 [node name="Shadow" type="Sprite2D" parent="LittleFrog1"]
 show_behind_parent = true
 position = Vector2(0, 7)
@@ -174,6 +206,15 @@ animation = &"iddle"
 autoplay = "iddle"
 frame_progress = 0.511018
 
+[node name="Heart" type="AnimatedSprite2D" parent="LittleFrog2"]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(7.15256e-07, -4)
+scale = Vector2(0.65, 0.65)
+sprite_frames = SubResource("SpriteFrames_4le5y")
+autoplay = "default"
+
 [node name="Shadow" type="Sprite2D" parent="LittleFrog2"]
 show_behind_parent = true
 position = Vector2(0, 7)
@@ -185,5 +226,17 @@ z_index = 20
 texture = ExtResource("6_yggdo")
 offset = Vector2(7, -20)
 
+[node name="Heart" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_4le5y")
+autoplay = "default"
+
+[node name="HeartsTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="HeartsTimer" to="." method="_on_hearts_timer_timeout"]
