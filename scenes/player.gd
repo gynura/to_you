@@ -13,7 +13,8 @@ var blockMovement: bool = false
 var canAttack: bool = true 
 var tween 
 var tween2 # TODO study a better way to paralelize tweens 
-var has_weapon: bool = false 
+var has_weapon: bool = true # TODO change to false 
+var is_attacking: bool = false 
 
 signal health_change 
 signal attack_position_changed(position)
@@ -24,12 +25,13 @@ signal hurt_enemy
 func handleInput():
 	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	velocity = moveDirection * speed 
-	if !canAttack:
+	if !canAttack || !has_weapon:
 			return 
 	if Input.is_action_pressed("attack_button"):
 		# Signal that sends the position to aim the weapon' sprite
 		canAttack = false 
 		emit_signal("attack")
+		$ShowWeaponSound.play()
 		$AnimationPlayer.play("attack_" + animationDirection)
 		blockMovement = true 
 
@@ -101,6 +103,7 @@ func _restart_process():
 	set_physics_process(true)
 
 func enemyHit(enemyArea):
+	$ShowWeaponSound.stop()
 	# Because of the processing, we need to check if the appended enemyArea's enemy is still alive
 	# if not it won't damage the player
 	if enemyArea.owner.currentHealth <= 0:
@@ -148,4 +151,5 @@ func _on_weapon_next_attack():
 	canAttack = true
 
 func _on_weapon_enemy_hit():
+	$ShowWeaponSound.stop()
 	emit_signal("hurt_enemy")

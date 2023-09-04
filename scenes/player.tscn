@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_20v04"]
 [ext_resource type="Script" path="res://scenes/screenShakeCamera.gd" id="3_o8il7"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
-[ext_resource type="AudioStream" uid="uid://b364ph3vcbbdt" path="res://assets/sound/fx/WalkingSound.wav" id="6_cl62g"]
+[ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -314,9 +314,8 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ShowWeaponSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_cl62g")
-volume_db = -30.928
-pitch_scale = 0.95
+stream = ExtResource("6_nlyeb")
+volume_db = -20.25
 
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
