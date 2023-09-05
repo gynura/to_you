@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
 [ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
 [ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
-[ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/game-bonus-144751.mp3" id="8_3gxlt"]
+[ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -323,7 +323,7 @@ position = Vector2(0, -24)
 texture = ExtResource("7_8v3td")
 
 [node name="GetItemSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_3gxlt")
+stream = ExtResource("8_0mej7")
 volume_db = -4.663
 pitch_scale = 1.21
 

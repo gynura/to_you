@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcwtb54x3cnm1"]
+
+[ext_resource type="Texture2D" uid="uid://mupw62xcd36n" path="res://assets/sprites/particles/Fireball.png" id="1_6vp4d"]
+[ext_resource type="Script" path="res://scenes/enemies/fire_bullet.gd" id="2_qw3sd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgvmp"]
+atlas = ExtResource("1_6vp4d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_swxin"]
+atlas = ExtResource("1_6vp4d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcbse"]
+atlas = ExtResource("1_6vp4d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hakxg"]
+atlas = ExtResource("1_6vp4d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uptya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgvmp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_swxin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcbse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hakxg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iisr5"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pluy"]
+radius = 7.0
+height = 14.0
+
+[node name="FireBullet" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_uptya")
+autoplay = "default"
+frame = 2
+frame_progress = 0.761377
+script = ExtResource("2_qw3sd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CircleShape2D_iisr5")
+
+[node name="EnemyHitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_3pluy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(0.25, 0.3)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -171,7 +171,6 @@ autostart = true
 
 [node name="ShootBulletsTimer" type="Timer" parent="."]
 wait_time = 0.3
-autostart = true
 
 [connection signal="timeout" from="BulletSprayTimer" to="." method="_on_bullet_spray_timer_timeout"]
 [connection signal="timeout" from="ShootBulletsTimer" to="." method="_on_shoot_bullets_timer_timeout"]
