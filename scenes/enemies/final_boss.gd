@@ -55,6 +55,7 @@ func _hit_final_boss():
 func playerHit(): 
 	if can_be_hurt: 
 		currentHealth -= 1
+		can_be_hurt = false 
 		if currentHealth <= 0: 
 			death()
 		else: _hit_final_boss() 
