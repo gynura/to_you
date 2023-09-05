@@ -216,5 +216,13 @@ volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033
 
+[node name="EnemyHurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
+position = Vector2(0, -7)
+shape = SubResource("CapsuleShape2D_w3pby")
+
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

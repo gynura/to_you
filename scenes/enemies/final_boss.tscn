@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://7eqkumnlqoxm"]
+[gd_scene load_steps=24 format=3 uid="uid://7eqkumnlqoxm"]
 
 [ext_resource type="Script" path="res://scenes/enemies/final_boss.gd" id="1_a5l2y"]
 [ext_resource type="Texture2D" uid="uid://cphfha12n17hm" path="res://assets/sprites/enemies/final_boss_hit.png" id="1_dm4ic"]
 [ext_resource type="Texture2D" uid="uid://3csd5i6kqnxu" path="res://assets/sprites/enemies/final_boss.png" id="1_wdfae"]
 [ext_resource type="Texture2D" uid="uid://ccoxuu84t2ivs" path="res://assets/sprites/enemies/final_boss_hit_2.png" id="2_hj4sh"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="5_l7s8j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cogvt"]
 atlas = ExtResource("1_dm4ic")
@@ -164,14 +165,37 @@ shape = SubResource("CircleShape2D_klnd5")
 shape = SubResource("CircleShape2D_yy0ca")
 
 [node name="InvincibilityTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="BulletSprayTimer" type="Timer" parent="."]
-wait_time = 1.5
 autostart = true
 
 [node name="ShootBulletsTimer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.198
 autostart = true
 
+[node name="ChangeRotationTimer" type="Timer" parent="."]
+wait_time = 1.33
+autostart = true
+
+[node name="SpecialAttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_l7s8j")
+volume_db = -22.333
+pitch_scale = 1.02
+attenuation = 0.933033
+
+[node name="EnemyHurtBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
+shape = SubResource("CircleShape2D_klnd5")
+
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="BulletSprayTimer" to="." method="_on_bullet_spray_timer_timeout"]
 [connection signal="timeout" from="ShootBulletsTimer" to="." method="_on_shoot_bullets_timer_timeout"]
+[connection signal="timeout" from="ChangeRotationTimer" to="." method="_on_change_rotation_timer_timeout"]
+[connection signal="timeout" from="SpecialAttackTimer" to="." method="_on_special_attack_timer_timeout"]
