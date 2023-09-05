@@ -13,7 +13,7 @@ var blockMovement: bool = false
 var canAttack: bool = true 
 var tween 
 var tween2 # TODO study a better way to paralelize tweens 
-var has_weapon: bool = true # TODO change to false 
+@export var has_weapon: bool = false 
 var is_attacking: bool = false 
 
 signal health_change 
@@ -159,6 +159,7 @@ func _on_froggy_give_weapon_to_player():
 	_show_gotten_item()
 	$ActionTimer.start()
 	$AnimationPlayer.play("get_item")
+	has_weapon = true 
 
 func _show_gotten_item():
 	$GetWeaponSprite.visible = true 
@@ -166,7 +167,7 @@ func _show_gotten_item():
 	var tween = create_tween()
 	tween.set_ease(tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CIRC)
-	tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.6)
-	tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.6)
+	tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.9)
+	tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.2)
 	tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
 	

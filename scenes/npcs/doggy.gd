@@ -10,7 +10,7 @@ enum{
 }
 signal pet_dog
 const SPEED = 30.0
-const MAX_PIXELS_TO_MOVE = 25
+const MAX_PIXELS_TO_MOVE = 60
 const RECALCULATED_MAX_PIXELS_TO_MOVE = MAX_PIXELS_TO_MOVE - 0.01
 var current_state = IDLE
 var direction = Vector2.RIGHT

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cph2ryf71pcau"]
+[gd_scene load_steps=6 format=3 uid="uid://cph2ryf71pcau"]
 
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="1_r8d6b"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="2_at055"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="3_5uwga"]
 [ext_resource type="PackedScene" uid="uid://b16k6lc6f58y" path="res://scenes/npcs/froggy.tscn" id="4_54fst"]
+[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="5_271ax"]
 
 [node name="Heroine_House_Outside" type="Node2D"]
 
@@ -43,5 +44,7 @@ position = Vector2(113, 75)
 
 [node name="Froggy" parent="." instance=ExtResource("4_54fst")]
 position = Vector2(111, 30)
+
+[node name="GUI" parent="." instance=ExtResource("5_271ax")]
 
 [connection signal="give_weapon_to_player" from="Froggy" to="player" method="_on_froggy_give_weapon_to_player"]

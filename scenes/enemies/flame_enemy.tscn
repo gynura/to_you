@@ -212,7 +212,7 @@ anim_speed_max = 1.0
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_yitqh")
-volume_db = -28.657
+volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033
 
