@@ -21,4 +21,16 @@ func updateFlowers(currentHealth: int):
 				flowers[i].update(remainingLife)
 				return
 			flowers[i].update(remainingLife)
+			
+	_animate_last_flower(flowers)
 
+func _animate_last_flower(flowers):
+	flowers.reverse()
+	var already_animated_one_flower :bool = false 
+	# Check to update flower animation on the current flower that can lose petals
+	for i in range (flowers.size()):
+		if flowers[i].petals > 0 && !already_animated_one_flower: 
+			flowers[i].activate_animation()
+			already_animated_one_flower = true 
+		else: 
+			flowers[i].stop_animation()

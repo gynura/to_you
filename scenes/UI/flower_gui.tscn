@@ -14,4 +14,3 @@ script = ExtResource("1_36qfw")
 texture = ExtResource("1_3tpbk")
 centered = false
 hframes = 5
-frame = 4
