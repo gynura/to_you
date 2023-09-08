@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dsuttbp1vjr08"]
+[gd_scene load_steps=20 format=3 uid="uid://dsuttbp1vjr08"]
 
 [ext_resource type="Texture2D" uid="uid://bs0ax4frb15ul" path="res://assets/sprites/tilesets/TilesetInteriorFloor.png" id="1_a4qoy"]
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_interior.gd" id="1_jowg7"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://clp5qbbop4ame" path="res://scenes/npcs/doggy.tscn" id="7_aik6a"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="10_tk3qn"]
 [ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/DoorOpen.ogg" id="12_0vukt"]
-[ext_resource type="PackedScene" uid="uid://cph2ryf71pcau" path="res://scenes/maps/heroine_house_outside.tscn" id="12_nq2fv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_domww"]
 texture = ExtResource("1_a4qoy")
@@ -3694,7 +3693,7 @@ sources/4 = SubResource("TileSetAtlasSource_egpxk")
 sources/5 = SubResource("TileSetAtlasSource_xketd")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_03gin"]
-size = Vector2(38, 13)
+size = Vector2(38, 14)
 
 [node name="Heroine_House_Interior" type="Node2D"]
 script = ExtResource("1_jowg7")
@@ -3735,7 +3734,6 @@ layer_4/z_index = 3
 layer_4/tile_data = PackedInt32Array(131075, 524291, 7, 131076, 589827, 7, 131077, 196611, 7, 131083, 1900548, 11, 131084, 1966084, 11, 458754, 3, 7, 524290, 3, 8, 262146, 1048580, 14)
 
 [node name="Transitions" parent="." instance=ExtResource("10_tk3qn")]
-scene_to_load = ExtResource("12_nq2fv")
 
 [node name="Doggy" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_aik6a")]
 y_sort_enabled = true
@@ -3743,13 +3741,13 @@ position = Vector2(78, 95)
 player = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("4_50fkm")]
-position = Vector2(87, 131)
+position = Vector2(87, 157)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(87, 166)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 9.5)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_03gin")
 
 [node name="OpenDoorSound" type="AudioStreamPlayer2D" parent="."]

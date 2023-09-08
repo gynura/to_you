@@ -2,12 +2,13 @@ extends Control
 
 @onready var animations :AnimationPlayer = $AnimationPlayer
 @onready var color_rect :ColorRect = $AnimationPlayer/ColorRect 
-@export var scene_to_load :PackedScene
+var scene_to_load :PackedScene
 
 func _ready():
 	color_rect.visible = false 
 
-func exit_screen():
+func exit_screen(scene):
+	scene_to_load = scene
 	color_rect.visible = true
 	animations.play("fade_in")
 	

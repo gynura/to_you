@@ -18,6 +18,7 @@ config/icon="res://cover.png"
 [autoload]
 
 DialogManager="*res://scenes/singletons/dialog_manager.gd"
+Global="*res://scenes/singletons/global.gd"
 
 [display]
 
