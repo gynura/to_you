@@ -59,8 +59,12 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -240.0
+offset_bottom = -135.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_eablo")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -69,10 +73,15 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="AnimationPlayer"]
-z_index = 1
+visible = false
+z_index = 50
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 4094.0
+offset_bottom = 2545.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0784314, 0.105882, 0.105882, 1)
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

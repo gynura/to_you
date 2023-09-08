@@ -1,13 +1,21 @@
 extends Control
 
-@onready var animations :AnimationPLayer = $AnimationPlayer
-@onready var color_rect :ColorRect = $ColorRect 
-
+@onready var animations :AnimationPlayer = $AnimationPlayer
+@onready var color_rect :ColorRect = $AnimationPlayer/ColorRect 
+@export var scene_to_load :PackedScene
 
 func _ready():
 	color_rect.visible = false 
 
-func exit_screen_animation():
+func exit_screen():
+	color_rect.visible = true
 	animations.play("fade_in")
 	
-func enter_screen_animation(): 
+func enter_screen(): 
+	color_rect.visible = true
+	animations.play("fade_out")
+
+func _on_animation_player_animation_finished(anim_name):
+	if scene_to_load != null && anim_name == "fade_in":
+		get_tree().change_scene_to_packed(scene_to_load)
+	color_rect.visible = false 
