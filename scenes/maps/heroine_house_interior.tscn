@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dsuttbp1vjr08"]
+[gd_scene load_steps=21 format=3 uid="uid://dsuttbp1vjr08"]
 
 [ext_resource type="Texture2D" uid="uid://bs0ax4frb15ul" path="res://assets/sprites/tilesets/TilesetInteriorFloor.png" id="1_a4qoy"]
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_interior.gd" id="1_jowg7"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://c4f2okftnp1q" path="res://assets/sprites/tilesets/Extended_new_plants.png" id="6_cfryc"]
 [ext_resource type="PackedScene" uid="uid://clp5qbbop4ame" path="res://scenes/npcs/doggy.tscn" id="7_aik6a"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="10_tk3qn"]
+[ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/DoorOpen.ogg" id="12_0vukt"]
 [ext_resource type="PackedScene" uid="uid://cph2ryf71pcau" path="res://scenes/maps/heroine_house_outside.tscn" id="12_nq2fv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_domww"]
@@ -3750,6 +3751,11 @@ position = Vector2(87, 166)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_03gin")
+
+[node name="OpenDoorSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_0vukt")
+volume_db = -11.093
+pitch_scale = 1.11
 
 [connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
