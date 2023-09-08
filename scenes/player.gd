@@ -160,6 +160,7 @@ func _on_froggy_give_weapon_to_player():
 	$ActionTimer.start()
 	$AnimationPlayer.play("get_item")
 	has_weapon = true 
+	Global.player_got_weapon = true 
 
 func _show_gotten_item():
 	$GetWeaponSprite.visible = true 

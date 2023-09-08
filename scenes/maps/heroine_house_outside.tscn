@@ -89,4 +89,5 @@ volume_db = -11.093
 pitch_scale = 1.11
 
 [connection signal="give_weapon_to_player" from="Froggy" to="player" method="_on_froggy_give_weapon_to_player"]
+[connection signal="give_weapon_to_player" from="Froggy" to="GUI" method="_on_froggy_give_weapon_to_player"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
