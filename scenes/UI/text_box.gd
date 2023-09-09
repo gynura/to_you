@@ -64,3 +64,24 @@ func _display_letter():
 
 func _on_letter_display_timer_timeout():
 	_display_letter()
+	
+# This function is used for read signs 
+func display_sign_text(text_to_display: String, speech_effect: AudioStream):
+	text = text_to_display
+	label.text = text_to_display 
+	audio_player.stream = speech_effect 
+	
+	await resized
+	custom_minimum_size.x = min(size.x, MAX_WIDTH)
+	
+	if size.x > MAX_WIDTH:
+		label.autowrap_mode = TextServer.AUTOWRAP_WORD
+		await resized # waiting for the x resize
+		await resized # waiting for the y resize
+		custom_minimum_size.y = size.y 
+	
+	global_position.x -= size.x/2
+	global_position.y -= size.y + 10
+	
+	label.text = ""
+	_display_letter()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cph2ryf71pcau"]
+[gd_scene load_steps=13 format=3 uid="uid://cph2ryf71pcau"]
 
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_outside.gd" id="1_fksi1"]
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="1_r8d6b"]
@@ -8,9 +8,14 @@
 [ext_resource type="PackedScene" uid="uid://b16k6lc6f58y" path="res://scenes/npcs/froggy.tscn" id="4_54fst"]
 [ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="5_271ax"]
 [ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/DoorOpen.ogg" id="8_8iam3"]
+[ext_resource type="PackedScene" uid="uid://c1w4vo2dmdnt0" path="res://scenes/utils/sign.tscn" id="9_un7d7"]
+[ext_resource type="Texture2D" uid="uid://dmyw4xfos2yp5" path="res://assets/sprites/utils/tree.png" id="10_k62px"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4f3w"]
 size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocyse"]
+size = Vector2(54.5, 31)
 
 [node name="Heroine_House_Outside" type="Node2D"]
 script = ExtResource("1_fksi1")
@@ -74,18 +79,114 @@ position = Vector2(76, 48)
 
 [node name="GUI" parent="." instance=ExtResource("5_271ax")]
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-y_sort_enabled = true
-position = Vector2(153, 29)
-shape = SubResource("RectangleShape2D_v4f3w")
-
 [node name="OpenDoorSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8iam3")
 volume_db = -11.093
 pitch_scale = 1.11
 
+[node name="Sign" parent="." instance=ExtResource("9_un7d7")]
+position = Vector2(104, 106)
+
+[node name="Area2D2" type="Area2D" parent="Sign"]
+position = Vector2(-104, -106)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign/Area2D2"]
+y_sort_enabled = true
+position = Vector2(153, 29)
+shape = SubResource("RectangleShape2D_v4f3w")
+
+[node name="Trees" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(99, 161)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees"]
+z_index = 1
+position = Vector2(-14, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees"]
+z_index = 1
+position = Vector2(-16, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-19, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-17, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-17, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees/Trees/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-14, 0)
+texture = ExtResource("10_k62px")
+
+[node name="Trees2" type="Sprite2D" parent="Trees"]
+z_index = 1
+position = Vector2(139, 1)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2"]
+z_index = 1
+position = Vector2(-14, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2/Trees"]
+z_index = 1
+position = Vector2(-16, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2/Trees/Trees"]
+z_index = 1
+position = Vector2(-19, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-17, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2/Trees/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-17, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Trees" type="Sprite2D" parent="Trees/Trees2/Trees/Trees/Trees/Trees/Trees"]
+z_index = 1
+position = Vector2(-14, 0)
+texture = ExtResource("10_k62px")
+flip_h = true
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(119, 153)
+
+[node name="CheckIfPlayerHasWeaponArea" type="Area2D" parent="Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/CheckIfPlayerHasWeaponArea"]
+position = Vector2(0.75, 2.5)
+shape = SubResource("RectangleShape2D_ocyse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ocyse")
+
+[connection signal="give_weapon_to_player" from="Froggy" to="." method="_on_froggy_give_weapon_to_player"]
 [connection signal="give_weapon_to_player" from="Froggy" to="player" method="_on_froggy_give_weapon_to_player"]
 [connection signal="give_weapon_to_player" from="Froggy" to="GUI" method="_on_froggy_give_weapon_to_player"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Sign/Area2D2" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Wall/CheckIfPlayerHasWeaponArea" to="." method="_on_check_if_player_has_weapon_area_body_entered"]

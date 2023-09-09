@@ -10,6 +10,7 @@ func _ready():
 func exit_screen(scene):
 	scene_to_load = scene
 	color_rect.visible = true
+	Global.transition_to_scene.emit()
 	animations.play("fade_in")
 	
 func enter_screen(): 
@@ -19,4 +20,6 @@ func enter_screen():
 func _on_animation_player_animation_finished(anim_name):
 	if scene_to_load != null && anim_name == "fade_in":
 		get_tree().change_scene_to_packed(scene_to_load)
+	else: 
+		Global.entered_new_scene.emit()
 	color_rect.visible = false 

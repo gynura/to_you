@@ -40,6 +40,10 @@ func handleInput():
 func _ready():
 	DialogManager.dialog_ended.connect(_restart_process)
 	DialogManager.stop_player.connect(_stop_player)
+	DialogManager.read_sign_stop.connect(_restart_process)
+	DialogManager.read_sign_start.connect(_stop_player)
+	Global.transition_to_scene.connect(_stop_player)
+	Global.entered_new_scene.connect(_restart_process)
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
 	Global.player_heal.connect(_health_up)
@@ -169,7 +173,13 @@ func _on_froggy_give_weapon_to_player():
 	$AnimationPlayer.play("get_item")
 	has_weapon = true 
 	Global.player_got_weapon = true 
-
+	
+func show_dialog_marker():
+	$DialogMarker.visible = true
+	
+func hide_dialog_marker():
+	$DialogMarker.visible = false 
+	
 func _show_gotten_item():
 	$GetWeaponSprite.visible = true 
 	$GetItemSound.play()

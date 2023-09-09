@@ -3755,5 +3755,8 @@ stream = ExtResource("12_0vukt")
 volume_db = -11.093
 pitch_scale = 1.11
 
+[node name="GameBeginningPlayerPosition" type="Marker2D" parent="."]
+position = Vector2(123, 90)
+
 [connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

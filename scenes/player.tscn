@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=26 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
 [ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
 [ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="9_oonhg"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -260,6 +261,13 @@ z_index = 1
 y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_tmc20")
+
+[node name="DialogMarker" type="Sprite2D" parent="."]
+visible = false
+z_index = 30
+y_sort_enabled = true
+texture = ExtResource("9_oonhg")
+offset = Vector2(7, -20)
 
 [node name="Weapon" parent="." instance=ExtResource("4_8lupc")]
 visible = false

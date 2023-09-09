@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://c1w4vo2dmdnt0"]
+
+[ext_resource type="Texture2D" uid="uid://bksgwwqes7utw" path="res://assets/sprites/utils/sign.png" id="1_52488"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="1_sgg5i"]
+[ext_resource type="Script" path="res://scenes/utils/sign.gd" id="2_wemmu"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="3_byp10"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnaxc"]
+radius = 19.0263
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnnbe"]
+atlas = ExtResource("3_byp10")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jvj0"]
+atlas = ExtResource("3_byp10")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haaru"]
+atlas = ExtResource("3_byp10")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4skk"]
+atlas = ExtResource("3_byp10")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t0wpq"]
+animations = [{
+"frames": [{
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_lnnbe")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_4jvj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haaru")
+}, {
+"duration": 1.15,
+"texture": SubResource("AtlasTexture_n4skk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Sign" type="Sprite2D"]
+texture = ExtResource("1_52488")
+script = ExtResource("2_wemmu")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, 0)
+shape = SubResource("CircleShape2D_vnaxc")
+
+[node name="DialogMarker" type="Sprite2D" parent="."]
+visible = false
+z_index = 20
+texture = ExtResource("1_sgg5i")
+offset = Vector2(9, -10)
+
+[node name="Bubble" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 3
+y_sort_enabled = true
+position = Vector2(1, -13)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_t0wpq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

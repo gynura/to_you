@@ -21,6 +21,7 @@ func talkToFroggy():
 	DialogManager.stop_player.emit()
 	_show_dialog_marker()
 	set_process(false)
+	Global.is_froggy_talk = true 
 	var dialog_lines: Array[String]
 	if !Global.player_got_weapon:
 		dialog_lines = [
@@ -53,14 +54,16 @@ func _on_area_2d_body_exited(body):
 
 func _dialog_ended():
 	$DialogMarker.visible = false 
-	if !Global.player_got_weapon:
+	if !Global.player_got_weapon && Global.is_froggy_talk:
 		# The frog gives the heroine its weapon!
 		give_weapon_to_player.emit()
-	else:
+		Global.is_froggy_talk = false
+	elif Global.is_froggy_talk: 
 		$Heart.visible = true
 		$LittleFrog1/Heart.visible = true
 		$LittleFrog2/Heart.visible = true 
 		$HeartsTimer.start()
+		Global.is_froggy_talk = false 
 
 func _show_dialog_marker():
 	$DialogMarker.visible = true
