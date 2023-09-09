@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b16k6lc6f58y"]
+[gd_scene load_steps=29 format=3 uid="uid://b16k6lc6f58y"]
 
 [ext_resource type="Script" path="res://scenes/npcs/froggy.gd" id="1_cb1t2"]
 [ext_resource type="Texture2D" uid="uid://bfchr17fx3y4p" path="res://assets/sprites/characters/forest_frog.png" id="1_npniw"]
@@ -144,6 +144,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ugwqk"]
+radius = 5.0
+
 [node name="Froggy" type="CharacterBody2D"]
 script = ExtResource("1_cb1t2")
 
@@ -199,6 +202,12 @@ show_behind_parent = true
 position = Vector2(0, 7)
 texture = ExtResource("2_o2rv1")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="LittleFrog1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LittleFrog1/StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_ugwqk")
+
 [node name="LittleFrog2" type="AnimatedSprite2D" parent="."]
 position = Vector2(-17, -5)
 sprite_frames = SubResource("SpriteFrames_gunwr")
@@ -219,6 +228,12 @@ autoplay = "default"
 show_behind_parent = true
 position = Vector2(0, 7)
 texture = ExtResource("2_o2rv1")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="LittleFrog2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LittleFrog2/StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_ugwqk")
 
 [node name="DialogMarker" type="Sprite2D" parent="."]
 visible = false

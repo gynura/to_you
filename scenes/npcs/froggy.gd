@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var canInteract = false 
 @onready var speech_sound = preload("res://assets/sound/fx/FroggySpeech.wav")
-var already_gave_weapon = false 
 
 signal give_weapon_to_player
 
@@ -23,7 +22,7 @@ func talkToFroggy():
 	_show_dialog_marker()
 	set_process(false)
 	var dialog_lines: Array[String]
-	if !already_gave_weapon:
+	if !Global.player_got_weapon:
 		dialog_lines = [
 			"¡Hola Yaiza!",
 			"Te estábamos esperando,",
@@ -54,9 +53,8 @@ func _on_area_2d_body_exited(body):
 
 func _dialog_ended():
 	$DialogMarker.visible = false 
-	if !already_gave_weapon:
+	if !Global.player_got_weapon:
 		# The frog gives the heroine its weapon!
-		already_gave_weapon = true
 		give_weapon_to_player.emit()
 	else:
 		$Heart.visible = true

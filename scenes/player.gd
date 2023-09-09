@@ -41,6 +41,7 @@ func _ready():
 	DialogManager.dialog_ended.connect(_restart_process)
 	DialogManager.stop_player.connect(_stop_player)
 	configureCameraLimits() 
+	has_weapon = Global.player_got_weapon
 
 func _physics_process(delta):
 	if blockMovement: 
