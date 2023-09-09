@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_20v04"]
-[ext_resource type="Script" path="res://scenes/screenShakeCamera.gd" id="3_o8il7"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
+[ext_resource type="Script" path="res://scenes/screen_shake_Camera.gd" id="4_b4q3f"]
 [ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
 [ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
 [ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
@@ -286,7 +286,7 @@ shape = SubResource("RectangleShape2D_wqlhp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-script = ExtResource("3_o8il7")
+script = ExtResource("4_b4q3f")
 
 [node name="ScreenShakeTimer" type="Timer" parent="Camera2D"]
 
@@ -336,8 +336,8 @@ pitch_scale = 1.21
 [connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
 [connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
-[connection signal="timeout" from="ActionTimer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="ActionTimer" to="." method="_on_action_animations_timeout"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

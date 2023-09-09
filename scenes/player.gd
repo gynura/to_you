@@ -42,6 +42,7 @@ func _ready():
 	DialogManager.stop_player.connect(_stop_player)
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
+	Global.player_heal.connect(_health_up)
 
 func _physics_process(delta):
 	if blockMovement: 
@@ -102,6 +103,11 @@ func _stop_player():
 
 func _restart_process(): 
 	set_physics_process(true)
+	
+func _health_up():
+	currentHealth += 1 
+	Global.player_current_health += 1
+	health_change.emit()
 
 func enemyHit(enemyArea):
 	$ShowWeaponSound.stop()
@@ -110,6 +116,7 @@ func enemyHit(enemyArea):
 	if enemyArea.owner.currentHealth <= 0:
 		return
 	currentHealth -= 1
+	Global.player_current_health -= 1
 	enemyArea.owner.hitSound.play()
 	# REMOVE LATER 
 	if currentHealth <= 0:
