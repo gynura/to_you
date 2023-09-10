@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const MAX_HEALTH = 8
+const MAX_FACE_NUMBER = 3
 
 @export var speed = 42
 @onready var bullet_scene = preload("res://scenes/enemies/fire_bullet.tscn")
@@ -15,6 +16,7 @@ var rotation_spawn = 0.3
 @export var can_shoot :bool = true 
 var tween
 var start_boss_fight :bool = false 
+var face_number = 1
 
 func _process(delta):
 	pass
@@ -58,14 +60,20 @@ func death():
 
 func _on_invincibility_timer_timeout():
 	can_be_hurt = true 
-	$AnimatedSprite2D.play("iddle")
+	$AnimatedSprite2D.play("iddle_" + str(face_number))
 
 func _on_boss_fight_start_boss_fight():
 	start_boss_fight = true
 	can_shoot = true 
+	$TimeBetweenEachBullet.start()
 
 func _on_time_between_each_bullet_timeout():
 	_spawn_bullets()
 
 func _on_time_between_bullet_spawns_timeout():
 	can_shoot = !can_shoot  
+
+func _on_change_face_timer_timeout():
+	if can_be_hurt: 
+		face_number = int(randf_range(0, 4)) + 1
+		$AnimatedSprite2D.play("iddle_" + str(face_number))

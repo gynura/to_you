@@ -1,10 +1,12 @@
-[gd_scene load_steps=24 format=3 uid="uid://7eqkumnlqoxm"]
+[gd_scene load_steps=36 format=3 uid="uid://7eqkumnlqoxm"]
 
 [ext_resource type="Script" path="res://scenes/enemies/final_boss.gd" id="1_a5l2y"]
 [ext_resource type="Texture2D" uid="uid://cphfha12n17hm" path="res://assets/sprites/enemies/final_boss_hit.png" id="1_dm4ic"]
 [ext_resource type="Texture2D" uid="uid://3csd5i6kqnxu" path="res://assets/sprites/enemies/final_boss.png" id="1_wdfae"]
 [ext_resource type="Texture2D" uid="uid://ccoxuu84t2ivs" path="res://assets/sprites/enemies/final_boss_hit_2.png" id="2_hj4sh"]
+[ext_resource type="Texture2D" uid="uid://cd3t1lwo6vxom" path="res://assets/sprites/enemies/final_boss_2.png" id="5_0lgj6"]
 [ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="5_l7s8j"]
+[ext_resource type="Texture2D" uid="uid://dtk58ih8jm5ge" path="res://assets/sprites/enemies/final_boss_3.png" id="6_6f183"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cogvt"]
 atlas = ExtResource("1_dm4ic")
@@ -44,6 +46,46 @@ region = Rect2(150, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d6qkk"]
 atlas = ExtResource("1_wdfae")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27cm6"]
+atlas = ExtResource("5_0lgj6")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75kxd"]
+atlas = ExtResource("5_0lgj6")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mqjk"]
+atlas = ExtResource("5_0lgj6")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myjq0"]
+atlas = ExtResource("5_0lgj6")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46nmo"]
+atlas = ExtResource("5_0lgj6")
+region = Rect2(200, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2q1j"]
+atlas = ExtResource("6_6f183")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww0nr"]
+atlas = ExtResource("6_6f183")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3hmk"]
+atlas = ExtResource("6_6f183")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ih0qw"]
+atlas = ExtResource("6_6f183")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mxnu"]
+atlas = ExtResource("6_6f183")
 region = Rect2(200, 0, 50, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jxgyy"]
@@ -110,7 +152,47 @@ animations = [{
 "texture": SubResource("AtlasTexture_d6qkk")
 }],
 "loop": true,
-"name": &"iddle",
+"name": &"iddle_1",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27cm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75kxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mqjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myjq0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46nmo")
+}],
+"loop": true,
+"name": &"iddle_2",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2q1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww0nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3hmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ih0qw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mxnu")
+}],
+"loop": true,
+"name": &"iddle_3",
 "speed": 10.0
 }, {
 "frames": [{
@@ -148,10 +230,8 @@ script = ExtResource("1_a5l2y")
 z_index = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_5cs7p")
-animation = &"iddle"
-autoplay = "iddle"
-frame = 2
-frame_progress = 0.958501
+animation = &"iddle_3"
+autoplay = "iddle_1"
 
 [node name="BulletSpawner" type="Node2D" parent="."]
 
@@ -174,7 +254,6 @@ autostart = true
 
 [node name="TimeBetweenEachBullet" type="Timer" parent="."]
 wait_time = 0.06
-autostart = true
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_l7s8j")
@@ -189,6 +268,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
 shape = SubResource("CircleShape2D_klnd5")
 
+[node name="ChangeFaceTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenBulletSpawns" to="." method="_on_time_between_bullet_spawns_timeout"]
 [connection signal="timeout" from="TimeBetweenEachBullet" to="." method="_on_time_between_each_bullet_timeout"]
+[connection signal="timeout" from="ChangeFaceTimer" to="." method="_on_change_face_timer_timeout"]

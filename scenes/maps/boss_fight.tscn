@@ -189,5 +189,6 @@ shape = SubResource("RectangleShape2D_sdgmd")
 [connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]
 [connection signal="hurt_enemy" from="player" to="." method="_on_player_hurt_enemy"]
 [connection signal="hurt_enemy" from="player" to="BossFightCamera" method="_on_player_hurt_enemy"]
+[connection signal="player_heal" from="player" to="GUI" method="_on_player_player_heal"]
 [connection signal="timeout" from="BossFightCamera/Timer" to="BossFightCamera" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenCameraChanges" to="." method="_on_time_between_camera_changes_timeout"]
