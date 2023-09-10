@@ -111,9 +111,14 @@ func _restart_process():
 	set_physics_process(true)
 	
 func _health_up():
-	currentHealth += 1 
-	Global.player_current_health += 1
-	health_change.emit()
+	if currentHealth < Global.PLAYER_MAX_HEALTH:
+		if currentHealth + 2 <= Global.PLAYER_MAX_HEALTH:
+			currentHealth += 2 
+			Global.player_current_health += 2
+		else:
+			currentHealth += 1 
+			Global.player_current_health += 1
+		health_change.emit()
 
 func enemyHit(enemyArea):
 	$ShowWeaponSound.stop()
