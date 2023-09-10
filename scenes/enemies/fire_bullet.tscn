@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcwtb54x3cnm1"]
+[gd_scene load_steps=13 format=3 uid="uid://bcwtb54x3cnm1"]
 
 [ext_resource type="Texture2D" uid="uid://mupw62xcd36n" path="res://assets/sprites/particles/Fireball.png" id="1_6vp4d"]
 [ext_resource type="Script" path="res://scenes/enemies/fire_bullet.gd" id="2_qw3sd"]
 [ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="3_5dn72"]
+[ext_resource type="Texture2D" uid="uid://boah2cwkprtia" path="res://assets/sprites/particles/Flame_hit.png" id="4_e2h60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgvmp"]
 atlas = ExtResource("1_6vp4d")
@@ -47,6 +48,12 @@ radius = 7.0
 radius = 2.0
 height = 4.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q7khj"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 6
+particles_anim_loop = false
+
 [node name="FireBullet" type="AnimatedSprite2D"]
 show_behind_parent = true
 z_index = 1
@@ -83,6 +90,29 @@ volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033
 
+[node name="HitFx" type="CPUParticles2D" parent="."]
+z_index = 8
+y_sort_enabled = true
+material = SubResource("CanvasItemMaterial_q7khj")
+position = Vector2(-2.66667, -4)
+scale = Vector2(0.8, 0.8)
+emitting = false
+amount = 1
+lifetime = 0.15
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+texture = ExtResource("4_e2h60")
+scale_amount_min = 0.9
+scale_amount_max = 0.9
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="TimeTillDeletion" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="finished" from="HitSound" to="." method="_on_hit_sound_finished"]
+[connection signal="timeout" from="TimeTillDeletion" to="." method="_on_time_till_deletion_timeout"]

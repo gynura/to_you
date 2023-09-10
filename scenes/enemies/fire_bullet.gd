@@ -14,8 +14,10 @@ func _process(delta):
 	
 # Check if the bullet hits a wall
 func _on_area_2d_body_entered(body):
-	if body.name != "FinalBoss" && body.name != "player":
-		queue_free()
+	if body.name != "FinalBoss" && body.name != "player" && body.name != "Wall2":
+		$HitFx.emitting = true 
+		self_modulate = "#ffffff00"
+		$TimeTillDeletion.start()
 #	elif body.name == "player":
 #		self_modulate = "#ffffff00"
 		
@@ -30,4 +32,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_hit_sound_finished():
+	queue_free()
+
+func _on_time_till_deletion_timeout():
 	queue_free()
