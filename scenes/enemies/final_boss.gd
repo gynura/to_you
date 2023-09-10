@@ -14,7 +14,7 @@ var special_attack :bool = false
 @onready var shoot_bullets_timer_wait_time = $ShootBulletsTimer.wait_time
 @onready var player = get_parent().get_node("player")
 # TODO REMOVE THIS, ONLY USED TO TEST 
-var can_shoot :bool = true 
+@export var can_shoot :bool = true 
 var tween
 var movement_mode = 1 
 var attack_mode = 1 

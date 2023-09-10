@@ -22,19 +22,6 @@ signal attack
 signal end_attack
 signal hurt_enemy
 
-func handleInput():
-	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	velocity = moveDirection * speed 
-	if !canAttack || !has_weapon:
-			return 
-	if Input.is_action_pressed("attack_button"):
-		# Signal that sends the position to aim the weapon' sprite
-		canAttack = false 
-		emit_signal("attack")
-		$ShowWeaponSound.play()
-		$AnimationPlayer.play("attack_" + animationDirection)
-		blockMovement = true 
-
 # Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
 # called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
 func _ready():
@@ -44,6 +31,7 @@ func _ready():
 	DialogManager.read_sign_start.connect(_stop_player)
 	Global.transition_to_scene.connect(_stop_player)
 	Global.entered_new_scene.connect(_restart_process)
+	Global.restart_player.connect(_restart_process)
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
 	Global.player_heal.connect(_health_up)
@@ -57,6 +45,19 @@ func _physics_process(delta):
 	if !isHurt:
 		for enemy in enemyCollisions:
 			enemyHit(enemy)
+			
+func handleInput():
+	var moveDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = moveDirection * speed 
+	if !canAttack || !has_weapon:
+			return 
+	if Input.is_action_pressed("attack_button"):
+		# Signal that sends the position to aim the weapon' sprite
+		canAttack = false 
+		emit_signal("attack")
+		$ShowWeaponSound.play()
+		$AnimationPlayer.play("attack_" + animationDirection)
+		blockMovement = true 
 
 func updateAnimation(): 
 	if blockMovement:
@@ -106,6 +107,7 @@ func _stop_player():
 	set_physics_process(false)
 
 func _restart_process(): 
+	print_debug("restarted")
 	set_physics_process(true)
 	
 func _health_up():

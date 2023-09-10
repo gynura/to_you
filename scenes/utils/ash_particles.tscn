@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbkojwyntyex2"]
+
+[ext_resource type="Texture2D" uid="uid://dip18ci63u7ce" path="res://assets/sprites/particles/ash.png" id="1_hscea"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a8156"]
+particles_animation = true
+particles_anim_h_frames = 6
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[node name="ash_particles" type="CPUParticles2D"]
+z_index = 6
+material = SubResource("CanvasItemMaterial_a8156")
+amount = 12
+speed_scale = 0.5
+local_coords = true
+texture = ExtResource("1_hscea")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 100)
+direction = Vector2(1, 1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 30.0
+damping_min = 5.0
+damping_max = 5.0
+anim_speed_min = 1.0
+anim_speed_max = 1.0
