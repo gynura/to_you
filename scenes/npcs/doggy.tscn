@@ -173,7 +173,7 @@ volume_db = 2.579
 
 [node name="Bark" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_unugj")
-volume_db = -14.613
+volume_db = -8.596
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

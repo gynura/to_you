@@ -202,3 +202,5 @@ func _show_gotten_item():
 func _killed_boss():
 	_stop_player()
 	$AnimationPlayer.play("killed_boss")
+	$VictoryBubble.visible = true
+	$VictoryBubble.play("victory")

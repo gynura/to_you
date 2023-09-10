@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=33 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
 [ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
 [ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="9_oonhg"]
+[ext_resource type="Texture2D" uid="uid://4jg2577tlp0h" path="res://assets/sprites/particles/VictoryBubble.png" id="10_88cyf"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -275,6 +276,42 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjtv6"]
 size = Vector2(16, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkxe0"]
+atlas = ExtResource("10_88cyf")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_geinf"]
+atlas = ExtResource("10_88cyf")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxl18"]
+atlas = ExtResource("10_88cyf")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhv27"]
+atlas = ExtResource("10_88cyf")
+region = Rect2(60, 0, 20, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_51xn6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkxe0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_geinf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxl18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhv27")
+}],
+"loop": true,
+"name": &"victory",
+"speed": 5.0
+}]
+
 [node name="player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
@@ -353,6 +390,12 @@ texture = ExtResource("7_8v3td")
 stream = ExtResource("8_0mej7")
 volume_db = -4.663
 pitch_scale = 1.21
+
+[node name="VictoryBubble" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, -24)
+sprite_frames = SubResource("SpriteFrames_51xn6")
+animation = &"victory"
 
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]
