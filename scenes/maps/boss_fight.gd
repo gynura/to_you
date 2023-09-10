@@ -6,6 +6,8 @@ extends Node2D
 @onready var first_camera = $FirstCamera
 
 signal start_boss_fight
+signal player_hitted_enemy
+signal player_hurt
 
 func _ready():
 	$Wall/CollisionShape2D.disabled = true
@@ -44,9 +46,15 @@ func _on_area_2d_body_entered(body):
 		_transition_cameras()
 		check_to_change_camera.queue_free()
 
-
 func _on_time_between_camera_changes_timeout():
-	
 	Global.restart_player.emit()
 	$Wall/CollisionShape2D.disabled = false 
 	start_boss_fight.emit()
+
+
+func _on_player_hurt_enemy():
+	player_hitted_enemy.emit()
+
+
+func _on_player_health_change():
+	player_hurt.emit()

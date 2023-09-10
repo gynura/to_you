@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_20v04"]
 [ext_resource type="PackedScene" uid="uid://0ocf08du6ep5" path="res://scenes/weapon.tscn" id="4_8lupc"]
-[ext_resource type="Script" path="res://scenes/screen_shake_Camera.gd" id="4_b4q3f"]
+[ext_resource type="Script" path="res://scenes/screen_shake_camera.gd" id="5_py016"]
 [ext_resource type="AudioStream" uid="uid://c1l03ma3owa0l" path="res://assets/sound/fx/DrawWeapon.wav" id="6_nlyeb"]
 [ext_resource type="Texture2D" uid="uid://bvf5rqi01aiff" path="res://assets/sprites/weapons/flower_club.png" id="7_8v3td"]
 [ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
@@ -288,13 +288,13 @@ libraries = {
 "": SubResource("AnimationLibrary_ululp")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -3)
 shape = SubResource("RectangleShape2D_wqlhp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
-script = ExtResource("4_b4q3f")
+script = ExtResource("5_py016")
 
 [node name="ScreenShakeTimer" type="Timer" parent="Camera2D"]
 
@@ -311,7 +311,7 @@ one_shot = true
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+[node name="HurtBox" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_jjtv6")
 

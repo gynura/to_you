@@ -14,7 +14,10 @@ func _process(delta):
 	
 # Check if the bullet hits a wall
 func _on_area_2d_body_entered(body):
-	queue_free()
+	if body.name != "FinalBoss" && body.name != "player":
+		queue_free()
+#	elif body.name == "player":
+#		self_modulate = "#ffffff00"
 		
 func _generate_rotating_bullet():
 	# Bullets are generated with their asigned rotation
@@ -24,4 +27,7 @@ func get_velocity():
 	return projectile_direction 
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
+	queue_free()
+
+func _on_hit_sound_finished():
 	queue_free()

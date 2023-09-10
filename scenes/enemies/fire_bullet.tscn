@@ -44,13 +44,14 @@ animations = [{
 radius = 7.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3pluy"]
-radius = 3.0
-height = 6.0
+radius = 2.0
+height = 4.0
 
 [node name="FireBullet" type="AnimatedSprite2D"]
 show_behind_parent = true
 z_index = 1
 y_sort_enabled = true
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_uptya")
 autoplay = "default"
 frame = 2
@@ -82,4 +83,6 @@ volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033
 
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="finished" from="HitSound" to="." method="_on_hit_sound_finished"]

@@ -112,7 +112,7 @@ func _restart_process():
 	
 func _health_up():
 	if currentHealth < Global.PLAYER_MAX_HEALTH:
-		if currentHealth + 2 <= Global.PLAYER_MAX_HEALTH:
+		if currentHealth + 2 < Global.PLAYER_MAX_HEALTH:
 			currentHealth += 2 
 			Global.player_current_health += 2
 		else:
@@ -151,7 +151,7 @@ func playHurtAnimation():
 	tween2.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)
 
 func _on_hurt_box_area_entered(area):
-	if area.name == "EnemyHitBox": 
+	if area.name == "EnemyHitBox" && !isHurt: 
 		enemyCollisions.append(area)
 
 func _on_action_animations_timeout():

@@ -9,28 +9,15 @@ var currentHealth = 8
 var can_be_hurt :bool = true 
 var spawn_bullets :bool = true 
 var rotation_spawn = 0.3 
-var rotation_timer = 1
-var special_attack :bool = false 
-@onready var shoot_bullets_timer_wait_time = $ShootBulletsTimer.wait_time
+@onready var shoot_bullets_timer_wait_time = $TimeBetweenEachBullet.wait_time
 @onready var player = get_parent().get_node("player")
 # ONLY USED FOR TESTING 
 @export var can_shoot :bool = true 
 var tween
-var movement_mode = 1 
-var attack_mode = 1 
 var start_boss_fight :bool = false 
 
 func _process(delta):
 	pass
-
-func _change_rotation():
-	rotation_spawn = randf_range(0.1,0.3) 
-	rotation_timer = randf_range(1,2) 
-		
-	if randi() % 2:
-		_change_rotation_direction()
-	
-	$BulletSprayTimer.wait_time = rotation_timer
 
 func _change_rotation_direction():
 	rotation_spawn = rotation_spawn * -1
@@ -69,15 +56,6 @@ func death():
 	tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
 	tween.tween_callback(self.queue_free)
 
-func _on_bullet_spray_timer_timeout():
-	spawn_bullets = !spawn_bullets
-
-func _on_shoot_bullets_timer_timeout():
-	_spawn_bullets()
-
-func _on_change_rotation_timer_timeout():
-	_change_rotation()
-
 func _on_invincibility_timer_timeout():
 	can_be_hurt = true 
 	$AnimatedSprite2D.play("iddle")
@@ -85,3 +63,6 @@ func _on_invincibility_timer_timeout():
 func _on_boss_fight_start_boss_fight():
 	start_boss_fight = true
 	can_shoot = true 
+
+func _on_time_between_each_bullet_timeout():
+	_spawn_bullets()

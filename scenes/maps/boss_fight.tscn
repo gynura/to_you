@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1sajuijlb7f8"]
+[gd_scene load_steps=12 format=3 uid="uid://b1sajuijlb7f8"]
 
 [ext_resource type="Script" path="res://scenes/maps/boss_fight.gd" id="1_nfmih"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_w873n"]
 [ext_resource type="PackedScene" uid="uid://7eqkumnlqoxm" path="res://scenes/enemies/final_boss.tscn" id="2_e32c7"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="3_hx5fr"]
+[ext_resource type="Script" path="res://scenes/maps/boss_fight_camera.gd" id="5_5uymj"]
 [ext_resource type="PackedScene" uid="uid://cr2w3ybvgq0f7" path="res://scenes/utils/pancake.tscn" id="5_oduvj"]
 [ext_resource type="PackedScene" uid="uid://bbkojwyntyex2" path="res://scenes/utils/ash_particles.tscn" id="6_1q0eg"]
 [ext_resource type="Texture2D" uid="uid://cjh2p5u0ypk7g" path="res://assets/sprites/utils/burned_tree.png" id="7_uwl1v"]
@@ -75,6 +76,11 @@ position = Vector2(120, 231)
 
 [node name="BossFightCamera" type="Camera2D" parent="."]
 position = Vector2(119, 54)
+position_smoothing_enabled = true
+script = ExtResource("5_5uymj")
+
+[node name="Timer" type="Timer" parent="BossFightCamera"]
+one_shot = true
 
 [node name="TransitionCamera" type="Camera2D" parent="."]
 
@@ -174,7 +180,14 @@ shape = SubResource("RectangleShape2D_sdgmd")
 
 [node name="GUI" parent="." instance=ExtResource("8_vxcss")]
 
+[connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
+[connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="health_change" from="player" to="." method="_on_player_health_change"]
+[connection signal="health_change" from="player" to="BossFightCamera" method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]
+[connection signal="hurt_enemy" from="player" to="." method="_on_player_hurt_enemy"]
+[connection signal="hurt_enemy" from="player" to="BossFightCamera" method="_on_player_hurt_enemy"]
+[connection signal="timeout" from="BossFightCamera/Timer" to="BossFightCamera" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenCameraChanges" to="." method="_on_time_between_camera_changes_timeout"]
