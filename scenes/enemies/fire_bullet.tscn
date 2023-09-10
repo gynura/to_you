@@ -49,6 +49,7 @@ height = 6.0
 
 [node name="FireBullet" type="AnimatedSprite2D"]
 show_behind_parent = true
+z_index = 1
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_uptya")
 autoplay = "default"

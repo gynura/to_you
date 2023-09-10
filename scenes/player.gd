@@ -189,4 +189,3 @@ func _show_gotten_item():
 	tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.9)
 	tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.2)
 	tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
-	

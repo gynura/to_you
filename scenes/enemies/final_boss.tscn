@@ -145,6 +145,7 @@ position = Vector2(116, 66)
 script = ExtResource("1_a5l2y")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_5cs7p")
 animation = &"iddle"
