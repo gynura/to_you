@@ -172,7 +172,7 @@ one_shot = true
 autostart = true
 
 [node name="ShootBulletsTimer" type="Timer" parent="."]
-wait_time = 0.198
+wait_time = 0.04
 autostart = true
 
 [node name="ChangeRotationTimer" type="Timer" parent="."]

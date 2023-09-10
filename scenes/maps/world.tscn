@@ -68,6 +68,7 @@ position = Vector2(135, 111)
 
 [node name="FinalBoss" parent="." instance=ExtResource("6_b3l5c")]
 position = Vector2(403, 40)
+can_shoot = false
 
 [node name="Pancake" parent="." instance=ExtResource("7_usntg")]
 position = Vector2(368, 89)
