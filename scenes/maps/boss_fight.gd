@@ -51,10 +51,8 @@ func _on_time_between_camera_changes_timeout():
 	$Wall/CollisionShape2D.disabled = false 
 	start_boss_fight.emit()
 
-
 func _on_player_hurt_enemy():
 	player_hitted_enemy.emit()
-
 
 func _on_player_health_change():
 	player_hurt.emit()

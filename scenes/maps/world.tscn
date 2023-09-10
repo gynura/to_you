@@ -74,3 +74,4 @@ can_shoot = false
 position = Vector2(368, 89)
 
 [connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]
+[connection signal="player_heal" from="player" to="GUI" method="_on_player_player_heal"]

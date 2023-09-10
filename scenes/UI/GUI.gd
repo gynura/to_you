@@ -16,3 +16,6 @@ func _on_player_health_change():
 
 func _on_froggy_give_weapon_to_player():
 	visible = true
+
+func _on_player_player_heal():
+	$HealthContainer.updateFlowers(player.currentHealth)

@@ -21,6 +21,7 @@ signal attack_position_changed(position)
 signal attack
 signal end_attack
 signal hurt_enemy
+signal player_heal 
 
 # Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
 # called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
@@ -112,13 +113,13 @@ func _restart_process():
 	
 func _health_up():
 	if currentHealth < Global.PLAYER_MAX_HEALTH:
-		if currentHealth + 2 < Global.PLAYER_MAX_HEALTH:
+		if currentHealth + 2 <= Global.PLAYER_MAX_HEALTH:
 			currentHealth += 2 
 			Global.player_current_health += 2
 		else:
 			currentHealth += 1 
 			Global.player_current_health += 1
-		health_change.emit()
+		player_heal.emit()
 
 func enemyHit(enemyArea):
 	$ShowWeaponSound.stop()

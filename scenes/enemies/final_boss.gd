@@ -66,3 +66,6 @@ func _on_boss_fight_start_boss_fight():
 
 func _on_time_between_each_bullet_timeout():
 	_spawn_bullets()
+
+func _on_time_between_bullet_spawns_timeout():
+	can_shoot = !can_shoot  
