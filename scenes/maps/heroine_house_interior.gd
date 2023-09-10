@@ -19,3 +19,7 @@ func _on_area_2d_body_entered(body):
 		open_door_sound.play()
 		gui.visible = false
 		transitions.exit_screen(house_exterior_scene) 
+
+
+func _on_background_music_finished():
+	$BackgroundMusic.play()

@@ -29,7 +29,7 @@ one_shot = true
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_bnn00")
-volume_db = -25.892
+volume_db = -16.0
 pitch_scale = 0.79
 
 [connection signal="area_entered" from="HitBox" to="HitBox" method="_on_area_entered"]

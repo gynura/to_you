@@ -8,9 +8,15 @@ var projectile_speed = 100
 # I feel like it's cleaner to set this here than to add more casuistic on the player's script 
 var currentHealth = 1
 
+func _ready():
+	Global.killed_flame_boss.connect(_delete_bullet)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	_generate_rotating_bullet()
+	
+func _delete_bullet():
+	self.queue_free()
 	
 # Check if the bullet hits a wall
 func _on_area_2d_body_entered(body):

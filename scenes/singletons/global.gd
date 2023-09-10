@@ -11,6 +11,7 @@ signal player_heal
 signal transition_to_scene
 signal entered_new_scene
 signal restart_player
+signal killed_flame_boss
 
 func reset_game():
 	begin_game = true

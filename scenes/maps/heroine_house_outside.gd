@@ -40,3 +40,7 @@ func _hide_dialog_marker():
 
 func _on_froggy_give_weapon_to_player():
 	wall.queue_free()
+
+
+func _on_background_music_finished():
+	$BackgroundMusic.play()

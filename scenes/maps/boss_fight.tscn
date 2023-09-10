@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1sajuijlb7f8"]
+[gd_scene load_steps=14 format=3 uid="uid://b1sajuijlb7f8"]
 
 [ext_resource type="Script" path="res://scenes/maps/boss_fight.gd" id="1_nfmih"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_w873n"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bbkojwyntyex2" path="res://scenes/utils/ash_particles.tscn" id="6_1q0eg"]
 [ext_resource type="Texture2D" uid="uid://cjh2p5u0ypk7g" path="res://assets/sprites/utils/burned_tree.png" id="7_uwl1v"]
 [ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="8_vxcss"]
+[ext_resource type="AudioStream" uid="uid://c2uh7k8nb5igu" path="res://assets/sound/music/BossFight.ogg" id="10_tw37f"]
+[ext_resource type="AudioStream" uid="uid://du1tiffd4vlge" path="res://assets/sound/music/PreBoss_Music.ogg" id="11_uea34"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m2dws"]
 a = Vector2(-128, -3)
@@ -57,9 +59,13 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 3
 layer_4/tile_data = PackedInt32Array()
 
-[node name="FinalBoss" parent="." instance=ExtResource("2_e32c7")]
+[node name="FinalBoss" parent="." node_paths=PackedStringArray("end_point") instance=ExtResource("2_e32c7")]
 position = Vector2(121, 9)
+end_point = NodePath("Marker2D")
 can_shoot = false
+
+[node name="Marker2D" type="Marker2D" parent="FinalBoss"]
+position = Vector2(-66, 37)
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(116, 122)
@@ -180,6 +186,15 @@ shape = SubResource("RectangleShape2D_sdgmd")
 
 [node name="GUI" parent="." instance=ExtResource("8_vxcss")]
 
+[node name="PreBossMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_uea34")
+volume_db = -17.0
+autoplay = true
+
+[node name="BossFightMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_tw37f")
+volume_db = -9.0
+
 [connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
 [connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]
@@ -192,3 +207,5 @@ shape = SubResource("RectangleShape2D_sdgmd")
 [connection signal="player_heal" from="player" to="GUI" method="_on_player_player_heal"]
 [connection signal="timeout" from="BossFightCamera/Timer" to="BossFightCamera" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenCameraChanges" to="." method="_on_time_between_camera_changes_timeout"]
+[connection signal="finished" from="PreBossMusic" to="." method="_on_pre_boss_music_finished"]
+[connection signal="finished" from="BossFightMusic" to="." method="_on_boss_fight_music_finished"]

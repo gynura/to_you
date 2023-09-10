@@ -73,6 +73,7 @@ func controlPositionNotOutOfBounds():
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
 		if $Heart.visible == false: 
+			#$BubbleSound.play()
 			$Bubble.visible = true
 			$Bubble.play("default")
 			canInteract = true 
@@ -81,6 +82,7 @@ func _on_area_2d_body_entered(body):
 
 func petTheDoggy():
 	set_process(false)
+	$Bark.play()
 	$AnimatedSprite2D.play("idle")
 	pet_dog.emit()
 	controlHeartParticle()

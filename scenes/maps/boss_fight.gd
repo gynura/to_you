@@ -26,6 +26,9 @@ func _transition_cameras():
 	transition_camera.limit_left = first_camera.limit_left 
 	transition_camera.make_current()
 	
+	$PreBossMusic.stop()
+	$BossFightMusic.play()
+	
 	$TimeBetweenCameraChanges.start()
 	
 	var tween = create_tween()
@@ -56,3 +59,9 @@ func _on_player_hurt_enemy():
 
 func _on_player_health_change():
 	player_hurt.emit()
+
+func _on_pre_boss_music_finished():
+	$PreBossMusic.play()
+
+func _on_boss_fight_music_finished():
+	$BossFightMusic.play()
