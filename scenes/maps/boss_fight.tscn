@@ -67,6 +67,9 @@ position = Vector2(116, 122)
 position = Vector2(0, -6)
 shape = SubResource("SegmentShape2D_m2dws")
 
+[node name="FirstCamera" type="Camera2D" parent="."]
+position = Vector2(119, 189)
+
 [node name="player" parent="." instance=ExtResource("3_hx5fr")]
 position = Vector2(120, 231)
 
@@ -145,7 +148,7 @@ position = Vector2(-21, 0)
 texture = ExtResource("7_uwl1v")
 
 [node name="TimeBetweenCameraChanges" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.6
 one_shot = true
 
 [node name="Wall" type="StaticBody2D" parent="."]

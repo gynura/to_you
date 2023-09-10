@@ -3,24 +3,25 @@ extends Node2D
 @onready var camera = $BossFightCamera
 @onready var check_to_change_camera = $Area2D
 @onready var transition_camera = $TransitionCamera
-@onready var player_camera = $player/Camera2D
+@onready var first_camera = $FirstCamera
 
 signal start_boss_fight
 
 func _ready():
 	$Wall/CollisionShape2D.disabled = true
+	first_camera.make_current()
 
 # This function changes to a third camera to create a smooth transition between them
 func _transition_cameras():
-	transition_camera.offset = player_camera.offset 
-	transition_camera.position = player_camera.position
-	transition_camera.global_transform = player_camera.global_transform
-	transition_camera.rotation = player_camera.rotation
-	transition_camera.global_position = player_camera.global_position
-	transition_camera.limit_bottom = player_camera.limit_bottom
-	transition_camera.limit_top = player_camera.limit_top
-	transition_camera.limit_right = player_camera.limit_right
-	transition_camera.limit_left = player_camera.limit_left 
+	transition_camera.offset = first_camera.offset 
+	transition_camera.position = first_camera.position
+	transition_camera.global_transform = first_camera.global_transform
+	transition_camera.rotation = first_camera.rotation
+	transition_camera.global_position = first_camera.global_position
+	transition_camera.limit_bottom = first_camera.limit_bottom
+	transition_camera.limit_top = first_camera.limit_top
+	transition_camera.limit_right = first_camera.limit_right
+	transition_camera.limit_left = first_camera.limit_left 
 	transition_camera.make_current()
 	
 	$TimeBetweenCameraChanges.start()
@@ -45,6 +46,7 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_time_between_camera_changes_timeout():
+	
 	Global.restart_player.emit()
 	$Wall/CollisionShape2D.disabled = false 
 	start_boss_fight.emit()
