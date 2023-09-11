@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1sajuijlb7f8"]
+[gd_scene load_steps=15 format=3 uid="uid://b1sajuijlb7f8"]
 
 [ext_resource type="Script" path="res://scenes/maps/boss_fight.gd" id="1_nfmih"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_w873n"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbkojwyntyex2" path="res://scenes/utils/ash_particles.tscn" id="6_1q0eg"]
 [ext_resource type="Texture2D" uid="uid://cjh2p5u0ypk7g" path="res://assets/sprites/utils/burned_tree.png" id="7_uwl1v"]
 [ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="8_vxcss"]
+[ext_resource type="AudioStream" uid="uid://cfm52t7fo0nh" path="res://assets/sound/fx/Bump.wav" id="9_8knwv"]
 [ext_resource type="AudioStream" uid="uid://c2uh7k8nb5igu" path="res://assets/sound/music/BossFight.ogg" id="10_tw37f"]
 [ext_resource type="AudioStream" uid="uid://du1tiffd4vlge" path="res://assets/sound/music/PreBoss_Music.ogg" id="11_uea34"]
 
@@ -62,7 +63,6 @@ layer_4/tile_data = PackedInt32Array()
 [node name="FinalBoss" parent="." node_paths=PackedStringArray("end_point") instance=ExtResource("2_e32c7")]
 position = Vector2(121, 9)
 end_point = NodePath("Marker2D")
-can_shoot = false
 
 [node name="Marker2D" type="Marker2D" parent="FinalBoss"]
 position = Vector2(-66, 37)
@@ -180,9 +180,19 @@ shape = SubResource("RectangleShape2D_sdgmd")
 [node name="Wall3" type="StaticBody2D" parent="."]
 position = Vector2(116, 163)
 
+[node name="PlayerCannotPass" type="Area2D" parent="Wall3"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall3/PlayerCannotPass"]
+position = Vector2(2, 90)
+shape = SubResource("RectangleShape2D_sdgmd")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
 position = Vector2(2, 91)
 shape = SubResource("RectangleShape2D_sdgmd")
+
+[node name="WallBumpAudio" type="AudioStreamPlayer2D" parent="Wall3"]
+position = Vector2(-116, -163)
+stream = ExtResource("9_8knwv")
 
 [node name="GUI" parent="." instance=ExtResource("8_vxcss")]
 
@@ -207,5 +217,6 @@ volume_db = -9.0
 [connection signal="player_heal" from="player" to="GUI" method="_on_player_player_heal"]
 [connection signal="timeout" from="BossFightCamera/Timer" to="BossFightCamera" method="_on_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenCameraChanges" to="." method="_on_time_between_camera_changes_timeout"]
+[connection signal="body_entered" from="Wall3/PlayerCannotPass" to="." method="_on_player_cannot_pass_body_entered"]
 [connection signal="finished" from="PreBossMusic" to="." method="_on_pre_boss_music_finished"]
 [connection signal="finished" from="BossFightMusic" to="." method="_on_boss_fight_music_finished"]

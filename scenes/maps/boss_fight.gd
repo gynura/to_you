@@ -65,3 +65,7 @@ func _on_pre_boss_music_finished():
 
 func _on_boss_fight_music_finished():
 	$BossFightMusic.play()
+
+func _on_player_cannot_pass_body_entered(body):
+	if body.name == "player":
+		$Wall3/WallBumpAudio.play()

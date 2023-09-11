@@ -14,8 +14,7 @@ var rotation_spawn = 0.3
 var limitBeforeChangingDirection = 0.5
 @onready var shoot_bullets_timer_wait_time = $TimeBetweenEachBullet.wait_time
 @onready var player = get_parent().get_node("player")
-# ONLY USED FOR TESTING 
-@export var can_shoot :bool = true 
+@export var can_shoot :bool = false 
 var tween
 var start_boss_fight :bool = false 
 var face_number = 1
@@ -23,6 +22,7 @@ var start_position
 var end_position
 var can_move :bool = false 
 var is_dead :bool = false 
+var boss_fight_started :bool = false 
 
 func _ready():
 	start_position = position 
@@ -89,21 +89,25 @@ func _on_invincibility_timer_timeout():
 
 func _on_boss_fight_start_boss_fight():
 	start_boss_fight = true
-	can_shoot = true 
+	$LaughSound.play()
+	$AnimatedSprite2D.play("iddle_3")
 	$TimeBetweenEachBullet.start()
 	$ChangeTimer.start()
 
 func _on_time_between_each_bullet_timeout():
-	_spawn_bullets()
+	if can_shoot:
+		_spawn_bullets()
 
 func _on_time_between_bullet_spawns_timeout():
-	can_shoot = !can_shoot  
+	if boss_fight_started: 
+		can_shoot = !can_shoot  
 
 func _on_change_timer_timeout():
-	if can_be_hurt: 
-		face_number = int(randf_range(0, 4)) + 1
-		$AnimatedSprite2D.play("iddle_" + str(face_number))
-	can_move = !can_move 
+	if boss_fight_started: 
+		if can_be_hurt: 
+			face_number = int(randf_range(0, 4)) + 1
+			$AnimatedSprite2D.play("iddle_" + str(face_number))
+		can_move = !can_move 
 
 func _on_time_till_death_timeout():
 	tween = create_tween()
@@ -113,4 +117,10 @@ func _on_time_till_death_timeout():
 	tween.tween_property($AnimatedSprite2D, "scale", Vector2.ZERO, 0.2)
 
 func _on_death_sound_finished():
+	Global.game_completed.emit()
 	queue_free()
+
+func _on_laugh_sound_finished():
+	boss_fight_started = true 
+	can_shoot = true 
+	$AnimatedSprite2D.play("iddle_2")

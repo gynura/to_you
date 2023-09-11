@@ -23,6 +23,7 @@ func _on_area_2d_body_entered(body):
 	if body.name != "FinalBoss" && body.name != "player" && body.name != "Wall2":
 		$HitFx.emitting = true 
 		self_modulate = "#ffffff00"
+		$EnemyHitBox/CollisionShape2D.disabled = true 
 		$TimeTillDeletion.start()
 #	elif body.name == "player":
 #		self_modulate = "#ffffff00"

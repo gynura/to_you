@@ -33,7 +33,7 @@ func _ready():
 	Global.transition_to_scene.connect(_stop_player)
 	Global.entered_new_scene.connect(_restart_process)
 	Global.restart_player.connect(_restart_process)
-	Global.killed_flame_boss.connect(_killed_boss)
+	Global.game_completed.connect(_killed_boss)
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
 	Global.player_heal.connect(_health_up)
@@ -66,7 +66,6 @@ func updateAnimation():
 		return
 	if velocity.length() == 0:
 		$AnimationPlayer.play("iddle")
-		animationDirection = "down"
 		emit_signal("attack_position_changed", animationDirection)
 	else: 
 		animationDirection = "down"

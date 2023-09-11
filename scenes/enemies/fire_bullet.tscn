@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://mupw62xcd36n" path="res://assets/sprites/particles/Fireball.png" id="1_6vp4d"]
 [ext_resource type="Script" path="res://scenes/enemies/fire_bullet.gd" id="2_qw3sd"]
-[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="3_5dn72"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/Fire.wav" id="3_xg0ip"]
 [ext_resource type="Texture2D" uid="uid://boah2cwkprtia" path="res://assets/sprites/particles/Flame_hit.png" id="4_e2h60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgvmp"]
@@ -85,8 +85,8 @@ position = Vector2(0.5, 0)
 scale = Vector2(0.25, 0.3)
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_5dn72")
-volume_db = -22.333
+stream = ExtResource("3_xg0ip")
+volume_db = -22.33
 pitch_scale = 1.02
 attenuation = 0.933033
 

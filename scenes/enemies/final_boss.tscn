@@ -1,13 +1,14 @@
-[gd_scene load_steps=37 format=3 uid="uid://7eqkumnlqoxm"]
+[gd_scene load_steps=38 format=3 uid="uid://7eqkumnlqoxm"]
 
 [ext_resource type="Script" path="res://scenes/enemies/final_boss.gd" id="1_a5l2y"]
 [ext_resource type="Texture2D" uid="uid://cphfha12n17hm" path="res://assets/sprites/enemies/final_boss_hit.png" id="1_dm4ic"]
 [ext_resource type="Texture2D" uid="uid://3csd5i6kqnxu" path="res://assets/sprites/enemies/final_boss.png" id="1_wdfae"]
 [ext_resource type="Texture2D" uid="uid://ccoxuu84t2ivs" path="res://assets/sprites/enemies/final_boss_hit_2.png" id="2_hj4sh"]
 [ext_resource type="Texture2D" uid="uid://cd3t1lwo6vxom" path="res://assets/sprites/enemies/final_boss_2.png" id="5_0lgj6"]
-[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/FireEnemyHit.wav" id="5_l7s8j"]
 [ext_resource type="Texture2D" uid="uid://dtk58ih8jm5ge" path="res://assets/sprites/enemies/final_boss_3.png" id="6_6f183"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/Fire.wav" id="7_u87v5"]
 [ext_resource type="AudioStream" uid="uid://dhj6ba7tpjnwk" path="res://assets/sound/fx/BossDeath.wav" id="8_prmvc"]
+[ext_resource type="AudioStream" uid="uid://duhe1ouxub4w4" path="res://assets/sound/fx/Evil_Laugh.wav" id="10_op4cj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cogvt"]
 atlas = ExtResource("1_dm4ic")
@@ -256,12 +257,6 @@ autostart = true
 [node name="TimeBetweenEachBullet" type="Timer" parent="."]
 wait_time = 0.06
 
-[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_l7s8j")
-volume_db = -14.0
-pitch_scale = 1.02
-attenuation = 0.933033
-
 [node name="EnemyHurtBox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -279,9 +274,20 @@ stream = ExtResource("8_prmvc")
 wait_time = 0.6
 one_shot = true
 
+[node name="LaughSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_op4cj")
+pitch_scale = 0.5
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_u87v5")
+volume_db = -22.333
+pitch_scale = 1.02
+attenuation = 0.933033
+
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenBulletSpawns" to="." method="_on_time_between_bullet_spawns_timeout"]
 [connection signal="timeout" from="TimeBetweenEachBullet" to="." method="_on_time_between_each_bullet_timeout"]
 [connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
 [connection signal="timeout" from="TimeTillDeath" to="." method="_on_time_till_death_timeout"]
+[connection signal="finished" from="LaughSound" to="." method="_on_laugh_sound_finished"]

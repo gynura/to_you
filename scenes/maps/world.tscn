@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bwgdnxq0stih8"]
+[gd_scene load_steps=7 format=3 uid="uid://bwgdnxq0stih8"]
 
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_ebr85"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="1_tgu7y"]
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="3_4b6nf"]
 [ext_resource type="PackedScene" uid="uid://27tp05alwpr6" path="res://scenes/enemies/flame_enemy.tscn" id="4_pjeim"]
 [ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="5_usumc"]
-[ext_resource type="PackedScene" uid="uid://7eqkumnlqoxm" path="res://scenes/enemies/final_boss.tscn" id="6_b3l5c"]
 [ext_resource type="PackedScene" uid="uid://cr2w3ybvgq0f7" path="res://scenes/utils/pancake.tscn" id="7_usntg"]
 
 [node name="world" type="Node2D"]
@@ -65,10 +64,6 @@ position = Vector2(90, 101)
 position = Vector2(135, 111)
 
 [node name="GUI" parent="." instance=ExtResource("5_usumc")]
-
-[node name="FinalBoss" parent="." instance=ExtResource("6_b3l5c")]
-position = Vector2(403, 40)
-can_shoot = false
 
 [node name="Pancake" parent="." instance=ExtResource("7_usntg")]
 position = Vector2(368, 89)
