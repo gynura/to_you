@@ -73,9 +73,9 @@ func controlPositionNotOutOfBounds():
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
 		if $Heart.visible == false: 
-			#$BubbleSound.play()
 			$Bubble.visible = true
 			$Bubble.play("default")
+			$PopUp.play()
 			canInteract = true 
 	elif current_state == MOVE: 
 		direction = direction * -1

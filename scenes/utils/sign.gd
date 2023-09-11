@@ -34,6 +34,7 @@ func _on_area_2d_body_entered(body):
 		$Bubble.visible = true
 		$Bubble.play("default")
 		canInteract = true 
+		$PopUp.play()
 
 func _on_area_2d_body_exited(body):
 	if body.name == "player": 

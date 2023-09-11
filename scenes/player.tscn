@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=37 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://cdsnan01g0g27" path="res://assets/sound/fx/GetItem.mp3" id="8_0mej7"]
 [ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="9_oonhg"]
 [ext_resource type="Texture2D" uid="uid://4jg2577tlp0h" path="res://assets/sprites/particles/VictoryBubble.png" id="10_88cyf"]
+[ext_resource type="Texture2D" uid="uid://cot6a36t5ukxu" path="res://assets/sprites/particles/BonkBubble.png" id="10_d6vnk"]
 
 [sub_resource type="Animation" id="Animation_cp6nb"]
 length = 0.001
@@ -276,6 +277,22 @@ size = Vector2(16, 6)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjtv6"]
 size = Vector2(16, 8)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n21lo"]
+atlas = ExtResource("10_d6vnk")
+region = Rect2(0, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tuls"]
+atlas = ExtResource("10_d6vnk")
+region = Rect2(20, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yagud"]
+atlas = ExtResource("10_d6vnk")
+region = Rect2(40, 0, 20, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3pph2"]
+atlas = ExtResource("10_d6vnk")
+region = Rect2(60, 0, 20, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pkxe0"]
 atlas = ExtResource("10_88cyf")
 region = Rect2(0, 0, 20, 16)
@@ -290,6 +307,23 @@ region = Rect2(40, 0, 20, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_51xn6"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n21lo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tuls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yagud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3pph2")
+}],
+"loop": true,
+"name": &"bonk",
+"speed": 10.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pkxe0")
@@ -317,7 +351,6 @@ script = ExtResource("1_tmc20")
 [node name="DialogMarker" type="Sprite2D" parent="."]
 visible = false
 z_index = 30
-y_sort_enabled = true
 texture = ExtResource("9_oonhg")
 offset = Vector2(7, -20)
 
@@ -387,12 +420,13 @@ stream = ExtResource("8_0mej7")
 volume_db = -4.663
 pitch_scale = 1.21
 
-[node name="VictoryBubble" type="AnimatedSprite2D" parent="."]
+[node name="Expressions" type="AnimatedSprite2D" parent="."]
 visible = false
 position = Vector2(1, -24)
 sprite_frames = SubResource("SpriteFrames_51xn6")
-animation = &"victory"
-frame_progress = 0.950941
+animation = &"bonk"
+frame = 1
+frame_progress = 0.178646
 
 [connection signal="attack" from="." to="Weapon" method="_on_player_attack"]
 [connection signal="attack_position_changed" from="." to="Weapon" method="_on_player_attack_position_changed"]

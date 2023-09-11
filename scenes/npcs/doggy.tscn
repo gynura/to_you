@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://clp5qbbop4ame"]
+[gd_scene load_steps=24 format=3 uid="uid://clp5qbbop4ame"]
 
 [ext_resource type="Script" path="res://scenes/npcs/doggy.gd" id="1_0dump"]
 [ext_resource type="Texture2D" uid="uid://cnynui6yu4xka" path="res://assets/sprites/characters/doggy.png" id="1_e67cn"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="4_tifdj"]
 [ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="5_3yons"]
 [ext_resource type="AudioStream" uid="uid://b6lg6du4imnbq" path="res://assets/sound/fx/Dog_Bark.wav" id="6_unugj"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="7_y2qr8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ek2c"]
 atlas = ExtResource("1_e67cn")
@@ -168,12 +169,14 @@ scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_fvvkm")
 frame_progress = 0.155693
 
-[node name="BubbleSound" type="AudioStreamPlayer2D" parent="."]
-volume_db = 2.579
-
 [node name="Bark" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_unugj")
 volume_db = -8.596
+
+[node name="PopUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_y2qr8")
+volume_db = -8.595
+pitch_scale = 1.13
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

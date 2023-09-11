@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cph2ryf71pcau"]
+[gd_scene load_steps=15 format=3 uid="uid://cph2ryf71pcau"]
 
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_outside.gd" id="1_fksi1"]
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="1_r8d6b"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://c1w4vo2dmdnt0" path="res://scenes/utils/sign.tscn" id="9_un7d7"]
 [ext_resource type="Texture2D" uid="uid://dmyw4xfos2yp5" path="res://assets/sprites/utils/tree.png" id="10_k62px"]
 [ext_resource type="AudioStream" uid="uid://btxpmyhqw8dom" path="res://assets/sound/music/HouseOutside.ogg" id="11_uwmu2"]
+[ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/WeaponObtained.ogg" id="12_mu3lq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4f3w"]
 size = Vector2(10, 6)
@@ -188,7 +189,11 @@ shape = SubResource("RectangleShape2D_ocyse")
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_uwmu2")
+volume_db = -7.0
 autoplay = true
+
+[node name="WeaponObtainedMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_mu3lq")
 
 [connection signal="give_weapon_to_player" from="Froggy" to="." method="_on_froggy_give_weapon_to_player"]
 [connection signal="give_weapon_to_player" from="Froggy" to="player" method="_on_froggy_give_weapon_to_player"]
@@ -196,3 +201,4 @@ autoplay = true
 [connection signal="body_entered" from="Sign/Area2D2" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Wall/CheckIfPlayerHasWeaponArea" to="." method="_on_check_if_player_has_weapon_area_body_entered"]
 [connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
+[connection signal="finished" from="WeaponObtainedMusic" to="." method="_on_weapon_obtained_music_finished"]

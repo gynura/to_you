@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://c1w4vo2dmdnt0"]
+[gd_scene load_steps=12 format=3 uid="uid://c1w4vo2dmdnt0"]
 
 [ext_resource type="Texture2D" uid="uid://bksgwwqes7utw" path="res://assets/sprites/utils/sign.png" id="1_52488"]
 [ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="1_sgg5i"]
 [ext_resource type="Script" path="res://scenes/utils/sign.gd" id="2_wemmu"]
 [ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="3_byp10"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="5_u2yjs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnaxc"]
 radius = 19.0263
@@ -67,6 +68,11 @@ y_sort_enabled = true
 position = Vector2(1, -13)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_t0wpq")
+
+[node name="PopUp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_u2yjs")
+volume_db = -8.595
+pitch_scale = 1.13
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

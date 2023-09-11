@@ -3764,6 +3764,7 @@ position = Vector2(123, 90)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_756py")
+volume_db = -7.0
 autoplay = true
 
 [connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]

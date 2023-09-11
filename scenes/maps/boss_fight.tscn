@@ -208,6 +208,8 @@ volume_db = -9.0
 [connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
 [connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]
+[connection signal="start_boss_fight" from="." to="player" method="_on_boss_fight_start_boss_fight"]
+[connection signal="start_fight" from="FinalBoss" to="player" method="_on_final_boss_start_fight"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="health_change" from="player" to="." method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="BossFightCamera" method="_on_player_health_change"]

@@ -6,7 +6,6 @@ extends Node2D
 @onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
 @onready var wall = $Wall
 @onready var gui = $GUI
-
 var player
 
 func _ready():
@@ -14,7 +13,7 @@ func _ready():
 	transitions.enter_screen()
 	DialogManager.dialog_ended.connect(_hide_dialog_marker)
 	if Global.player_got_weapon:
-		wall.queue_free()
+		_player_got_weapon_behaviour()
 
 func _on_area_2d_body_entered(body):
 	if body.name == "player":
@@ -37,10 +36,18 @@ func _on_check_if_player_has_weapon_area_body_entered(body):
 func _hide_dialog_marker():
 	if player != null: 
 		player.hide_dialog_marker()
+		
+
+func _player_got_weapon_behaviour():
+	wall.queue_free()
+	$BackgroundMusic.stop()
+	$WeaponObtainedMusic.play()
 
 func _on_froggy_give_weapon_to_player():
-	wall.queue_free()
-
+	_player_got_weapon_behaviour()
 
 func _on_background_music_finished():
 	$BackgroundMusic.play()
+
+func _on_weapon_obtained_music_finished():
+	$WeaponObtainedMusic.play()

@@ -201,5 +201,17 @@ func _show_gotten_item():
 func _killed_boss():
 	_stop_player()
 	$AnimationPlayer.play("killed_boss")
-	$VictoryBubble.visible = true
-	$VictoryBubble.play("victory")
+	$Expressions.visible = true
+	$Expressions.play("victory")
+
+
+func _on_boss_fight_start_boss_fight():
+	$Expressions.visible = true
+	$Expressions.play("bonk")
+	_stop_player()
+
+
+func _on_final_boss_start_fight():
+	$Expressions.visible = false
+	$Expressions.stop()
+	_restart_process()

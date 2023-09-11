@@ -284,10 +284,14 @@ volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033
 
+[node name="TimeTillBossFight" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenBulletSpawns" to="." method="_on_time_between_bullet_spawns_timeout"]
 [connection signal="timeout" from="TimeBetweenEachBullet" to="." method="_on_time_between_each_bullet_timeout"]
 [connection signal="timeout" from="ChangeTimer" to="." method="_on_change_timer_timeout"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]
 [connection signal="timeout" from="TimeTillDeath" to="." method="_on_time_till_death_timeout"]
-[connection signal="finished" from="LaughSound" to="." method="_on_laugh_sound_finished"]
+[connection signal="timeout" from="TimeTillBossFight" to="." method="_on_time_till_boss_fight_timeout"]

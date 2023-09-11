@@ -24,6 +24,8 @@ var can_move :bool = false
 var is_dead :bool = false 
 var boss_fight_started :bool = false 
 
+signal start_fight
+
 func _ready():
 	start_position = position 
 	end_position = end_point.global_position
@@ -93,6 +95,7 @@ func _on_boss_fight_start_boss_fight():
 	$AnimatedSprite2D.play("iddle_3")
 	$TimeBetweenEachBullet.start()
 	$ChangeTimer.start()
+	$TimeTillBossFight.start()
 
 func _on_time_between_each_bullet_timeout():
 	if can_shoot:
@@ -120,7 +123,8 @@ func _on_death_sound_finished():
 	Global.game_completed.emit()
 	queue_free()
 
-func _on_laugh_sound_finished():
-	boss_fight_started = true 
-	can_shoot = true 
-	$AnimatedSprite2D.play("iddle_2")
+func _on_time_till_boss_fight_timeout():
+		boss_fight_started = true 
+		can_shoot = true 
+		start_fight.emit()
+		$AnimatedSprite2D.play("iddle_2")
