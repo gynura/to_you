@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://ci1j8d8nrruuc"]
+
+[ext_resource type="Script" path="res://scenes/utils/title_screen.gd" id="1_xxn41"]
+[ext_resource type="Texture2D" uid="uid://c0dyhvwwkqn3q" path="res://assets/sprites/utils/tittle_screen.png" id="2_qyg4d"]
+[ext_resource type="Texture2D" uid="uid://cmd7g3csr45ot" path="res://assets/sprites/utils/tittle_screen_heart.png" id="3_olg56"]
+[ext_resource type="AudioStream" uid="uid://decg74rjaa35e" path="res://assets/sound/music/MainTheme.ogg" id="4_3ogn2"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="5_peq10"]
+[ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="6_gly21"]
+[ext_resource type="AudioStream" uid="uid://6ku4i0ea6p3r" path="res://assets/sound/fx/UI/ButtonPressed.wav" id="7_lm720"]
+
+[sub_resource type="Animation" id="Animation_7adhl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05v0q"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glsh6"]
+_data = {
+"RESET": SubResource("Animation_7adhl"),
+"flash": SubResource("Animation_05v0q")
+}
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xxn41")
+
+[node name="TittleScreen" type="Sprite2D" parent="."]
+position = Vector2(120, 67)
+texture = ExtResource("2_qyg4d")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(120, 44)
+texture = ExtResource("3_olg56")
+
+[node name="TittleScreenMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3ogn2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="ColorRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_glsh6")
+}
+
+[node name="Buttons" type="CanvasGroup" parent="."]
+
+[node name="ExitButton" type="Button" parent="Buttons"]
+offset_left = 7.0
+offset_top = 93.0
+offset_right = 63.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "Exit"
+flat = true
+
+[node name="ExitButtonPressed" type="AudioStreamPlayer2D" parent="Buttons/ExitButton"]
+stream = ExtResource("7_lm720")
+
+[node name="PlayButton" type="Button" parent="Buttons"]
+offset_left = 7.0
+offset_top = 73.0
+offset_right = 63.0
+offset_bottom = 93.0
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "Play"
+flat = true
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="Buttons/PlayButton"]
+stream = ExtResource("7_lm720")
+
+[node name="Transitions" parent="." instance=ExtResource("6_gly21")]
+layout_mode = 1
+
+[connection signal="finished" from="TittleScreenMusic" to="." method="_on_tittle_screen_music_finished"]
+[connection signal="animation_finished" from="ColorRect/FlashPlayer" to="." method="_on_flash_player_animation_finished"]
+[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="finished" from="Buttons/ExitButton/ExitButtonPressed" to="." method="_on_exit_button_pressed_finished"]
