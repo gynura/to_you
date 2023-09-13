@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci1j8d8nrruuc"]
+
+[ext_resource type="Script" path="res://scenes/utils/tittle_screen.gd" id="1_ighkb"]
+[ext_resource type="Texture2D" uid="uid://c0dyhvwwkqn3q" path="res://assets/sprites/utils/tittle_screen.png" id="2_lslul"]
+[ext_resource type="Texture2D" uid="uid://cmd7g3csr45ot" path="res://assets/sprites/utils/tittle_screen_heart.png" id="3_dlqrt"]
+[ext_resource type="AudioStream" uid="uid://decg74rjaa35e" path="res://assets/sound/music/MainTheme.ogg" id="4_4ckmr"]
+
+[node name="TittleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ighkb")
+
+[node name="TittleScreen" type="Sprite2D" parent="."]
+position = Vector2(120, 67)
+texture = ExtResource("2_lslul")
+
+[node name="Heart" type="Sprite2D" parent="."]
+position = Vector2(120, 44)
+texture = ExtResource("3_dlqrt")
+
+[node name="TittleScreenMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4ckmr")
+autoplay = true
+
+[connection signal="finished" from="TittleScreenMusic" to="." method="_on_tittle_screen_music_finished"]
