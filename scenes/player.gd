@@ -39,6 +39,8 @@ func _ready():
 	Global.player_heal.connect(_health_up)
 
 func _physics_process(delta):
+	if Global.begin_game:
+		return 
 	if blockMovement: 
 		return 
 	handleInput()
@@ -108,7 +110,7 @@ func _stop_player():
 	set_physics_process(false)
 
 func _restart_process(): 
-	print_debug("restarted")
+	hide_dialog_marker()
 	set_physics_process(true)
 	
 func _health_up():

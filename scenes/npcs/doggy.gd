@@ -28,16 +28,18 @@ func _physics_process(delta):
 			petTheDoggy()
 
 func _process(delta): 
-	match current_state:
-		IDLE: 
-			$AnimatedSprite2D.play("idle")
-			pass
-		NEW_DIRECTION: 
-			$AnimatedSprite2D.play("idle")
-			direction = chooseRandomly([Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN])
-		MOVE: 
-			$AnimatedSprite2D.play("walk")
-			move(delta)
+	# This is so the dog doesn't move at the beginning of the game
+	if !Global.begin_game:
+		match current_state:
+			IDLE: 
+				$AnimatedSprite2D.play("idle")
+				pass
+			NEW_DIRECTION: 
+				$AnimatedSprite2D.play("idle")
+				direction = chooseRandomly([Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN])
+			MOVE: 
+				$AnimatedSprite2D.play("walk")
+				move(delta)
 
 func move(delta):
 	position += direction * SPEED * delta 

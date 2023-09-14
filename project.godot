@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="to_you"
-run/main_scene="res://scenes/maps/world.tscn"
+run/main_scene="res://scenes/utils/title_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://cover.png"
 
