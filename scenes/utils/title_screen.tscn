@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ci1j8d8nrruuc"]
+[gd_scene load_steps=12 format=3 uid="uid://ci1j8d8nrruuc"]
 
 [ext_resource type="Script" path="res://scenes/utils/title_screen.gd" id="1_xxn41"]
 [ext_resource type="Texture2D" uid="uid://c0dyhvwwkqn3q" path="res://assets/sprites/utils/tittle_screen.png" id="2_qyg4d"]
@@ -6,7 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://decg74rjaa35e" path="res://assets/sound/music/MainTheme.ogg" id="4_3ogn2"]
 [ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="5_peq10"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="6_gly21"]
-[ext_resource type="AudioStream" uid="uid://6ku4i0ea6p3r" path="res://assets/sound/fx/UI/ButtonPressed.wav" id="7_lm720"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="7_tkvbn"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="8_m8yj1"]
 
 [sub_resource type="Animation" id="Animation_7adhl"]
 length = 0.001
@@ -76,40 +77,74 @@ libraries = {
 "": SubResource("AnimationLibrary_glsh6")
 }
 
-[node name="Buttons" type="CanvasGroup" parent="."]
-
-[node name="ExitButton" type="Button" parent="Buttons"]
-offset_left = 7.0
-offset_top = 93.0
-offset_right = 63.0
-offset_bottom = 113.0
-theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
-theme_override_fonts/font = ExtResource("5_peq10")
-theme_override_font_sizes/font_size = 10
-text = "Exit"
-flat = true
-
-[node name="ExitButtonPressed" type="AudioStreamPlayer2D" parent="Buttons/ExitButton"]
-stream = ExtResource("7_lm720")
-
-[node name="PlayButton" type="Button" parent="Buttons"]
-offset_left = 7.0
-offset_top = 73.0
-offset_right = 63.0
-offset_bottom = 93.0
-theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
-theme_override_fonts/font = ExtResource("5_peq10")
-theme_override_font_sizes/font_size = 10
-text = "Play"
-flat = true
-
-[node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="Buttons/PlayButton"]
-stream = ExtResource("7_lm720")
-
 [node name="Transitions" parent="." instance=ExtResource("6_gly21")]
 layout_mode = 1
 
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 78.0
+offset_right = 59.0
+offset_bottom = 122.0
+
+[node name="StartButton" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="Buttons/StartButton"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "*"
+
+[node name="Start" type="Label" parent="Buttons/StartButton"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "Start
+"
+
+[node name="ExitButton" type="HBoxContainer" parent="Buttons"]
+layout_mode = 2
+
+[node name="Selector" type="Label" parent="Buttons/ExitButton"]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "*"
+
+[node name="Exit" type="Label" parent="Buttons/ExitButton"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
+theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_constants/shadow_outline_size = 1
+theme_override_fonts/font = ExtResource("5_peq10")
+theme_override_font_sizes/font_size = 10
+text = "Exit
+"
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(17, 92)
+stream = ExtResource("7_tkvbn")
+volume_db = 13.752
+
+[node name="ExitButtonPressed" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(17, 103)
+stream = ExtResource("7_tkvbn")
+volume_db = 12.75
+
+[node name="ChangeButton" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_m8yj1")
+volume_db = -5.956
+
 [connection signal="finished" from="TittleScreenMusic" to="." method="_on_tittle_screen_music_finished"]
-[connection signal="animation_finished" from="ColorRect/FlashPlayer" to="." method="_on_flash_player_animation_finished"]
-[connection signal="pressed" from="Buttons/ExitButton" to="." method="_on_exit_button_pressed"]
-[connection signal="finished" from="Buttons/ExitButton/ExitButtonPressed" to="." method="_on_exit_button_pressed_finished"]
+[connection signal="finished" from="PlayButtonPressed" to="." method="_on_play_button_pressed_finished"]
+[connection signal="finished" from="ExitButtonPressed" to="." method="_on_exit_button_pressed_finished"]

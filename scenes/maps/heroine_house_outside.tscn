@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cph2ryf71pcau"]
+[gd_scene load_steps=16 format=3 uid="uid://cph2ryf71pcau"]
 
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_outside.gd" id="1_fksi1"]
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="1_r8d6b"]
@@ -13,14 +13,31 @@
 [ext_resource type="AudioStream" uid="uid://btxpmyhqw8dom" path="res://assets/sound/music/HouseOutside.ogg" id="11_uwmu2"]
 [ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/WeaponObtained.ogg" id="12_mu3lq"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4f3w"]
-size = Vector2(10, 6)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocyse"]
 size = Vector2(54.5, 31)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4f3w"]
+size = Vector2(10, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af77c"]
+size = Vector2(146, 54)
+
 [node name="Heroine_House_Outside" type="Node2D"]
 script = ExtResource("1_fksi1")
+
+[node name="Wall" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(119, 153)
+
+[node name="CheckIfPlayerHasWeaponArea" type="Area2D" parent="Wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/CheckIfPlayerHasWeaponArea"]
+position = Vector2(0.75, 2.5)
+shape = SubResource("RectangleShape2D_ocyse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_ocyse")
 
 [node name="Transitions" parent="." instance=ExtResource("2_jso5i")]
 offset_left = -120.0
@@ -174,19 +191,6 @@ position = Vector2(-14, 0)
 texture = ExtResource("10_k62px")
 flip_h = true
 
-[node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2(119, 153)
-
-[node name="CheckIfPlayerHasWeaponArea" type="Area2D" parent="Wall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/CheckIfPlayerHasWeaponArea"]
-position = Vector2(0.75, 2.5)
-shape = SubResource("RectangleShape2D_ocyse")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_ocyse")
-
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_uwmu2")
 volume_db = -7.0
@@ -195,10 +199,23 @@ autoplay = true
 [node name="WeaponObtainedMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_mu3lq")
 
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(202, 154)
+shape = SubResource("RectangleShape2D_af77c")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-166, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(202, 154)
+shape = SubResource("RectangleShape2D_af77c")
+
+[connection signal="body_entered" from="Wall/CheckIfPlayerHasWeaponArea" to="." method="_on_check_if_player_has_weapon_area_body_entered"]
 [connection signal="give_weapon_to_player" from="Froggy" to="." method="_on_froggy_give_weapon_to_player"]
 [connection signal="give_weapon_to_player" from="Froggy" to="player" method="_on_froggy_give_weapon_to_player"]
 [connection signal="give_weapon_to_player" from="Froggy" to="GUI" method="_on_froggy_give_weapon_to_player"]
 [connection signal="body_entered" from="Sign/Area2D2" to="." method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Wall/CheckIfPlayerHasWeaponArea" to="." method="_on_check_if_player_has_weapon_area_body_entered"]
 [connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
 [connection signal="finished" from="WeaponObtainedMusic" to="." method="_on_weapon_obtained_music_finished"]
