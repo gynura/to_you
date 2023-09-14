@@ -15,7 +15,7 @@ script = ExtResource("1_ms4iu")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 2
-color = Color(0.0784314, 0.105882, 0.105882, 1)
+color = Color(0.054902, 0.0784314, 0.0784314, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 2

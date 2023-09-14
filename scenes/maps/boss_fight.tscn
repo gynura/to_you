@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b1sajuijlb7f8"]
+[gd_scene load_steps=17 format=3 uid="uid://b1sajuijlb7f8"]
 
 [ext_resource type="Script" path="res://scenes/maps/boss_fight.gd" id="1_nfmih"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_w873n"]
@@ -12,6 +12,8 @@
 [ext_resource type="AudioStream" uid="uid://cfm52t7fo0nh" path="res://assets/sound/fx/Bump.wav" id="9_8knwv"]
 [ext_resource type="AudioStream" uid="uid://c2uh7k8nb5igu" path="res://assets/sound/music/BossFight.ogg" id="10_tw37f"]
 [ext_resource type="AudioStream" uid="uid://du1tiffd4vlge" path="res://assets/sound/music/PreBoss_Music.ogg" id="11_uea34"]
+[ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="13_42pkc"]
+[ext_resource type="AudioStream" uid="uid://cmyi5um3fruqw" path="res://assets/sound/fx/BossDefeated.wav" id="13_73e08"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m2dws"]
 a = Vector2(-128, -3)
@@ -205,6 +207,11 @@ autoplay = true
 stream = ExtResource("10_tw37f")
 volume_db = -9.0
 
+[node name="BossDefeated" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_73e08")
+
+[node name="Transitions" parent="." instance=ExtResource("13_42pkc")]
+
 [connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
 [connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]
@@ -222,3 +229,4 @@ volume_db = -9.0
 [connection signal="body_entered" from="Wall3/PlayerCannotPass" to="." method="_on_player_cannot_pass_body_entered"]
 [connection signal="finished" from="PreBossMusic" to="." method="_on_pre_boss_music_finished"]
 [connection signal="finished" from="BossFightMusic" to="." method="_on_boss_fight_music_finished"]
+[connection signal="finished" from="BossDefeated" to="." method="_on_boss_defeated_finished"]

@@ -4,14 +4,19 @@ extends Node2D
 @onready var check_to_change_camera = $Area2D
 @onready var transition_camera = $TransitionCamera
 @onready var first_camera = $FirstCamera
+@onready var boss_defeated_sound = $BossDefeated
+@onready var victory_screen = load("res://scenes/utils/title_screen.tscn")
+@onready var transition = $Transitions
 
 signal start_boss_fight
 signal player_hitted_enemy
 signal player_hurt
 
 func _ready():
+	transition.enter_screen()
 	$Wall/CollisionShape2D.disabled = true
 	first_camera.make_current()
+	Global.game_completed.connect(_killed_boss)
 
 # This function changes to a third camera to create a smooth transition between them
 func _transition_cameras():
@@ -39,6 +44,9 @@ func _transition_cameras():
 	tween.tween_property(transition_camera, "position", camera.position, 0.4)
 	tween.tween_property(transition_camera, "rotation", camera.rotation, 0.4)
 	tween.connect("finished", _change_to_boss_fight_camera)
+	
+func _killed_boss():
+	boss_defeated_sound.play()
 
 func _change_to_boss_fight_camera():
 	camera.make_current()
@@ -69,3 +77,6 @@ func _on_boss_fight_music_finished():
 func _on_player_cannot_pass_body_entered(body):
 	if body.name == "player":
 		$Wall3/WallBumpAudio.play()
+
+func _on_boss_defeated_finished():
+	transition.exit_screen(victory_screen)
