@@ -36,4 +36,7 @@ func _on_hit_door_sound_finished():
 	if number_of_door_hits > 0:
 		$HitDoorSound.play()
 		number_of_door_hits-=1
-		Global.begin_game = false 
+
+func _on_game_beginning_player_position_restart_music():
+	Global.begin_game = false 
+	$BackgroundMusic.play()

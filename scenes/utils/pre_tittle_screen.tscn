@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf3kgc61srm0m"]
+
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="1_7chsc"]
+[ext_resource type="Script" path="res://scenes/utils/pre_tittle_screen.gd" id="1_ms4iu"]
+[ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="3_kdamy"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="4_q1hqa"]
+
+[node name="Control" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ms4iu")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(0.0784314, 0.105882, 0.105882, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.964706, 0.941176, 1)
+theme_override_fonts/font = ExtResource("1_7chsc")
+text = "Esto es para ti "
+
+[node name="Transitions" parent="." instance=ExtResource("3_kdamy")]
+layout_mode = 2
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(17, 92)
+stream = ExtResource("4_q1hqa")
+volume_db = 13.752
+
+[connection signal="finished" from="PlayButtonPressed" to="." method="_on_play_button_pressed_finished"]
