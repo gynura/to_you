@@ -108,10 +108,8 @@ func _on_area_2d_body_entered(body):
 func redirectSprite():
 	if direction.x == 1:
 		$AnimatedSprite2D.flip_h = true
-		$Shadow.flip_h = true
 	elif direction.x == -1:
 		$AnimatedSprite2D.flip_h = false
-		$Shadow.flip_h = false
 
 func _on_timer_timeout():
 	$Timer.wait_time = chooseRandomly([0.5, 1, 2, 1.5, 3])
@@ -130,6 +128,10 @@ func playerHit():
 	$HitFx.emitting = true 
 	currentHealth -= 1
 	if currentHealth <= 0: 
+		Global.enemies_in_first_area -= 1
+		if Global.enemies_in_first_area <= 0:
+			Global.first_area_completed.emit()
+			print_debug("all enemies killed")
 		death()
 	else: hittedEnemy() 
 

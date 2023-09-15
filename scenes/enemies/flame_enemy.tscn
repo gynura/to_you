@@ -1,8 +1,7 @@
-[gd_scene load_steps=27 format=3 uid="uid://27tp05alwpr6"]
+[gd_scene load_steps=26 format=3 uid="uid://27tp05alwpr6"]
 
 [ext_resource type="Texture2D" uid="uid://b0ggaek3juiw" path="res://assets/sprites/enemies/flame_enemy.png" id="1_7mbmp"]
 [ext_resource type="Script" path="res://scenes/enemies/flame_enemy.gd" id="1_g2ofe"]
-[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_k1415"]
 [ext_resource type="Texture2D" uid="uid://cpj2fjbytndob" path="res://assets/sprites/particles/hit_fx.png" id="4_mopdu"]
 [ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/Fire.wav" id="5_yitqh"]
 
@@ -144,7 +143,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
-size = Vector2(14, 8)
+size = Vector2(10, 6)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3pby"]
 radius = 7.0
@@ -175,15 +174,10 @@ animation = &"walk_down"
 frame = 2
 frame_progress = 0.502958
 
-[node name="Shadow" type="Sprite2D" parent="."]
-visible = false
-z_index = -1
-texture = ExtResource("2_k1415")
-
 [node name="Timer" type="Timer" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_1wlou")
 
 [node name="EnemyHitBox" type="Area2D" parent="."]
