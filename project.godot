@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="to_you"
-run/main_scene="res://scenes/utils/title_screen.tscn"
+run/main_scene="res://scenes/screens/title_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://cover.png"
 
@@ -24,7 +24,6 @@ Global="*res://scenes/singletons/global.gd"
 
 window/size/viewport_width=240
 window/size/viewport_height=135
-window/size/mode=3
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"

@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var main_title = load("res://scenes/utils/title_screen.tscn")
+@onready var main_title = load("res://scenes/screens/title_screen.tscn")
 @onready var transition = $Transitions
 @onready var sound = $PlayButtonPressed
 

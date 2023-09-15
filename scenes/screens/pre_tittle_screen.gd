@@ -1,7 +1,7 @@
 extends MarginContainer
 
 @onready var transition = $Transitions
-@onready var main_title = load("res://scenes/utils/title_screen.tscn")
+@onready var main_title = load("res://scenes/screens/title_screen.tscn")
 @onready var sound = $PlayButtonPressed
 
 func _ready():

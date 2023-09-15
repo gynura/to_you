@@ -7,7 +7,6 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_06f2s"]
-load_path = "res://.godot/imported/LeafPink.png-5a3cb51c1bd24a5114a9e5b321d27ec6.ctex"
 
 [node name="TittleScreenLeaves" type="CPUParticles2D"]
 material = SubResource("CanvasItemMaterial_w8all")
