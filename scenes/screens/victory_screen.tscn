@@ -1,0 +1,125 @@
+[gd_scene load_steps=15 format=3 uid="uid://bt5l5o7hywjub"]
+
+[ext_resource type="Texture2D" uid="uid://bymy826yis4yp" path="res://assets/sprites/utils/animated_victory_screen.png" id="1_e41gc"]
+[ext_resource type="Script" path="res://scenes/screens/victory_screen.gd" id="1_jkvrs"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="3_txqfo"]
+[ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="4_10u7e"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="5_r3kir"]
+[ext_resource type="Texture2D" uid="uid://cjmj6subvo6y6" path="res://assets/sprites/utils/victory_letters1.png" id="6_rquqm"]
+[ext_resource type="AudioStream" uid="uid://bffroikl774ng" path="res://assets/sound/fx/VictoryTittleSound.wav" id="7_0ytwk"]
+[ext_resource type="AudioStream" uid="uid://0wv8ms11g363" path="res://assets/sound/music/VictoryMusic.ogg" id="8_bw41x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jy3c4"]
+atlas = ExtResource("1_e41gc")
+region = Rect2(0, 0, 240, 135)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_njvde"]
+atlas = ExtResource("1_e41gc")
+region = Rect2(240, 0, 240, 135)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kqtl0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jy3c4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_njvde")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="Animation" id="Animation_7adhl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_05v0q"]
+resource_name = "flash"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_glsh6"]
+_data = {
+"RESET": SubResource("Animation_7adhl"),
+"flash": SubResource("Animation_05v0q")
+}
+
+[node name="VictoryScreen" type="Node2D"]
+script = ExtResource("1_jkvrs")
+
+[node name="Background" type="AnimatedSprite2D" parent="."]
+position = Vector2(120, 67)
+sprite_frames = SubResource("SpriteFrames_kqtl0")
+autoplay = "default"
+frame_progress = 0.896475
+
+[node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(17, 92)
+stream = ExtResource("3_txqfo")
+volume_db = 13.752
+
+[node name="Transitions" parent="." instance=ExtResource("4_10u7e")]
+
+[node name="VictoryMessage" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = 16.0
+offset_top = 62.0
+offset_right = 360.0
+offset_bottom = 85.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = ExtResource("5_r3kir")
+theme_override_font_sizes/font_size = 5
+text = "Has conseguido salvar al bosque"
+
+[node name="VictoryLetters" type="Sprite2D" parent="."]
+position = Vector2(121, 11)
+texture = ExtResource("6_rquqm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 240.0
+offset_bottom = 135.0
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="ColorRect"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_glsh6")
+}
+
+[node name="VictoryTitleSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_0ytwk")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_bw41x")
+volume_db = -5.0
+
+[connection signal="finished" from="PlayButtonPressed" to="." method="_on_play_button_pressed_finished"]
+[connection signal="animation_finished" from="ColorRect/FlashPlayer" to="." method="_on_flash_player_animation_finished"]
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]

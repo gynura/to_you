@@ -23,6 +23,7 @@ theme_override_fonts/font = ExtResource("3_7w4j0")
 theme_override_font_sizes/font_size = 5
 text = "* Press any button
     to continue"
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(17, 92)

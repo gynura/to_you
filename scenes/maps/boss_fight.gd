@@ -5,7 +5,7 @@ extends Node2D
 @onready var transition_camera = $TransitionCamera
 @onready var first_camera = $FirstCamera
 @onready var boss_defeated_sound = $BossDefeated
-@onready var victory_screen = load("res://scenes/screens/title_screen.tscn")
+@onready var victory_screen = load("res://scenes/screens/victory_screen.tscn")
 @onready var transition = $Transitions
 @onready var game_over_screen = load("res://scenes/screens/game_over.tscn")
 

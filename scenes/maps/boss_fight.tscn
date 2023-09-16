@@ -201,12 +201,12 @@ stream = ExtResource("9_8knwv")
 
 [node name="PreBossMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_uea34")
-volume_db = -17.0
+volume_db = -5.0
 autoplay = true
 
 [node name="BossFightMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_tw37f")
-volume_db = -9.0
+volume_db = -5.0
 
 [node name="BossDefeated" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("13_73e08")

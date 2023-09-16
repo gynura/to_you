@@ -15,6 +15,7 @@ var tween
 var tween2 # TODO study a better way to paralelize tweens 
 @export var has_weapon: bool = false 
 var is_attacking: bool = false 
+var is_boss_killed: bool = false 
 
 signal health_change 
 signal attack_position_changed(position)
@@ -35,9 +36,9 @@ func _ready():
 	Global.entered_new_scene.connect(_restart_process)
 	Global.restart_player.connect(_restart_process)
 	Global.game_completed.connect(_killed_boss)
+	Global.player_heal.connect(_health_up)
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
-	Global.player_heal.connect(_health_up)
 
 func _physics_process(delta):
 	if Global.begin_game:
@@ -107,7 +108,7 @@ func endInvincibility():
 	isHurt = false 
 	
 func _stop_player():
-	if currentHealth > 0: 
+	if currentHealth > 0 && !is_boss_killed: 
 		$AnimationPlayer.play("iddle")
 	set_physics_process(false)
 
@@ -217,6 +218,7 @@ func _show_gotten_item():
 	tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
 	
 func _killed_boss():
+	is_boss_killed = true 
 	_stop_player()
 	$AnimationPlayer.play("killed_boss")
 	$Expressions.visible = true
