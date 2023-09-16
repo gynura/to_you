@@ -45,6 +45,7 @@ func _process(delta):
 func press_button(_current_selection):
 	match _current_selection:
 		0: # start button
+			Global.reset_game()
 			play_button_sound.play()
 		1: # exit button
 			exit_button_sound.play()

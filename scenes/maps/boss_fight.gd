@@ -7,6 +7,7 @@ extends Node2D
 @onready var boss_defeated_sound = $BossDefeated
 @onready var victory_screen = load("res://scenes/screens/title_screen.tscn")
 @onready var transition = $Transitions
+@onready var game_over_screen = load("res://scenes/screens/game_over.tscn")
 
 signal start_boss_fight
 signal player_hitted_enemy
@@ -80,3 +81,10 @@ func _on_player_cannot_pass_body_entered(body):
 
 func _on_boss_defeated_finished():
 	transition.exit_screen(victory_screen)
+
+func _on_player_game_over():
+	$BossFightMusic.stop()
+	$GameOverSound.play()
+
+func _on_game_over_sound_finished():
+	transition.exit_screen(game_over_screen)

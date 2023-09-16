@@ -5,6 +5,7 @@ extends Node2D
 @onready var gui = $GUI
 @onready var grass_sound = $GrassStep
 @onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
+@onready var game_over_screen = load("res://scenes/screens/game_over.tscn")
 @onready var wall = $Wall
 var grass_sound_repeat :bool = false 
 
@@ -27,7 +28,6 @@ func _on_grass_step_finished():
 	if grass_sound_repeat:
 		grass_sound.play()
 
-
 func _on_check_if_all_enemies_killed_body_entered(body):
 	if body.name == "player":
 		print_debug(Global.enemies_in_first_area)
@@ -40,6 +40,12 @@ func _on_check_if_all_enemies_killed_body_entered(body):
 			]
 			DialogManager.start_dialog(body.global_position, dialog_lines, speech_sound)
 
-
 func _on_background_music_finished():
 	$BackgroundMusic.play()
+
+func _on_player_game_over():
+	$BackgroundMusic.stop()
+	$GameOverSound.play()
+
+func _on_game_over_sound_finished():
+	transitions.exit_screen(game_over_screen)

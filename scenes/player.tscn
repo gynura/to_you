@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c6p6x8iafg34y"]
+[gd_scene load_steps=38 format=3 uid="uid://c6p6x8iafg34y"]
 
 [ext_resource type="Texture2D" uid="uid://diq5eoc6cw8ua" path="res://assets/sprites/characters/heroine.png" id="1_js555"]
 [ext_resource type="Script" path="res://scenes/player.gd" id="1_tmc20"]
@@ -253,6 +253,23 @@ tracks/0/keys = {
 "values": [Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)]
 }
 
+[sub_resource type="Animation" id="Animation_sk6f5"]
+resource_name = "game_over"
+length = 0.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [25, 9, 30]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ululp"]
 _data = {
 "RESET": SubResource("Animation_cp6nb"),
@@ -260,6 +277,7 @@ _data = {
 "attack_left": SubResource("Animation_4c0ye"),
 "attack_right": SubResource("Animation_d2kea"),
 "attack_up": SubResource("Animation_p4dio"),
+"game_over": SubResource("Animation_sk6f5"),
 "get_item": SubResource("Animation_8ib6n"),
 "iddle": SubResource("Animation_gjwjc"),
 "killed_boss": SubResource("Animation_ns667"),
@@ -438,8 +456,8 @@ offset = Vector2(7, -20)
 [connection signal="enemy_hit" from="Weapon" to="." method="_on_weapon_enemy_hit"]
 [connection signal="next_attack" from="Weapon" to="." method="_on_weapon_next_attack"]
 [connection signal="timeout" from="Camera2D/ScreenShakeTimer" to="Camera2D" method="_on_screen_shake_timer_timeout"]
-[connection signal="timeout" from="ActionTimer" to="." method="_on_action_animations_timeout"]
 [connection signal="timeout" from="ActionTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_animations_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]

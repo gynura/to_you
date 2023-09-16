@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwgdnxq0stih8"]
+[gd_scene load_steps=15 format=3 uid="uid://bwgdnxq0stih8"]
 
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="1_vhqmi"]
 [ext_resource type="Script" path="res://scenes/maps/forest.gd" id="1_vjvac"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="9_kfcah"]
 [ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/GrassStep.wav" id="10_ycpyd"]
 [ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/WeaponObtained.ogg" id="11_k6sqf"]
+[ext_resource type="AudioStream" uid="uid://dvo1fki3qfvyb" path="res://assets/sound/fx/GameOver.wav" id="12_kyeqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mru4"]
 size = Vector2(54.5, 31)
@@ -161,9 +162,15 @@ position = Vector2(87, -21)
 stream = ExtResource("11_k6sqf")
 autoplay = true
 
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_kyeqq")
+volume_db = 4.998
+
 [connection signal="body_entered" from="Wall/CheckIfAllEnemiesKilled" to="." method="_on_check_if_all_enemies_killed_body_entered"]
+[connection signal="game_over" from="player" to="." method="_on_player_game_over"]
 [connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]
 [connection signal="player_heal" from="player" to="GUI" method="_on_player_player_heal"]
 [connection signal="finished" from="GrassStep" to="." method="_on_grass_step_finished"]
 [connection signal="body_entered" from="CheckBeforeBoss" to="." method="_on_check_before_boss_body_entered"]
 [connection signal="finished" from="BackgroundMusic" to="." method="_on_background_music_finished"]
+[connection signal="finished" from="GameOverSound" to="." method="_on_game_over_sound_finished"]

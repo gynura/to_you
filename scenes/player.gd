@@ -22,6 +22,7 @@ signal attack
 signal end_attack
 signal hurt_enemy
 signal player_heal 
+signal game_over
 
 # Note that this configureCameraLimits() func has to be in the _ready() func since this will be 
 # called each time a new scene is instantiated so it can reconfigure itself depending on the scene.
@@ -106,7 +107,8 @@ func endInvincibility():
 	isHurt = false 
 	
 func _stop_player():
-	$AnimationPlayer.play("iddle")
+	if currentHealth > 0: 
+		$AnimationPlayer.play("iddle")
 	set_physics_process(false)
 
 func _restart_process(): 
@@ -121,6 +123,7 @@ func _health_up():
 		else:
 			currentHealth += 1 
 			Global.player_current_health += 1
+		_play_heal_animation()
 		player_heal.emit()
 
 func enemyHit(enemyArea):
@@ -132,9 +135,10 @@ func enemyHit(enemyArea):
 	currentHealth -= 1
 	Global.player_current_health -= 1
 	enemyArea.owner.hitSound.play()
-	# REMOVE LATER 
 	if currentHealth <= 0:
-		currentHealth = MAX_HEALTH
+		_stop_player()
+		$AnimationPlayer.play("game_over")
+		game_over.emit()
 	health_change.emit()
 	isHurt = true 
 	knockback(enemyArea.get_parent().get_velocity())
@@ -152,6 +156,18 @@ func playHurtAnimation():
 	tween.tween_property($Sprite2D,"scale",Vector2.ONE,0.2)
 	tween2.tween_property($Sprite2D,"modulate",Color.RED,0.2)
 	tween2.tween_property($Sprite2D,"modulate",Color.WHITE,0.2)
+	
+func _play_heal_animation(): 
+	tween = create_tween()
+	tween2 = create_tween()
+	tween.set_ease(tween.EASE_OUT)
+	tween.set_trans(Tween.TRANS_CIRC)
+	tween2.set_ease(tween.EASE_OUT)
+	tween2.set_trans(Tween.TRANS_CIRC)
+	tween.tween_property($Sprite2D,"scale",Vector2(1.2,1.2),0.3)
+	tween.tween_property($Sprite2D,"scale",Vector2.ONE,0.3)
+	tween2.tween_property($Sprite2D,"modulate",Color.LAWN_GREEN,0.3)
+	tween2.tween_property($Sprite2D,"modulate",Color.WHITE,0.3)
 
 func _on_hurt_box_area_entered(area):
 	if area.name == "EnemyHitBox" && !isHurt: 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b1sajuijlb7f8"]
+[gd_scene load_steps=18 format=3 uid="uid://b1sajuijlb7f8"]
 
 [ext_resource type="Script" path="res://scenes/maps/boss_fight.gd" id="1_nfmih"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="1_w873n"]
@@ -14,6 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://du1tiffd4vlge" path="res://assets/sound/music/PreBoss_Music.ogg" id="11_uea34"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="13_42pkc"]
 [ext_resource type="AudioStream" uid="uid://cmyi5um3fruqw" path="res://assets/sound/fx/BossDefeated.wav" id="13_73e08"]
+[ext_resource type="AudioStream" uid="uid://dvo1fki3qfvyb" path="res://assets/sound/fx/GameOver.wav" id="15_m7dds"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_m2dws"]
 a = Vector2(-128, -3)
@@ -212,12 +213,17 @@ stream = ExtResource("13_73e08")
 
 [node name="Transitions" parent="." instance=ExtResource("13_42pkc")]
 
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_m7dds")
+volume_db = 4.998
+
 [connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
 [connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]
 [connection signal="start_boss_fight" from="." to="player" method="_on_boss_fight_start_boss_fight"]
 [connection signal="start_fight" from="FinalBoss" to="player" method="_on_final_boss_start_fight"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="game_over" from="player" to="." method="_on_player_game_over"]
 [connection signal="health_change" from="player" to="." method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="BossFightCamera" method="_on_player_health_change"]
 [connection signal="health_change" from="player" to="GUI" method="_on_player_health_change"]
@@ -230,3 +236,4 @@ stream = ExtResource("13_73e08")
 [connection signal="finished" from="PreBossMusic" to="." method="_on_pre_boss_music_finished"]
 [connection signal="finished" from="BossFightMusic" to="." method="_on_boss_fight_music_finished"]
 [connection signal="finished" from="BossDefeated" to="." method="_on_boss_defeated_finished"]
+[connection signal="finished" from="GameOverSound" to="." method="_on_game_over_sound_finished"]

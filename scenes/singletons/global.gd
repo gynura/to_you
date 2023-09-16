@@ -2,8 +2,8 @@ extends Node
 
 const PLAYER_MAX_HEALTH = 12  
 
-var begin_game = true 
-var player_got_weapon = false 
+var begin_game = false 
+var player_got_weapon = true 
 #TODO cambiar los dos de arriba!!! 
 
 var player_current_health = 12
