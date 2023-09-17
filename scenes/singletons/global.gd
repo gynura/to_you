@@ -22,6 +22,10 @@ signal first_area_completed
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
+
 func reset_game():
 	begin_game = true
 	player_got_weapon = false 
