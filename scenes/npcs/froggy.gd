@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var canInteract = false 
+var is_player_near :bool = false 
 @onready var speech_sound = preload("res://assets/sound/fx/froggy_speech.wav")
 
 signal give_weapon_to_player
@@ -8,13 +9,15 @@ signal give_weapon_to_player
 func _ready():
 	DialogManager.dialog_ended.connect(_dialog_ended)
 	DialogManager.dialog_start.connect(_show_dialog_marker)
+	DialogManager.read_sign_start.connect(_dialog_ended)
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("interact_button"):
-		if canInteract and !Global.player_getting_weapon:
-			$Bubble.stop()
-			$Bubble.visible = false 
-			talkToFroggy()
+	if is_player_near: 
+		if Input.is_action_just_pressed("interact_button"):
+			if canInteract and !Global.player_getting_weapon:
+				$Bubble.stop()
+				$Bubble.visible = false 
+				talkToFroggy()
 
 func talkToFroggy():
 	_hide_hearts()
@@ -44,6 +47,7 @@ func talkToFroggy():
 	
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
+		is_player_near = true 
 		$Bubble.visible = true
 		$Bubble.play("default")
 		canInteract = true 
@@ -51,6 +55,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if body.name == "player": 
+		is_player_near = false 
 		$Bubble.stop()
 		$Bubble.visible = false 
 		canInteract = false 

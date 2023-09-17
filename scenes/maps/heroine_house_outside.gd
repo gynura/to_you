@@ -36,7 +36,8 @@ func _on_check_if_player_has_weapon_area_body_entered(body):
 
 func _hide_dialog_marker():
 	if player != null: 
-		player.hide_dialog_marker()
+		#player.hide_dialog_marker()
+		pass
 
 func _player_got_weapon_behaviour():
 	wall.queue_free()

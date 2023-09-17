@@ -1,6 +1,7 @@
 extends Sprite2D
 
 var canInteract = false 
+var is_player_near = false 
 @onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
 
 func _ready():
@@ -8,11 +9,12 @@ func _ready():
 	DialogManager.read_sign_stop.connect(_dialog_ended)
 
 func _physics_process(_delta):
-	if Input.is_action_just_pressed("interact_button"):
-		if canInteract:
-			$Bubble.stop()
-			$Bubble.visible = false 
-			_read_sign()
+	if is_player_near: 
+		if Input.is_action_just_pressed("interact_button"):
+			if canInteract:
+				$Bubble.stop()
+				$Bubble.visible = false 
+				_read_sign()
 
 func _read_sign():
 	DialogManager.stop_player.emit()
@@ -33,6 +35,7 @@ func _dialog_ended():
 	
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
+		is_player_near = true 
 		$Bubble.visible = true
 		$Bubble.play("default")
 		canInteract = true 
@@ -40,6 +43,7 @@ func _on_area_2d_body_entered(body):
 
 func _on_area_2d_body_exited(body):
 	if body.name == "player": 
+		is_player_near = false
 		$Bubble.stop()
 		$Bubble.visible = false 
 		canInteract = false 
