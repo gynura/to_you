@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bbkojwyntyex2" path="res://scenes/utils/ash_particles.tscn" id="7_i1a1t"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="9_kfcah"]
 [ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/GrassStep.wav" id="10_ycpyd"]
-[ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/WeaponObtained.ogg" id="11_k6sqf"]
+[ext_resource type="AudioStream" uid="uid://1i01wlpvnvp4" path="res://assets/sound/music/Forest.ogg" id="11_eh74h"]
 [ext_resource type="AudioStream" uid="uid://dvo1fki3qfvyb" path="res://assets/sound/fx/GameOver.wav" id="12_kyeqq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mru4"]
@@ -105,14 +105,12 @@ position = Vector2(407, 10)
 [node name="Pancake2" parent="." instance=ExtResource("6_6mrvq")]
 position = Vector2(503, 55)
 
-[node name="Pancake3" parent="." instance=ExtResource("6_6mrvq")]
-position = Vector2(260, 32)
-
 [node name="ash_particles" parent="." instance=ExtResource("7_i1a1t")]
 position = Vector2(411, -203)
 
 [node name="FlameEnemy5" parent="." node_paths=PackedStringArray("endPoint") instance=ExtResource("4_xnr1n")]
 position = Vector2(350, -74)
+SPEED = 60
 flame_type = 1
 endPoint = NodePath("Marker2D_Enemy5")
 
@@ -126,9 +124,6 @@ endPoint = NodePath("Marker2D_Enemy6")
 
 [node name="Marker2D_Enemy6" type="Marker2D" parent="FlameEnemy6"]
 position = Vector2(0, 48)
-
-[node name="Pancake4" parent="." instance=ExtResource("6_6mrvq")]
-position = Vector2(441, -144)
 
 [node name="FlameEnemy7" parent="." instance=ExtResource("4_xnr1n")]
 position = Vector2(152, 79)
@@ -159,10 +154,11 @@ endPoint = NodePath("Marker2D_Enemy9")
 position = Vector2(87, -21)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_k6sqf")
+stream = ExtResource("11_eh74h")
 autoplay = true
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(1, 0)
 stream = ExtResource("12_kyeqq")
 volume_db = 4.998
 

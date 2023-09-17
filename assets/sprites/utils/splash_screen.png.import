@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwnjf171h02di"
-path="res://.godot/imported/victory_letters2.png-1e81d4e156ac3e5dbb916cd0a13b85f4.ctex"
+uid="uid://cg3beq7o1khbt"
+path="res://.godot/imported/splash_screen.png-8393284c62da94bdef4073847a32283b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/utils/victory_letters2.png"
-dest_files=["res://.godot/imported/victory_letters2.png-1e81d4e156ac3e5dbb916cd0a13b85f4.ctex"]
+source_file="res://assets/sprites/utils/splash_screen.png"
+dest_files=["res://.godot/imported/splash_screen.png-8393284c62da94bdef4073847a32283b.ctex"]
 
 [params]
 

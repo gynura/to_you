@@ -18,6 +18,9 @@ signal killed_flame_boss
 signal game_completed
 signal first_area_completed
 
+func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
+
 func reset_game():
 	begin_game = true
 	player_got_weapon = false 

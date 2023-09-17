@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 42
+@export var SPEED = 42
 const MAX_PIXELS_TO_MOVE = 25
 const RECALCULATED_MAX_PIXELS_TO_MOVE = MAX_PIXELS_TO_MOVE - 0.01
 # By defining the flame_type we can have as many behaviours as we want

@@ -10,7 +10,6 @@ extends Node2D
 var grass_sound_repeat :bool = false 
 
 func _ready():
-	grass_sound.play()
 	transitions.enter_screen()
 	Global.first_area_completed.connect(_allow_boss_fight)
 
