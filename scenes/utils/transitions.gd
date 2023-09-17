@@ -20,6 +20,7 @@ func enter_screen():
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "fade_in":
 		get_tree().change_scene_to_packed(scene_to_load)
+		queue_free()
 	else: 
 		Global.entered_new_scene.emit()
 	color_rect.visible = false 

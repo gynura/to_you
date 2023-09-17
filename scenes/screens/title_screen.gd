@@ -8,7 +8,7 @@ extends Control
 @onready var exit_button_sound = $ExitButtonPressed
 @onready var play_button_sound = $PlayButtonPressed
 @onready var change_button_sound = $ChangeButton
-@onready var house_interior_scene = load("res://scenes/maps/heroine_house_interior.tscn")
+@onready var house_interior_scene = preload("res://scenes/maps/heroine_house_interior.tscn")
 @onready var selector_one = $Buttons/StartButton/Selector
 @onready var selector_two = $Buttons/ExitButton/Selector
 @onready var start_button = $Buttons/StartButton/Start

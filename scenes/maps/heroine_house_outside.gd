@@ -2,8 +2,8 @@ extends Node2D
 
 @onready var transitions = $Transitions
 @onready var open_door_sound = $OpenDoorSound 
-@onready var house_interior_scene = load("res://scenes/maps/heroine_house_interior.tscn")
-@onready var second_map = load("res://scenes/maps/forest.tscn")
+@onready var house_interior_scene = preload("res://scenes/maps/heroine_house_interior.tscn")
+@onready var second_map = preload("res://scenes/maps/forest.tscn")
 @onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
 @onready var wall = $Wall
 @onready var gui = $GUI

@@ -17,7 +17,7 @@ func _process(_delta):
 	_generate_rotating_bullet()
 	
 func _delete_bullet():
-	self.queue_free()
+	queue_free()
 	
 # Check if the bullet hits a wall
 func _on_area_2d_body_entered(body):
