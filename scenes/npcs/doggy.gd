@@ -105,3 +105,13 @@ func _on_area_2d_body_exited(body):
 		$Bubble.stop()
 		$Bubble.visible = false 
 		canInteract = false 
+
+func _on_check_for_player_body_entered(body):
+	if body.name == "player":
+		current_state = "IDLE"
+		$AnimatedSprite2D.play("idle")
+		$Timer.stop()
+
+func _on_check_for_player_body_exited(body):
+	if body.name == "player":
+		$Timer.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://clp5qbbop4ame"]
+[gd_scene load_steps=25 format=3 uid="uid://clp5qbbop4ame"]
 
 [ext_resource type="Script" path="res://scenes/npcs/doggy.gd" id="1_0dump"]
 [ext_resource type="Texture2D" uid="uid://cnynui6yu4xka" path="res://assets/sprites/characters/doggy.png" id="1_e67cn"]
@@ -120,6 +120,8 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4jv7b"]
+
 [node name="Doggy" type="CharacterBody2D"]
 z_index = 1
 position = Vector2(1, -7)
@@ -156,6 +158,7 @@ frame_progress = 0.393817
 
 [node name="CheckArea" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_blbfx")
+debug_color = Color(0.760784, 0.45098, 0, 0.419608)
 
 [node name="HeartTimer" type="Timer" parent="."]
 one_shot = true
@@ -178,7 +181,14 @@ stream = ExtResource("7_bxj3j")
 volume_db = -8.595
 pitch_scale = 1.13
 
+[node name="CheckForPlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckForPlayer"]
+shape = SubResource("CircleShape2D_4jv7b")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="HeartTimer" to="." method="_on_heart_timer_timeout"]
+[connection signal="body_entered" from="CheckForPlayer" to="." method="_on_check_for_player_body_entered"]
+[connection signal="body_exited" from="CheckForPlayer" to="." method="_on_check_for_player_body_exited"]
