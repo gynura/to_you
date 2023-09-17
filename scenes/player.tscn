@@ -460,3 +460,4 @@ offset = Vector2(7, -20)
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 [connection signal="area_exited" from="HurtBox" to="." method="_on_hurt_box_area_exited"]
 [connection signal="timeout" from="HurtTimer" to="." method="_on_hurt_timer_timeout"]
+[connection signal="finished" from="GetItemSound" to="." method="_on_get_item_sound_finished"]

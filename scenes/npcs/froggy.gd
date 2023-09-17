@@ -11,7 +11,7 @@ func _ready():
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact_button"):
-		if canInteract:
+		if canInteract and !Global.player_getting_weapon:
 			$Bubble.stop()
 			$Bubble.visible = false 
 			talkToFroggy()
@@ -34,6 +34,7 @@ func talkToFroggy():
 			"Toma esto y sálvanos",
 			"¡¡Confiamos en ti!!"
 		]
+		Global.player_getting_weapon = true 
 	else: 
 		dialog_lines = [
 			"¡¡Confiamos en ti!!",

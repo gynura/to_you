@@ -3,12 +3,13 @@ extends Node
 const PLAYER_MAX_HEALTH = 12  
 
 var begin_game = false 
-var player_got_weapon = true 
+var player_got_weapon = false 
 #TODO cambiar los dos de arriba!!! 
 
+var player_getting_weapon :bool = false 
 var player_current_health = 12
 var is_froggy_talk = false
-var enemies_in_first_area = 9 
+var enemies_in_first_area = 9
 
 signal player_heal 
 signal transition_to_scene
@@ -27,3 +28,4 @@ func reset_game():
 	player_current_health = 12
 	is_froggy_talk = false
 	enemies_in_first_area = 9 
+	player_getting_weapon = false 

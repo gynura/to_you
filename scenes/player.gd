@@ -233,3 +233,8 @@ func _on_final_boss_start_fight():
 	$Expressions.visible = false
 	$Expressions.stop()
 	_restart_process()
+	
+
+
+func _on_get_item_sound_finished():
+	Global.player_getting_weapon = false 
