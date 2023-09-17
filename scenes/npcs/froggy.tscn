@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/npcs/froggy.gd" id="1_cb1t2"]
 [ext_resource type="Texture2D" uid="uid://bfchr17fx3y4p" path="res://assets/sprites/characters/forest_frog.png" id="1_npniw"]
-[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_o2rv1"]
-[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="4_2s2yl"]
+[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/shadow.png" id="2_o2rv1"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/dialog_info.png" id="4_2s2yl"]
 [ext_resource type="Texture2D" uid="uid://1h636mb2bqum" path="res://assets/sprites/characters/baby_frog.png" id="5_31lg8"]
 [ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="6_omyh1"]
-[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="6_yggdo"]
-[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="8_y8nhd"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/ui/dialog_marker.png" id="6_yggdo"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/pop_up.ogg" id="8_y8nhd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r76st"]
 atlas = ExtResource("1_npniw")
@@ -258,6 +258,11 @@ stream = ExtResource("8_y8nhd")
 volume_db = -8.595
 pitch_scale = 1.13
 
+[node name="TimeBetweenInteractions" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="timeout" from="HeartsTimer" to="." method="_on_hearts_timer_timeout"]
+[connection signal="timeout" from="TimeBetweenInteractions" to="." method="_on_time_between_interactions_timeout"]

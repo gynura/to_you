@@ -56,6 +56,12 @@ func _process(delta):
 					direction = chooseRandomly([Vector2.RIGHT, Vector2.UP, Vector2.LEFT, Vector2.DOWN])
 				MOVE:
 					move(delta) 
+#	check_if_player_is_in_hit_area()
+	
+func check_if_player_is_in_hit_area(): 
+	for body in $EnemyHitBox.get_overlapping_bodies():
+		if body.name == "player":
+			body.enemyHit($EnemyHitBox)
 
 func _physics_process(_delta):
 	match flame_type:
@@ -104,6 +110,9 @@ func _on_area_2d_body_entered(body):
 	if flame_type != MOVE_TO_POINT:
 		if body.name != "player" && current_state == MOVE: 
 			direction = direction * -1
+		elif body.name == "player":
+			current_state = IDLE
+			$AnimatedSprite2D.play("walk_down")
 
 func redirectSprite():
 	if direction.x == 1:

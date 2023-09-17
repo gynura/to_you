@@ -1,10 +1,10 @@
 [gd_scene load_steps=12 format=3 uid="uid://c1w4vo2dmdnt0"]
 
 [ext_resource type="Texture2D" uid="uid://bksgwwqes7utw" path="res://assets/sprites/utils/sign.png" id="1_52488"]
-[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="1_sgg5i"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/ui/dialog_marker.png" id="1_sgg5i"]
 [ext_resource type="Script" path="res://scenes/utils/sign.gd" id="2_wemmu"]
-[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="3_byp10"]
-[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="5_u2yjs"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/dialog_info.png" id="3_byp10"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/pop_up.ogg" id="5_u2yjs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnaxc"]
 radius = 19.0263
@@ -74,5 +74,10 @@ stream = ExtResource("5_u2yjs")
 volume_db = -8.595
 pitch_scale = 1.13
 
+[node name="TimeBetweenInteractions" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="TimeBetweenInteractions" to="." method="_on_time_between_interactions_timeout"]

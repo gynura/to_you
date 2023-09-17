@@ -5,7 +5,7 @@ var canInteract = false
 
 func _ready():
 	DialogManager.read_sign_start.connect(_show_dialog_marker)
-	DialogManager.read_sign_stop.connect(_hide_dialog_marker)
+	DialogManager.read_sign_stop.connect(_dialog_ended)
 
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact_button"):
@@ -21,13 +21,15 @@ func _read_sign():
 	var dialog_lines :Array[String] = [
 		"Caseta Floretes",
 	]
+	canInteract = false 
 	DialogManager.start_read_sign(global_position, dialog_lines, speech_sound)
 	
 func _show_dialog_marker():
 	$DialogMarker.visible = true
 
-func _hide_dialog_marker():
+func _dialog_ended():
 	$DialogMarker.visible = false 
+	$TimeBetweenInteractions.start()
 	
 func _on_area_2d_body_entered(body):
 	if body.name == "player": 
@@ -41,3 +43,6 @@ func _on_area_2d_body_exited(body):
 		$Bubble.stop()
 		$Bubble.visible = false 
 		canInteract = false 
+
+func _on_time_between_interactions_timeout():
+	canInteract = true 

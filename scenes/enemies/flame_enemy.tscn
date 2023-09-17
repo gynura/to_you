@@ -143,8 +143,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3pby"]
-radius = 7.0
-height = 14.0
+radius = 8.0
+height = 18.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3yy1y"]
 particles_animation = true
@@ -153,7 +153,7 @@ particles_anim_v_frames = 5
 particles_anim_loop = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
-size = Vector2(8, 4)
+size = Vector2(9, 7)
 
 [node name="FlameEnemy" type="CharacterBody2D"]
 z_index = 1
@@ -183,6 +183,7 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitBox"]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_w3pby")
+debug_color = Color(1, 0.0392157, 0.282353, 0.419608)
 
 [node name="HitFx" type="CPUParticles2D" parent="."]
 z_index = 8
@@ -215,7 +216,7 @@ position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_w3pby")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(-0.5, -5.5)
 shape = SubResource("RectangleShape2D_1wlou")
 
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]

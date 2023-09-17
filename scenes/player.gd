@@ -3,7 +3,7 @@ extends CharacterBody2D
 const MAX_HEALTH = 12
 
 # This could even come from the enemy's node so each enemy could define its own knockback
-@export var knockbackPower: int = 500
+@export var knockbackPower: int = 1100
 var speed = 55
 var animationDirection = "down"
 var currentHealth: int = 12 
@@ -128,23 +128,26 @@ func _health_up():
 		player_heal.emit()
 
 func enemyHit(enemyArea):
-	$ShowWeaponSound.stop()
-	# Because of the processing, we need to check if the appended enemyArea's enemy is still alive
-	# if not it won't damage the player
-	if enemyArea.owner.currentHealth <= 0:
-		return
-	currentHealth -= 1
-	Global.player_current_health -= 1
-	enemyArea.owner.hitSound.play()
-	if currentHealth <= 0:
-		_stop_player()
-		$AnimationPlayer.play("game_over")
-		game_over.emit()
-	health_change.emit()
-	isHurt = true 
-	knockback(enemyArea.get_parent().get_velocity())
-	playHurtAnimation()
-	$HurtTimer.start()
+	if !isHurt: 
+		$ShowWeaponSound.stop()
+		# Because of the processing, we need to check if the appended enemyArea's enemy is still alive
+		# if not it won't damage the player
+		if enemyArea.owner.currentHealth <= 0:
+			return
+		currentHealth -= 1
+		Global.player_current_health -= 1
+		enemyArea.owner.hitSound.play()
+		if currentHealth <= 0:
+			_stop_player()
+			$AnimationPlayer.play("game_over")
+			game_over.emit()
+		health_change.emit()
+		isHurt = true 
+		knockback(enemyArea.get_parent().get_velocity())
+		playHurtAnimation()
+		$HurtTimer.start()
+	else: 
+		knockback(enemyArea.get_parent().get_velocity())
 	
 func playHurtAnimation(): 
 	tween = create_tween()
@@ -171,7 +174,7 @@ func _play_heal_animation():
 	tween2.tween_property($Sprite2D,"modulate",Color.WHITE,0.3)
 
 func _on_hurt_box_area_entered(area):
-	if area.name == "EnemyHitBox" && !isHurt: 
+	if area.name == "EnemyHitBox": 
 		enemyCollisions.append(area)
 
 func _on_action_animations_timeout():
@@ -233,8 +236,6 @@ func _on_final_boss_start_fight():
 	$Expressions.visible = false
 	$Expressions.stop()
 	_restart_process()
-	
-
 
 func _on_get_item_sound_finished():
 	Global.player_getting_weapon = false 

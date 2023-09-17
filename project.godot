@@ -30,6 +30,10 @@ window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
 
+[editor]
+
+export/convert_text_resources_to_binary=false
+
 [input]
 
 ui_left={

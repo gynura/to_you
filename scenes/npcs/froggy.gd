@@ -39,6 +39,7 @@ func talkToFroggy():
 		dialog_lines = [
 			"¡¡Confiamos en ti!!",
 		]
+	canInteract = false 
 	DialogManager.start_dialog(global_position, dialog_lines, speech_sound)
 	
 func _on_area_2d_body_entered(body):
@@ -66,6 +67,7 @@ func _dialog_ended():
 		$LittleFrog2/Heart.visible = true 
 		$HeartsTimer.start()
 		Global.is_froggy_talk = false 
+	$TimeBetweenInteractions.start()
 
 func _show_dialog_marker():
 	$DialogMarker.visible = true
@@ -77,3 +79,6 @@ func _hide_hearts():
 
 func _on_hearts_timer_timeout():
 	_hide_hearts()
+
+func _on_time_between_interactions_timeout():
+	canInteract = true 
