@@ -142,9 +142,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
-size = Vector2(10, 6)
-
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w3pby"]
 radius = 7.0
 height = 14.0
@@ -154,6 +151,9 @@ particles_animation = true
 particles_anim_h_frames = 1
 particles_anim_v_frames = 5
 particles_anim_loop = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wlou"]
+size = Vector2(8, 4)
 
 [node name="FlameEnemy" type="CharacterBody2D"]
 z_index = 1
@@ -175,10 +175,6 @@ frame = 2
 frame_progress = 0.502958
 
 [node name="Timer" type="Timer" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_1wlou")
 
 [node name="EnemyHitBox" type="Area2D" parent="."]
 collision_layer = 2
@@ -217,6 +213,10 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_w3pby")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_1wlou")
 
 [connection signal="body_entered" from="CheckSurroundingsArea" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
