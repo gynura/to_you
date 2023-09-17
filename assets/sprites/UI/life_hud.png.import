@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d13ny4fbj7t38"
-path="res://.godot/imported/life_hud.png-46908a3af3887236bba813570758f817.ctex"
+path="res://.godot/imported/life_hud.png-66660b91fc5e51f020d79f66bb7603f9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/life_hud.png"
-dest_files=["res://.godot/imported/life_hud.png-46908a3af3887236bba813570758f817.ctex"]
+source_file="res://assets/sprites/ui/life_hud.png"
+dest_files=["res://.godot/imported/life_hud.png-66660b91fc5e51f020d79f66bb7603f9.ctex"]
 
 [params]
 

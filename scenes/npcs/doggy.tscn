@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" path="res://scenes/npcs/doggy.gd" id="1_0dump"]
 [ext_resource type="Texture2D" uid="uid://cnynui6yu4xka" path="res://assets/sprites/characters/doggy.png" id="1_e67cn"]
-[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/Shadow.png" id="2_t3j38"]
+[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/shadow.png" id="3_vgrsx"]
 [ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="4_tifdj"]
-[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/DialogInfo.png" id="5_3yons"]
-[ext_resource type="AudioStream" uid="uid://b6lg6du4imnbq" path="res://assets/sound/fx/Dog_Bark.wav" id="6_unugj"]
-[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="7_y2qr8"]
+[ext_resource type="Texture2D" uid="uid://bb3wdncgmbrre" path="res://assets/sprites/particles/dialog_info.png" id="5_oe018"]
+[ext_resource type="AudioStream" uid="uid://b6lg6du4imnbq" path="res://assets/sound/fx/dog_bark.wav" id="6_1f8l1"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/pop_up.ogg" id="7_bxj3j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ek2c"]
 atlas = ExtResource("1_e67cn")
@@ -85,19 +85,19 @@ animations = [{
 radius = 11.0454
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lnnbe"]
-atlas = ExtResource("5_3yons")
+atlas = ExtResource("5_oe018")
 region = Rect2(0, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4jvj0"]
-atlas = ExtResource("5_3yons")
+atlas = ExtResource("5_oe018")
 region = Rect2(20, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_haaru"]
-atlas = ExtResource("5_3yons")
+atlas = ExtResource("5_oe018")
 region = Rect2(40, 0, 20, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n4skk"]
-atlas = ExtResource("5_3yons")
+atlas = ExtResource("5_oe018")
 region = Rect2(60, 0, 20, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fvvkm"]
@@ -140,7 +140,7 @@ autostart = true
 [node name="Shadow" type="Sprite2D" parent="."]
 z_index = -1
 position = Vector2(-1, 4)
-texture = ExtResource("2_t3j38")
+texture = ExtResource("3_vgrsx")
 
 [node name="Heart" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -170,11 +170,11 @@ sprite_frames = SubResource("SpriteFrames_fvvkm")
 frame_progress = 0.155693
 
 [node name="Bark" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_unugj")
+stream = ExtResource("6_1f8l1")
 volume_db = -8.596
 
 [node name="PopUp" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_y2qr8")
+stream = ExtResource("7_bxj3j")
 volume_db = -8.595
 pitch_scale = 1.13
 

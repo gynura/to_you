@@ -1,24 +1,24 @@
 [gd_scene load_steps=13 format=3 uid="uid://bcwtb54x3cnm1"]
 
-[ext_resource type="Texture2D" uid="uid://mupw62xcd36n" path="res://assets/sprites/particles/Fireball.png" id="1_6vp4d"]
+[ext_resource type="Texture2D" uid="uid://mupw62xcd36n" path="res://assets/sprites/particles/fireball.png" id="1_b5ias"]
 [ext_resource type="Script" path="res://scenes/enemies/fire_bullet.gd" id="2_qw3sd"]
-[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/Fire.wav" id="3_xg0ip"]
-[ext_resource type="Texture2D" uid="uid://boah2cwkprtia" path="res://assets/sprites/particles/Flame_hit.png" id="4_e2h60"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/fire.wav" id="3_ojx7h"]
+[ext_resource type="Texture2D" uid="uid://boah2cwkprtia" path="res://assets/sprites/particles/flame_hit.png" id="4_fno84"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hgvmp"]
-atlas = ExtResource("1_6vp4d")
+atlas = ExtResource("1_b5ias")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_swxin"]
-atlas = ExtResource("1_6vp4d")
+atlas = ExtResource("1_b5ias")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcbse"]
-atlas = ExtResource("1_6vp4d")
+atlas = ExtResource("1_b5ias")
 region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hakxg"]
-atlas = ExtResource("1_6vp4d")
+atlas = ExtResource("1_b5ias")
 region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uptya"]
@@ -85,7 +85,7 @@ position = Vector2(0.5, 0)
 scale = Vector2(0.25, 0.3)
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_xg0ip")
+stream = ExtResource("3_ojx7h")
 volume_db = -22.33
 pitch_scale = 1.02
 attenuation = 0.933033
@@ -102,7 +102,7 @@ lifetime = 0.15
 one_shot = true
 explosiveness = 1.0
 local_coords = true
-texture = ExtResource("4_e2h60")
+texture = ExtResource("4_fno84")
 scale_amount_min = 0.9
 scale_amount_max = 0.9
 anim_speed_min = 1.0

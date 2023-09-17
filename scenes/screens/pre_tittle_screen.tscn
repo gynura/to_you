@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf3kgc61srm0m"]
 
 [ext_resource type="Script" path="res://scenes/screens/pre_tittle_screen.gd" id="1_8vruu"]
-[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="2_6mehd"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/teeny_tiny_pixels.ttf" id="2_6mehd"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="3_ex30n"]
-[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="4_rilng"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/button_pressed.wav" id="4_rilng"]
 
 [node name="Control" type="MarginContainer"]
 anchors_preset = 15

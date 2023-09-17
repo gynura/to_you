@@ -40,7 +40,7 @@ func _ready():
 	configureCameraLimits() 
 	has_weapon = Global.player_got_weapon
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Global.begin_game:
 		return 
 	if blockMovement: 
@@ -210,12 +210,12 @@ func hide_dialog_marker():
 func _show_gotten_item():
 	$GetWeaponSprite.visible = true 
 	$GetItemSound.play()
-	var tween = create_tween()
-	tween.set_ease(tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_CIRC)
-	tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.9)
-	tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.2)
-	tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
+	var gotten_item_tween = create_tween()
+	gotten_item_tween.set_ease(Tween.EASE_OUT)
+	gotten_item_tween.set_trans(Tween.TRANS_CIRC)
+	gotten_item_tween.tween_property($GetWeaponSprite, "scale", Vector2(1.5,1.5), 0.9)
+	gotten_item_tween.tween_property($GetWeaponSprite, "scale", Vector2.ZERO, 0.2)
+	gotten_item_tween.tween_property($GetWeaponSprite, "visible", false, 0.1)
 	
 func _killed_boss():
 	is_boss_killed = true 
@@ -224,12 +224,10 @@ func _killed_boss():
 	$Expressions.visible = true
 	$Expressions.play("victory")
 
-
 func _on_boss_fight_start_boss_fight():
 	$Expressions.visible = true
 	$Expressions.play("bonk")
 	_stop_player()
-
 
 func _on_final_boss_start_fight():
 	$Expressions.visible = false

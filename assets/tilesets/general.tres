@@ -1,11 +1,11 @@
 [gd_resource type="TileSet" load_steps=13 format=3 uid="uid://kbn7x6shxee4"]
 
-[ext_resource type="Texture2D" uid="uid://j0xwuelbw6qc" path="res://assets/sprites/tilesets/TilesetFloor.png" id="1_xer17"]
-[ext_resource type="Texture2D" uid="uid://btyd0yralsvac" path="res://assets/sprites/tilesets/TilesetNature.png" id="2_bjpdo"]
-[ext_resource type="Texture2D" uid="uid://b180qho74s4x4" path="res://assets/sprites/tilesets/animated/AnimatedPlant.png" id="3_i2mfl"]
-[ext_resource type="Texture2D" uid="uid://dm6crgk6j38ly" path="res://assets/sprites/tilesets/TilesetHouse.png" id="4_xaa68"]
-[ext_resource type="Texture2D" uid="uid://bockqaev5dguj" path="res://assets/sprites/tilesets/TilesetFloorDetail.png" id="5_r84om"]
-[ext_resource type="Texture2D" uid="uid://hyrtsblsyiji" path="res://assets/sprites/tilesets/InteriorFurniture.png" id="6_50ehe"]
+[ext_resource type="Texture2D" uid="uid://j0xwuelbw6qc" path="res://assets/sprites/tilesets/tileset_floor.png" id="1_xer17"]
+[ext_resource type="Texture2D" uid="uid://btyd0yralsvac" path="res://assets/sprites/tilesets/tileset_nature.png" id="2_bjpdo"]
+[ext_resource type="Texture2D" uid="uid://b180qho74s4x4" path="res://assets/sprites/tilesets/animated/animated_plant.png" id="3_i2mfl"]
+[ext_resource type="Texture2D" uid="uid://dm6crgk6j38ly" path="res://assets/sprites/tilesets/tileset_house.png" id="4_xaa68"]
+[ext_resource type="Texture2D" uid="uid://bockqaev5dguj" path="res://assets/sprites/tilesets/tileset_floor_detaiils.png" id="5_r84om"]
+[ext_resource type="Texture2D" uid="uid://hyrtsblsyiji" path="res://assets/sprites/tilesets/interior_furniture.png" id="6_50ehe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k0edd"]
 texture = ExtResource("1_xer17")

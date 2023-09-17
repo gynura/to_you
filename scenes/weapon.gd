@@ -78,8 +78,8 @@ func end_attack():
 	disable_weapon()
 	$NextAttackTimer.start()
 
-func _on_player_attack_position_changed(position):
-	self.animationDirection = position 
+func _on_player_attack_position_changed(changed_position):
+	self.animationDirection = changed_position 
 	set_weapon_position()
 
 func _on_player_attack():

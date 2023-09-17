@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8wh183bxshql"]
 
 [ext_resource type="Script" path="res://scenes/UI/text_box.gd" id="1_0oaiw"]
-[ext_resource type="Texture2D" uid="uid://depf8olpl4saj" path="res://assets/sprites/UI/dialog_box.png" id="1_ul48n"]
+[ext_resource type="Texture2D" uid="uid://depf8olpl4saj" path="res://assets/sprites/ui/dialog_box.png" id="1_ul48n"]
 [ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="2_bpdwm"]
 
 [node name="TextBox" type="MarginContainer"]

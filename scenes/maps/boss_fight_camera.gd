@@ -5,13 +5,14 @@ var shake_amount: float = 0
 @onready var default_offset: Vector2 = offset
 var pos_x: int
 var pos_y: int 
+var tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(true)
 	randomize()
 
-func _process(delta):
+func _process(_delta):
 	offset = Vector2(randf_range(-1, 1) * shake_amount, randf_range(-1, 1) * shake_amount)
 
 func shakeCamera(time: float, amount: float):
@@ -28,4 +29,5 @@ func _on_boss_fight_player_hurt():
 
 func _on_timer_timeout():
 	set_process(false)
-	Tween.new().interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween = create_tween()
+	tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)

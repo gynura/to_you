@@ -4,8 +4,8 @@ extends Node2D
 @onready var boss_fight = load("res://scenes/maps/boss_fight.tscn")
 @onready var gui = $GUI
 @onready var grass_sound = $GrassStep
-@onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
-@onready var game_over_screen = load("res://scenes/screens/game_over.tscn")
+@onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
+@onready var game_over_screen = load("res://scenes/screens/game_over_scene.tscn")
 @onready var wall = $Wall
 var grass_sound_repeat :bool = false 
 

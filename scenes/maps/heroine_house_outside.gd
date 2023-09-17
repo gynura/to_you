@@ -4,7 +4,7 @@ extends Node2D
 @onready var open_door_sound = $OpenDoorSound 
 @onready var house_interior_scene = load("res://scenes/maps/heroine_house_interior.tscn")
 @onready var second_map = load("res://scenes/maps/forest.tscn")
-@onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
+@onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
 @onready var wall = $Wall
 @onready var gui = $GUI
 @onready var grass_sound = $GrassStep

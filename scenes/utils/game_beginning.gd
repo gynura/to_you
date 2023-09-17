@@ -1,6 +1,6 @@
 extends Marker2D
 
-@onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
+@onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
 
 signal restart_music
 

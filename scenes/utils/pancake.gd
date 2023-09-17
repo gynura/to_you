@@ -19,7 +19,7 @@ func stop_animation():
 		tween.stop()
 
 func remove_from_scene():
-	$Area2D/CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.set_deferred("disabled", true)
 	var remove_from_scene_tween = create_tween()
 	remove_from_scene_tween.set_ease(tween.EASE_OUT)
 	remove_from_scene_tween.set_trans(Tween.TRANS_CIRC)

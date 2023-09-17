@@ -11,7 +11,7 @@ func _ready():
 	tween.tween_property(victory_title, "position", Vector2(121,72), 3)
 	tween.connect("finished", _play_flash)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("attack_button") or Input.is_action_just_pressed("interact_button"):
 		sound.play()
 
@@ -27,5 +27,5 @@ func _play_flash():
 func _on_music_finished():
 	$Music.play()
 
-func _on_flash_player_animation_finished(anim_name):
+func _on_flash_player_animation_finished(_anim_name):
 	$Music.play()

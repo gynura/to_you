@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ccoxuu84t2ivs" path="res://assets/sprites/enemies/final_boss_hit_2.png" id="2_hj4sh"]
 [ext_resource type="Texture2D" uid="uid://cd3t1lwo6vxom" path="res://assets/sprites/enemies/final_boss_2.png" id="5_0lgj6"]
 [ext_resource type="Texture2D" uid="uid://dtk58ih8jm5ge" path="res://assets/sprites/enemies/final_boss_3.png" id="6_6f183"]
-[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/Fire.wav" id="7_u87v5"]
-[ext_resource type="AudioStream" uid="uid://dhj6ba7tpjnwk" path="res://assets/sound/fx/BossDeath.wav" id="8_prmvc"]
-[ext_resource type="AudioStream" uid="uid://duhe1ouxub4w4" path="res://assets/sound/fx/Evil_Laugh.wav" id="10_op4cj"]
+[ext_resource type="AudioStream" uid="uid://dhj6ba7tpjnwk" path="res://assets/sound/fx/boss_death.wav" id="7_3w14c"]
+[ext_resource type="AudioStream" uid="uid://duhe1ouxub4w4" path="res://assets/sound/fx/evil_laugh.wav" id="8_h77rg"]
+[ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/fire.wav" id="9_4b5vq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cogvt"]
 atlas = ExtResource("1_dm4ic")
@@ -268,18 +268,18 @@ shape = SubResource("CircleShape2D_klnd5")
 wait_time = 2.5
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_prmvc")
+stream = ExtResource("7_3w14c")
 
 [node name="TimeTillDeath" type="Timer" parent="."]
 wait_time = 0.6
 one_shot = true
 
 [node name="LaughSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_op4cj")
+stream = ExtResource("8_h77rg")
 pitch_scale = 0.5
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_u87v5")
+stream = ExtResource("9_4b5vq")
 volume_db = -22.333
 pitch_scale = 1.02
 attenuation = 0.933033

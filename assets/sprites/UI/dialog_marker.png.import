@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rb4dyv3hwcpi"
-path="res://.godot/imported/dialog_marker.png-72f630f0ec1ea184416e10ec6efff605.ctex"
+path="res://.godot/imported/dialog_marker.png-fa670a4f0a19691d9fee2e6892fa391c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/UI/dialog_marker.png"
-dest_files=["res://.godot/imported/dialog_marker.png-72f630f0ec1ea184416e10ec6efff605.ctex"]
+source_file="res://assets/sprites/ui/dialog_marker.png"
+dest_files=["res://.godot/imported/dialog_marker.png-fa670a4f0a19691d9fee2e6892fa391c.ctex"]
 
 [params]
 

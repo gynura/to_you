@@ -136,7 +136,7 @@ func playerHit():
 	else: hittedEnemy() 
 
 func death():
-	$EnemyHitBox/CollisionShape2D.disabled = true
+	$EnemyHitBox/CollisionShape2D.set_deferred("disabled", true)
 	tween = create_tween()
 	tween.set_ease(tween.EASE_OUT)
 	tween.set_trans(Tween.TRANS_CIRC)

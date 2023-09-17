@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://scenes/screens/title_screen.gd" id="1_1ls0u"]
 [ext_resource type="Texture2D" uid="uid://c0dyhvwwkqn3q" path="res://assets/sprites/utils/tittle_screen.png" id="2_6l13k"]
 [ext_resource type="Texture2D" uid="uid://cmd7g3csr45ot" path="res://assets/sprites/utils/tittle_screen_heart.png" id="3_3gc4u"]
-[ext_resource type="AudioStream" uid="uid://decg74rjaa35e" path="res://assets/sound/music/MainTheme.ogg" id="4_xu2r5"]
+[ext_resource type="AudioStream" uid="uid://decg74rjaa35e" path="res://assets/sound/music/main_theme.ogg" id="4_p20sd"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="5_tqs7n"]
-[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="6_jj2ik"]
-[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="7_do2on"]
-[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/PopUp.ogg" id="8_0xa8m"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/teeny_tiny_pixels.ttf" id="6_fwssb"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/button_pressed.wav" id="7_uwpi5"]
+[ext_resource type="AudioStream" uid="uid://b62wmx6bwhpvp" path="res://assets/sound/fx/pop_up.ogg" id="8_3vrjc"]
 
 [sub_resource type="Animation" id="Animation_7adhl"]
 length = 0.001
@@ -63,7 +63,7 @@ position = Vector2(120, 44)
 texture = ExtResource("3_3gc4u")
 
 [node name="TittleScreenMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_xu2r5")
+stream = ExtResource("4_p20sd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 self_modulate = Color(1, 1, 1, 0)
@@ -95,7 +95,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
 theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
-theme_override_fonts/font = ExtResource("6_jj2ik")
+theme_override_fonts/font = ExtResource("6_fwssb")
 theme_override_font_sizes/font_size = 10
 text = "*"
 
@@ -104,7 +104,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
 theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("6_jj2ik")
+theme_override_fonts/font = ExtResource("6_fwssb")
 theme_override_font_sizes/font_size = 10
 text = "Start
 "
@@ -117,7 +117,7 @@ custom_minimum_size = Vector2(8, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
 theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
-theme_override_fonts/font = ExtResource("6_jj2ik")
+theme_override_fonts/font = ExtResource("6_fwssb")
 theme_override_font_sizes/font_size = 10
 text = "*"
 
@@ -126,23 +126,23 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.0784314, 0.105882, 0.105882, 1)
 theme_override_colors/font_shadow_color = Color(0.941176, 0.964706, 0.941176, 1)
 theme_override_constants/shadow_outline_size = 1
-theme_override_fonts/font = ExtResource("6_jj2ik")
+theme_override_fonts/font = ExtResource("6_fwssb")
 theme_override_font_sizes/font_size = 10
 text = "Exit
 "
 
 [node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(17, 92)
-stream = ExtResource("7_do2on")
+stream = ExtResource("7_uwpi5")
 volume_db = 13.752
 
 [node name="ExitButtonPressed" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(17, 103)
-stream = ExtResource("7_do2on")
+stream = ExtResource("7_uwpi5")
 volume_db = 12.75
 
 [node name="ChangeButton" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_0xa8m")
+stream = ExtResource("8_3vrjc")
 volume_db = -5.956
 
 [connection signal="finished" from="TittleScreenMusic" to="." method="_on_tittle_screen_music_finished"]

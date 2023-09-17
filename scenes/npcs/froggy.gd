@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var canInteract = false 
-@onready var speech_sound = preload("res://assets/sound/fx/FroggySpeech.wav")
+@onready var speech_sound = preload("res://assets/sound/fx/froggy_speech.wav")
 
 signal give_weapon_to_player
 
@@ -9,7 +9,7 @@ func _ready():
 	DialogManager.dialog_ended.connect(_dialog_ended)
 	DialogManager.dialog_start.connect(_show_dialog_marker)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact_button"):
 		if canInteract:
 			$Bubble.stop()

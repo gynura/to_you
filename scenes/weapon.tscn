@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://yxynev5kw0oy" path="res://assets/sprites/weapons/flower_club_in_hand.png" id="1_8mu82"]
 [ext_resource type="Script" path="res://scenes/weapon.gd" id="2_44hsx"]
-[ext_resource type="Script" path="res://scenes/weaponHitBox.gd" id="2_k7x57"]
-[ext_resource type="AudioStream" uid="uid://dlfhglq7ca221" path="res://assets/sound/fx/PlayerHit.wav" id="4_bnn00"]
+[ext_resource type="Script" path="res://scenes/weapon_hit_box.gd" id="3_y28u0"]
+[ext_resource type="AudioStream" uid="uid://dlfhglq7ca221" path="res://assets/sound/fx/player_hit.wav" id="4_2wiq5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j50tb"]
 size = Vector2(8, 12)
@@ -16,7 +16,7 @@ script = ExtResource("2_44hsx")
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("2_k7x57")
+script = ExtResource("3_y28u0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 y_sort_enabled = true
@@ -28,7 +28,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_bnn00")
+stream = ExtResource("4_2wiq5")
 volume_db = -16.0
 pitch_scale = 0.79
 

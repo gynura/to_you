@@ -22,7 +22,7 @@ func _ready():
 	start_position = position
 	randomize()  
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact_button"):
 		if canInteract:
 			petTheDoggy()

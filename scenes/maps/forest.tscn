@@ -5,13 +5,13 @@
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="2_cxqyl"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="3_8gyo0"]
 [ext_resource type="PackedScene" uid="uid://27tp05alwpr6" path="res://scenes/enemies/flame_enemy.tscn" id="4_xnr1n"]
-[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="5_5yct4"]
+[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/gui.tscn" id="5_5yct4"]
 [ext_resource type="PackedScene" uid="uid://cr2w3ybvgq0f7" path="res://scenes/utils/pancake.tscn" id="6_6mrvq"]
 [ext_resource type="PackedScene" uid="uid://bbkojwyntyex2" path="res://scenes/utils/ash_particles.tscn" id="7_i1a1t"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="9_kfcah"]
-[ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/GrassStep.wav" id="10_ycpyd"]
-[ext_resource type="AudioStream" uid="uid://1i01wlpvnvp4" path="res://assets/sound/music/Forest.ogg" id="11_eh74h"]
-[ext_resource type="AudioStream" uid="uid://dvo1fki3qfvyb" path="res://assets/sound/fx/GameOver.wav" id="12_kyeqq"]
+[ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/grass_step.wav" id="10_ytptv"]
+[ext_resource type="AudioStream" uid="uid://1i01wlpvnvp4" path="res://assets/sound/music/forest.ogg" id="11_kavow"]
+[ext_resource type="AudioStream" uid="uid://dvo1fki3qfvyb" path="res://assets/sound/fx/game_over.wav" id="12_cmemw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mru4"]
 size = Vector2(54.5, 31)
@@ -146,7 +146,7 @@ position = Vector2(0, 48)
 [node name="Transitions" parent="." instance=ExtResource("9_kfcah")]
 
 [node name="GrassStep" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("10_ycpyd")
+stream = ExtResource("10_ytptv")
 volume_db = 5.157
 
 [node name="CheckBeforeBoss" type="Area2D" parent="."]
@@ -166,12 +166,12 @@ endPoint = NodePath("Marker2D_Enemy9")
 position = Vector2(87, -21)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_eh74h")
+stream = ExtResource("11_kavow")
 autoplay = true
 
 [node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(1, 0)
-stream = ExtResource("12_kyeqq")
+stream = ExtResource("12_cmemw")
 volume_db = 4.998
 
 [connection signal="body_entered" from="Wall/CheckIfAllEnemiesKilled" to="." method="_on_check_if_all_enemies_killed_body_entered"]

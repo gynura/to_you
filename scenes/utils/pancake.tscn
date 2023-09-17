@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://xcyettkf8gol" path="res://assets/sprites/utils/pancake.png" id="1_sjr2e"]
 [ext_resource type="Script" path="res://scenes/utils/pancake.gd" id="2_n2bin"]
-[ext_resource type="AudioStream" uid="uid://b2k5td5oqq6j4" path="res://assets/sound/fx/HealthUp.wav" id="3_uqyd8"]
+[ext_resource type="AudioStream" uid="uid://b2k5td5oqq6j4" path="res://assets/sound/fx/health_up.wav" id="3_cpbwn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jbr87"]
 radius = 6.0
@@ -19,9 +19,8 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_jbr87")
 
 [node name="HealUpSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_uqyd8")
+stream = ExtResource("3_cpbwn")
 volume_db = -17.333
 pitch_scale = 1.05
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="finished" from="HealUpSound" to="." method="_on_heal_up_sound_finished"]

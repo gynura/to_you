@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="2_jso5i"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="3_5uwga"]
 [ext_resource type="PackedScene" uid="uid://b16k6lc6f58y" path="res://scenes/npcs/froggy.tscn" id="4_54fst"]
-[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="5_271ax"]
-[ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/DoorOpen.ogg" id="8_8iam3"]
+[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/gui.tscn" id="5_271ax"]
+[ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/door_open.ogg" id="8_ucbiy"]
 [ext_resource type="PackedScene" uid="uid://c1w4vo2dmdnt0" path="res://scenes/utils/sign.tscn" id="9_un7d7"]
 [ext_resource type="Texture2D" uid="uid://dmyw4xfos2yp5" path="res://assets/sprites/utils/tree.png" id="10_k62px"]
-[ext_resource type="AudioStream" uid="uid://btxpmyhqw8dom" path="res://assets/sound/music/HouseOutside.ogg" id="11_uwmu2"]
-[ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/WeaponObtained.ogg" id="12_mu3lq"]
-[ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/GrassStep.wav" id="13_xk0yk"]
+[ext_resource type="AudioStream" uid="uid://btxpmyhqw8dom" path="res://assets/sound/music/house_outside.ogg" id="11_py3ql"]
+[ext_resource type="AudioStream" uid="uid://d10rdo8pssbq2" path="res://assets/sound/music/weapon_obtained.ogg" id="12_jprv5"]
+[ext_resource type="AudioStream" uid="uid://cqayixvge5wvq" path="res://assets/sound/fx/grass_step.wav" id="13_hauwx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ocyse"]
 size = Vector2(54.5, 31)
@@ -102,7 +102,7 @@ position = Vector2(76, 48)
 [node name="GUI" parent="." instance=ExtResource("5_271ax")]
 
 [node name="OpenDoorSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_8iam3")
+stream = ExtResource("8_ucbiy")
 volume_db = -11.093
 pitch_scale = 1.11
 
@@ -196,12 +196,12 @@ texture = ExtResource("10_k62px")
 flip_h = true
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_uwmu2")
+stream = ExtResource("11_py3ql")
 volume_db = -7.0
 autoplay = true
 
 [node name="WeaponObtainedMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_mu3lq")
+stream = ExtResource("12_jprv5")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -225,7 +225,7 @@ shape = SubResource("RectangleShape2D_kwnuh")
 debug_color = Color(0.866667, 0.262745, 0.6, 0.419608)
 
 [node name="GrassStep" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_xk0yk")
+stream = ExtResource("13_hauwx")
 volume_db = 5.157
 
 [connection signal="body_entered" from="Wall/CheckIfPlayerHasWeaponArea" to="." method="_on_check_if_player_has_weapon_area_body_entered"]

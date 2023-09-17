@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d3g7ft8fpm63y"]
 
-[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/UI/dialog_marker.png" id="1_ut1f7"]
+[ext_resource type="Texture2D" uid="uid://rb4dyv3hwcpi" path="res://assets/sprites/ui/dialog_marker.png" id="1_ut1f7"]
 
 [node name="DialogMarker" type="Sprite2D"]
 visible = false

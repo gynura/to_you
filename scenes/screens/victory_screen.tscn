@@ -2,12 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://bymy826yis4yp" path="res://assets/sprites/utils/animated_victory_screen.png" id="1_e41gc"]
 [ext_resource type="Script" path="res://scenes/screens/victory_screen.gd" id="1_jkvrs"]
-[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/ButtonPressed.wav" id="3_txqfo"]
+[ext_resource type="AudioStream" uid="uid://lmyj0xwo74y7" path="res://assets/sound/fx/button_pressed.wav" id="3_oh6sp"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="4_10u7e"]
-[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/TeenyTinyPixls-o2zo.ttf" id="5_r3kir"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/teeny_tiny_pixels.ttf" id="5_s7ogs"]
 [ext_resource type="Texture2D" uid="uid://cjmj6subvo6y6" path="res://assets/sprites/utils/victory_letters1.png" id="6_rquqm"]
-[ext_resource type="AudioStream" uid="uid://bffroikl774ng" path="res://assets/sound/fx/VictoryTittleSound.wav" id="7_0ytwk"]
-[ext_resource type="AudioStream" uid="uid://0wv8ms11g363" path="res://assets/sound/music/VictoryMusic.ogg" id="8_bw41x"]
+[ext_resource type="AudioStream" uid="uid://bffroikl774ng" path="res://assets/sound/fx/victory_title_sound.wav" id="7_a511f"]
+[ext_resource type="AudioStream" uid="uid://0wv8ms11g363" path="res://assets/sound/music/victory_music.ogg" id="8_f7kah"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jy3c4"]
 atlas = ExtResource("1_e41gc")
@@ -78,7 +78,7 @@ frame_progress = 0.896475
 
 [node name="PlayButtonPressed" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(17, 92)
-stream = ExtResource("3_txqfo")
+stream = ExtResource("3_oh6sp")
 volume_db = 13.752
 
 [node name="Transitions" parent="." instance=ExtResource("4_10u7e")]
@@ -94,7 +94,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 0
 theme_override_constants/outline_size = 0
 theme_override_constants/shadow_outline_size = 0
-theme_override_fonts/font = ExtResource("5_r3kir")
+theme_override_fonts/font = ExtResource("5_s7ogs")
 theme_override_font_sizes/font_size = 5
 text = "Has conseguido salvar al bosque"
 
@@ -114,10 +114,10 @@ libraries = {
 }
 
 [node name="VictoryTitleSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_0ytwk")
+stream = ExtResource("7_a511f")
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_bw41x")
+stream = ExtResource("8_f7kah")
 volume_db = -5.0
 
 [connection signal="finished" from="PlayButtonPressed" to="." method="_on_play_button_pressed_finished"]

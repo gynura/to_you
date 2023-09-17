@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://vxm4syuckrm0"]
 
-[ext_resource type="Texture2D" uid="uid://d13ny4fbj7t38" path="res://assets/sprites/UI/life_hud.png" id="1_3tpbk"]
+[ext_resource type="Texture2D" uid="uid://d13ny4fbj7t38" path="res://assets/sprites/ui/life_hud.png" id="1_3tpbk"]
 [ext_resource type="Script" path="res://scenes/UI/flower_gui.gd" id="1_36qfw"]
 
 [node name="FlowerGUI" type="Panel"]

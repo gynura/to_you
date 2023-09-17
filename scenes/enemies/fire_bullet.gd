@@ -13,7 +13,7 @@ func _ready():
 	Global.killed_flame_boss.connect(_delete_bullet)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	_generate_rotating_bullet()
 	
 func _delete_bullet():
@@ -25,7 +25,7 @@ func _on_area_2d_body_entered(body):
 		$HitFx.emitting = true 
 		currentHealth -= 1
 		self_modulate = "#ffffff00"
-		$EnemyHitBox/CollisionShape2D.disabled = true 
+		$EnemyHitBox/CollisionShape2D.set_deferred("disabled", true) 
 		$TimeTillDeletion.start()
 #	elif body.name == "player":
 #		self_modulate = "#ffffff00"

@@ -11,7 +11,7 @@ func _ready():
 	set_process(true)
 	randomize()
 
-func _process(delta):
+func _process(_delta):
 	offset = Vector2(randf_range(-1, 1) * shake_amount, randf_range(-1, 1) * shake_amount)
 
 func shakeCamera(time: float, amount: float):
@@ -22,7 +22,8 @@ func shakeCamera(time: float, amount: float):
 
 func _on_screen_shake_timer_timeout():
 	set_process(false)
-	Tween.new().interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+#	var tween = create_tween()
+	Tween.interpolate_value(self, "offset", 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 func _on_player_hurt_enemy():
 	shakeCamera(0.3, 0.65)

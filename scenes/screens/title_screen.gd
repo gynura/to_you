@@ -27,12 +27,11 @@ func _ready():
 	exit_button.self_modulate = Color(1, 1, 1, 0)
 	selector_one.self_modulate = Color(1, 1, 1, 0)
 	selector_two.self_modulate = Color(1, 1, 1, 0)
-	var tween = create_tween()
-	tween.tween_property(heart, "position", Vector2(120,67), 2)
-	tween.connect("finished", _animate_heart_loop)
+	var tween_new = create_tween()
+	tween_new.tween_property(heart, "position", Vector2(120,67), 2)
+	tween_new.connect("finished", _animate_heart_loop)
 	
-	
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("ui_down") and current_selection < 1:
 		current_selection += 1
 		set_selected_button(current_selection)
@@ -78,12 +77,12 @@ func set_selected_button(_current_selection):
 func _animate_heart_loop():
 	music.play()
 	_play_flash()
-	var tween = create_tween()
-	tween.set_ease(tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(heart, "scale", Vector2(0.95,0.95), 0.5)
-	tween.tween_property(heart, "scale", Vector2.ONE, 0.5)
-	tween.set_loops()
+	var heart_tween = create_tween()
+	heart_tween.set_ease(Tween.EASE_OUT)
+	heart_tween.set_trans(Tween.TRANS_QUAD)
+	heart_tween.tween_property(heart, "scale", Vector2(0.95,0.95), 0.5)
+	heart_tween.tween_property(heart, "scale", Vector2.ONE, 0.5)
+	heart_tween.set_loops()
 
 func _on_tittle_screen_music_finished():
 	music.play()
@@ -92,14 +91,14 @@ func _animate_button_letters():
 	pass 
 
 func _play_flash():
-	var tween = create_tween()
-	tween.set_parallel(true)
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_BOUNCE)
-	tween.tween_property(start_button, "self_modulate", Color(1, 1, 1, 1), 1.5)
-	tween.tween_property(exit_button, "self_modulate", Color(1, 1, 1, 1), 1.5)
-	tween.tween_property(selector_one, "self_modulate", Color(1, 1, 1, 1), 1.5)
-	tween.tween_property(selector_two, "self_modulate", Color(1, 1, 1, 1), 1.5)
+	var flash_tween = create_tween()
+	flash_tween.set_parallel(true)
+	flash_tween.set_ease(Tween.EASE_OUT)
+	flash_tween.set_trans(Tween.TRANS_BOUNCE)
+	flash_tween.tween_property(start_button, "self_modulate", Color(1, 1, 1, 1), 1.5)
+	flash_tween.tween_property(exit_button, "self_modulate", Color(1, 1, 1, 1), 1.5)
+	flash_tween.tween_property(selector_one, "self_modulate", Color(1, 1, 1, 1), 1.5)
+	flash_tween.tween_property(selector_two, "self_modulate", Color(1, 1, 1, 1), 1.5)
 	flash.play("flash")
 	not_intro = true
 

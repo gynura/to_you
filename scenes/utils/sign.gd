@@ -1,13 +1,13 @@
 extends Sprite2D
 
 var canInteract = false 
-@onready var speech_sound = preload("res://assets/sound/fx/ReadSpeech.wav")
+@onready var speech_sound = preload("res://assets/sound/fx/read_speech.wav")
 
 func _ready():
 	DialogManager.read_sign_start.connect(_show_dialog_marker)
 	DialogManager.read_sign_stop.connect(_hide_dialog_marker)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if Input.is_action_just_pressed("interact_button"):
 		if canInteract:
 			$Bubble.stop()

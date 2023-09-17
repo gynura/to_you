@@ -1,23 +1,23 @@
 [gd_scene load_steps=24 format=3 uid="uid://dsuttbp1vjr08"]
 
-[ext_resource type="Texture2D" uid="uid://bs0ax4frb15ul" path="res://assets/sprites/tilesets/TilesetInteriorFloor.png" id="1_a4qoy"]
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_interior.gd" id="1_jowg7"]
-[ext_resource type="Texture2D" uid="uid://bwf0glg2ypb07" path="res://assets/sprites/tilesets/TilesetWallSimple.png" id="2_32nea"]
-[ext_resource type="Texture2D" uid="uid://i7xs5dnsmk4" path="res://assets/sprites/tilesets/InteriorElements.png" id="3_dpduv"]
-[ext_resource type="Texture2D" uid="uid://hyrtsblsyiji" path="res://assets/sprites/tilesets/InteriorFurniture.png" id="4_30s8u"]
+[ext_resource type="Texture2D" uid="uid://bs0ax4frb15ul" path="res://assets/sprites/tilesets/tileset_interior_floor.png" id="2_una2f"]
+[ext_resource type="Texture2D" uid="uid://bwf0glg2ypb07" path="res://assets/sprites/tilesets/tileset_wall_simple.png" id="3_fnjwa"]
 [ext_resource type="PackedScene" uid="uid://c6p6x8iafg34y" path="res://scenes/player.tscn" id="4_50fkm"]
-[ext_resource type="Texture2D" uid="uid://dm6crgk6j38ly" path="res://assets/sprites/tilesets/TilesetHouse.png" id="5_30588"]
-[ext_resource type="Texture2D" uid="uid://c4f2okftnp1q" path="res://assets/sprites/tilesets/Extended_new_plants.png" id="6_cfryc"]
+[ext_resource type="Texture2D" uid="uid://i7xs5dnsmk4" path="res://assets/sprites/tilesets/interior_elements.png" id="4_le2l7"]
+[ext_resource type="Texture2D" uid="uid://hyrtsblsyiji" path="res://assets/sprites/tilesets/interior_furniture.png" id="5_v50p3"]
+[ext_resource type="Texture2D" uid="uid://dm6crgk6j38ly" path="res://assets/sprites/tilesets/tileset_house.png" id="6_hh64c"]
 [ext_resource type="PackedScene" uid="uid://clp5qbbop4ame" path="res://scenes/npcs/doggy.tscn" id="7_aik6a"]
+[ext_resource type="Texture2D" uid="uid://c4f2okftnp1q" path="res://assets/sprites/tilesets/extended_new_plants.png" id="7_kagm4"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="10_tk3qn"]
-[ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/DoorOpen.ogg" id="12_0vukt"]
-[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/GUI.tscn" id="12_2mw2s"]
+[ext_resource type="AudioStream" uid="uid://bere7tk2l8is" path="res://assets/sound/fx/door_open.ogg" id="11_5uhg5"]
+[ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/gui.tscn" id="12_2mw2s"]
 [ext_resource type="Script" path="res://scenes/utils/game_beginning.gd" id="12_77qfp"]
-[ext_resource type="AudioStream" uid="uid://u7cwa5xvfpg2" path="res://assets/sound/music/HouseInterior.ogg" id="13_756py"]
-[ext_resource type="AudioStream" uid="uid://47lxqv2xvaic" path="res://assets/sound/fx/HitDoor.wav" id="14_etjdy"]
+[ext_resource type="AudioStream" uid="uid://u7cwa5xvfpg2" path="res://assets/sound/music/house_interior.ogg" id="14_m28hw"]
+[ext_resource type="AudioStream" uid="uid://47lxqv2xvaic" path="res://assets/sound/fx/hit_door.wav" id="15_47fhf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_domww"]
-texture = ExtResource("1_a4qoy")
+texture = ExtResource("2_una2f")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -902,7 +902,7 @@ texture = ExtResource("1_a4qoy")
 19:16/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_or4sh"]
-texture = ExtResource("2_32nea")
+texture = ExtResource("3_fnjwa")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1195,7 +1195,7 @@ texture = ExtResource("2_32nea")
 9:10/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6qx55"]
-texture = ExtResource("3_dpduv")
+texture = ExtResource("4_le2l7")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1258,7 +1258,7 @@ texture = ExtResource("3_dpduv")
 6:2/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fckdy"]
-texture = ExtResource("4_30s8u")
+texture = ExtResource("5_v50p3")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -1707,7 +1707,7 @@ texture = ExtResource("4_30s8u")
 5:9/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_egpxk"]
-texture = ExtResource("5_30588")
+texture = ExtResource("6_hh64c")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -3671,7 +3671,7 @@ texture = ExtResource("5_30588")
 31:22/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xketd"]
-texture = ExtResource("6_cfryc")
+texture = ExtResource("7_kagm4")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -3755,7 +3755,7 @@ position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_03gin")
 
 [node name="OpenDoorSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("12_0vukt")
+stream = ExtResource("11_5uhg5")
 volume_db = -11.093
 pitch_scale = 1.11
 
@@ -3766,12 +3766,12 @@ script = ExtResource("12_77qfp")
 [node name="GUI" parent="." instance=ExtResource("12_2mw2s")]
 
 [node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("13_756py")
+stream = ExtResource("14_m28hw")
 volume_db = -7.0
 autoplay = true
 
 [node name="HitDoorSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("14_etjdy")
+stream = ExtResource("15_47fhf")
 volume_db = 13.752
 
 [connection signal="start_first_dialog" from="." to="GameBeginningPlayerPosition" method="_on_heroine_house_interior_start_first_dialog"]
