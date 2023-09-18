@@ -1,14 +1,75 @@
-[gd_scene load_steps=38 format=3 uid="uid://7eqkumnlqoxm"]
+[gd_scene load_steps=54 format=3 uid="uid://7eqkumnlqoxm"]
 
 [ext_resource type="Script" path="res://scenes/enemies/final_boss.gd" id="1_a5l2y"]
 [ext_resource type="Texture2D" uid="uid://cphfha12n17hm" path="res://assets/sprites/enemies/final_boss_hit.png" id="1_dm4ic"]
 [ext_resource type="Texture2D" uid="uid://3csd5i6kqnxu" path="res://assets/sprites/enemies/final_boss.png" id="1_wdfae"]
 [ext_resource type="Texture2D" uid="uid://ccoxuu84t2ivs" path="res://assets/sprites/enemies/final_boss_hit_2.png" id="2_hj4sh"]
+[ext_resource type="Texture2D" uid="uid://ca2r0m8m18k0r" path="res://assets/sprites/enemies/final_boss_death.png" id="2_rh2v5"]
 [ext_resource type="Texture2D" uid="uid://cd3t1lwo6vxom" path="res://assets/sprites/enemies/final_boss_2.png" id="5_0lgj6"]
 [ext_resource type="Texture2D" uid="uid://dtk58ih8jm5ge" path="res://assets/sprites/enemies/final_boss_3.png" id="6_6f183"]
 [ext_resource type="AudioStream" uid="uid://dhj6ba7tpjnwk" path="res://assets/sound/fx/boss_death.wav" id="7_3w14c"]
 [ext_resource type="AudioStream" uid="uid://duhe1ouxub4w4" path="res://assets/sound/fx/evil_laugh.wav" id="8_h77rg"]
 [ext_resource type="AudioStream" uid="uid://bwbq13m3so7w0" path="res://assets/sound/fx/fire.wav" id="9_4b5vq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6yrnf"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(0, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k0kl8"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(51, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8s6c"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(102, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_047u6"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(153, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv663"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(204, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpt5l"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(255, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l21ik"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(306, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x2nwo"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(357, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_od0v1"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(408, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q6e5c"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(459, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qipcx"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(510, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jntxe"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(612, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhldq"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(663, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x70ti"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(714, 0, 51, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_edbv3"]
+atlas = ExtResource("2_rh2v5")
+region = Rect2(765, 0, 51, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cogvt"]
 atlas = ExtResource("1_dm4ic")
@@ -112,6 +173,56 @@ region = Rect2(200, 0, 50, 50)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5cs7p"]
 animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_6yrnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k0kl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8s6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_047u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv663")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpt5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l21ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x2nwo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_od0v1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q6e5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qipcx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jntxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhldq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x70ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_edbv3")
+}],
+"loop": true,
+"name": &"death",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cogvt")
@@ -232,8 +343,10 @@ script = ExtResource("1_a5l2y")
 z_index = 1
 position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_5cs7p")
-animation = &"iddle_3"
+animation = &"death"
 autoplay = "iddle_1"
+frame = 9
+frame_progress = 0.338718
 
 [node name="BulletSpawner" type="Node2D" parent="."]
 
@@ -271,7 +384,6 @@ wait_time = 2.5
 stream = ExtResource("7_3w14c")
 
 [node name="TimeTillDeath" type="Timer" parent="."]
-wait_time = 0.6
 one_shot = true
 
 [node name="LaughSound" type="AudioStreamPlayer2D" parent="."]
@@ -288,6 +400,7 @@ attenuation = 0.933033
 wait_time = 1.2
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_invincibility_timer_timeout"]
 [connection signal="timeout" from="TimeBetweenBulletSpawns" to="." method="_on_time_between_bullet_spawns_timeout"]
 [connection signal="timeout" from="TimeBetweenEachBullet" to="." method="_on_time_between_each_bullet_timeout"]

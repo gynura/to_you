@@ -81,13 +81,15 @@ func playerHit():
 func death():
 	is_dead = true  
 	Global.killed_flame_boss.emit()
+	$AnimatedSprite2D.play("death")
 	$DeathSound.play()
 	$TimeTillDeath.start()
 	$EnemyHitBox/CollisionShape2D.set_deferred("disabled", true)
 
 func _on_invincibility_timer_timeout():
-	can_be_hurt = true 
-	$AnimatedSprite2D.play("iddle_" + str(face_number))
+	if !is_dead:
+		can_be_hurt = true 
+		$AnimatedSprite2D.play("iddle_" + str(face_number))
 
 func _on_boss_fight_start_boss_fight():
 	start_boss_fight = true
@@ -107,7 +109,7 @@ func _on_time_between_bullet_spawns_timeout():
 
 func _on_change_timer_timeout():
 	if boss_fight_started: 
-		if can_be_hurt: 
+		if can_be_hurt and !is_dead: 
 			face_number = int(randf_range(0, 3)) + 1
 			$AnimatedSprite2D.play("iddle_" + str(face_number))
 		can_move = !can_move 
@@ -124,7 +126,7 @@ func _on_death_sound_finished():
 	queue_free()
 
 func _on_time_till_boss_fight_timeout():
-		boss_fight_started = true 
-		can_shoot = true 
-		start_fight.emit()
-		$AnimatedSprite2D.play("iddle_2")
+	boss_fight_started = true 
+	can_shoot = true 
+	start_fight.emit()
+	$AnimatedSprite2D.play("iddle_2")
