@@ -219,7 +219,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_edbv3")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 15.0
 }, {
@@ -345,8 +345,6 @@ position = Vector2(0, -5)
 sprite_frames = SubResource("SpriteFrames_5cs7p")
 animation = &"death"
 autoplay = "iddle_1"
-frame = 9
-frame_progress = 0.338718
 
 [node name="BulletSpawner" type="Node2D" parent="."]
 

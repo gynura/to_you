@@ -64,10 +64,11 @@ func _spawn_bullets():
 	
 func _hit_final_boss():
 	# Just a hacky way to chain animation between hits x) 
-	if currentHealth % 2 == 0:
-		$AnimatedSprite2D.play("hit1")
-	else: 
-		$AnimatedSprite2D.play("hit2")
+	if !is_dead:
+		if currentHealth % 2 == 0:
+			$AnimatedSprite2D.play("hit1")
+		else: 
+			$AnimatedSprite2D.play("hit2")
 	
 func playerHit(): 
 	if can_be_hurt: 
