@@ -69,7 +69,7 @@ func updateAnimation():
 	if blockMovement:
 		return
 	if velocity.length() == 0:
-		$AnimationPlayer.play("iddle")
+		$AnimationPlayer.play("iddle_" + animationDirection)
 		emit_signal("attack_position_changed", animationDirection)
 	else: 
 		animationDirection = "down"
@@ -109,7 +109,7 @@ func endInvincibility():
 	
 func _stop_player():
 	if currentHealth > 0 && !is_boss_killed: 
-		$AnimationPlayer.play("iddle")
+		$AnimationPlayer.play("iddle_down")
 	set_physics_process(false)
 
 func _restart_process(): 
