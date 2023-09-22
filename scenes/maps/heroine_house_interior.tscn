@@ -3778,7 +3778,7 @@ volume_db = 13.752
 [node name="Tutorial" type="CanvasLayer" parent="."]
 
 [node name="TutorialControls" type="Sprite2D" parent="Tutorial"]
-position = Vector2(113, 114)
+position = Vector2(120, 114)
 texture = ExtResource("14_ukv6p")
 
 [connection signal="start_first_dialog" from="." to="GameBeginningPlayerPosition" method="_on_heroine_house_interior_start_first_dialog"]

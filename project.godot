@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="to_you"
-run/main_scene="res://scenes/screens/title_screen.tscn"
+run/main_scene="res://scenes/screens/pre_tittle_screen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 boot_splash/image="res://assets/sprites/utils/splash_screen.png"
 config/icon="res://cover.png"
