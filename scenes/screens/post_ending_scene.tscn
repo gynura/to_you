@@ -141,9 +141,6 @@ animations = [{
 [node name="PostEndingScene" type="Node2D"]
 script = ExtResource("1_l1hei")
 
-[node name="EndingCamera" type="Camera2D" parent="."]
-position = Vector2(120, 33)
-
 [node name="Heroine" type="AnimatedSprite2D" parent="."]
 z_index = 1
 position = Vector2(62, 51)
@@ -269,8 +266,11 @@ autoplay = "default"
 
 [node name="StartCamera" type="Camera2D" parent="."]
 position = Vector2(160, -24)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="TheEnd" type="Label" parent="."]
+z_index = 50
 offset_left = 51.0
 offset_top = 20.0
 offset_right = 107.0
@@ -283,6 +283,8 @@ text = "The End"
 [node name="ZoomCamera" type="Camera2D" parent="."]
 position = Vector2(81, 51)
 zoom = Vector2(1.8, 1.8)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="Transitions" parent="." instance=ExtResource("13_t0gim")]
 

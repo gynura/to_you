@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var transition = $Transitions 
-@onready var main_title = preload("res://scenes/screens/title_screen.tscn")
+@onready var post_ending_scene = preload("res://scenes/screens/post_ending_scene.tscn")
 @onready var sound = $PlayButtonPressed
 @onready var victory_title = $VictoryLetters
 
@@ -16,7 +16,7 @@ func _process(_delta):
 		sound.play()
 
 func _on_play_button_pressed_finished():
-	transition.exit_screen(main_title)
+	transition.exit_screen(post_ending_scene)
 	
 func _play_flash():
 	$VictoryTitleSound.play()

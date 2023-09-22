@@ -1,7 +1,6 @@
 extends Node2D
 
 @onready var start_camera = $StartCamera
-@onready var ending_camera = $EndingCamera
 @onready var zoomed_camera = $ZoomCamera
 @onready var ending_letters = $TheEnd
 @onready var transitions = $Transitions
@@ -17,21 +16,20 @@ func _ending_cinematic():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(start_camera, "global_transform", ending_camera.global_transform, 3)
+	tween.tween_property(start_camera, "global_transform", zoomed_camera.global_transform, 5.25)
 	tween.tween_callback(_zoom_camera)
 	
 func _zoom_camera():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN_OUT)
 	tween.set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(start_camera, "global_transform", zoomed_camera.global_transform, 2.5)
-	tween.tween_property(start_camera, "zoom", zoomed_camera.zoom, 2)
+	tween.tween_property(start_camera, "zoom", zoomed_camera.zoom, 3)
 	tween.tween_callback(_show_ending_letters)
 	
 func _show_ending_letters():
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.tween_property(ending_letters, "self_modulate", Color(1, 1, 1, 1), 2.5)
+	tween.tween_property(ending_letters, "self_modulate", Color(1, 1, 1, 1), 1.75)
 	tween.tween_callback(_show_hearts)
 	
 func _show_hearts():
