@@ -33,6 +33,7 @@ func _show_ending_letters():
 	tween.tween_callback(_show_hearts)
 	
 func _show_hearts():
+	$LettersSoundEffect.play()
 	$Heroine/Heart.visible = true
 	$HeroineBoyfriend/Heart.visible = true
 	$Doggy/Heart.visible = true 

@@ -217,6 +217,9 @@ stream = ExtResource("13_8s70h")
 stream = ExtResource("15_62nen")
 volume_db = 4.998
 
+[node name="ash_particles2" parent="." instance=ExtResource("6_1q0eg")]
+position = Vector2(118, 172)
+
 [connection signal="player_hitted_enemy" from="." to="BossFightCamera" method="_on_boss_fight_player_hitted_enemy"]
 [connection signal="player_hurt" from="." to="BossFightCamera" method="_on_boss_fight_player_hurt"]
 [connection signal="start_boss_fight" from="." to="FinalBoss" method="_on_boss_fight_start_boss_fight"]

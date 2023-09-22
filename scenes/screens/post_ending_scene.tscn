@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://61kjteptnn25"]
+[gd_scene load_steps=33 format=3 uid="uid://61kjteptnn25"]
 
 [ext_resource type="Script" path="res://scenes/screens/post_ending_scene.gd" id="1_l1hei"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="2_vrtm7"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/shadow.png" id="11_iuq6p"]
 [ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/teeny_tiny_pixels.ttf" id="12_yqe5p"]
 [ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="13_t0gim"]
+[ext_resource type="AudioStream" uid="uid://bffroikl774ng" path="res://assets/sound/fx/victory_title_sound.wav" id="15_fds7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vj3qn"]
 atlas = ExtResource("7_a2i2v")
@@ -291,5 +292,8 @@ rotation_smoothing_enabled = true
 [node name="ExitToTittleScreenTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="LettersSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_fds7s")
 
 [connection signal="timeout" from="ExitToTittleScreenTimer" to="." method="_on_exit_to_tittle_screen_timer_timeout"]
