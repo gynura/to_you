@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dsuttbp1vjr08"]
+[gd_scene load_steps=25 format=3 uid="uid://dsuttbp1vjr08"]
 
 [ext_resource type="Script" path="res://scenes/maps/heroine_house_interior.gd" id="1_jowg7"]
 [ext_resource type="Texture2D" uid="uid://bs0ax4frb15ul" path="res://assets/sprites/tilesets/tileset_interior_floor.png" id="2_una2f"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cvl5rx7otydvs" path="res://scenes/UI/gui.tscn" id="12_2mw2s"]
 [ext_resource type="Script" path="res://scenes/utils/game_beginning.gd" id="12_77qfp"]
 [ext_resource type="AudioStream" uid="uid://u7cwa5xvfpg2" path="res://assets/sound/music/house_interior.ogg" id="14_m28hw"]
+[ext_resource type="Texture2D" uid="uid://cv5j4dksn1a5k" path="res://assets/sprites/ui/tutorial_controls.png" id="14_ukv6p"]
 [ext_resource type="AudioStream" uid="uid://47lxqv2xvaic" path="res://assets/sound/fx/hit_door.wav" id="15_47fhf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_domww"]
@@ -3773,6 +3774,12 @@ autoplay = true
 [node name="HitDoorSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_47fhf")
 volume_db = 13.752
+
+[node name="Tutorial" type="CanvasLayer" parent="."]
+
+[node name="TutorialControls" type="Sprite2D" parent="Tutorial"]
+position = Vector2(113, 114)
+texture = ExtResource("14_ukv6p")
 
 [connection signal="start_first_dialog" from="." to="GameBeginningPlayerPosition" method="_on_heroine_house_interior_start_first_dialog"]
 [connection signal="pet_dog" from="Doggy" to="player" method="_on_doggy_pet_dog"]
