@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://61kjteptnn25"]
+[gd_scene load_steps=32 format=3 uid="uid://61kjteptnn25"]
 
 [ext_resource type="Script" path="res://scenes/screens/post_ending_scene.gd" id="1_l1hei"]
 [ext_resource type="TileSet" uid="uid://kbn7x6shxee4" path="res://assets/tilesets/general.tres" id="2_vrtm7"]
+[ext_resource type="Texture2D" uid="uid://bb2jwmnm7kkqk" path="res://assets/sprites/particles/heart.png" id="3_0qgy2"]
 [ext_resource type="Texture2D" uid="uid://do231vau555kl" path="res://assets/sprites/characters/heroine_boyfriend_sitting.png" id="3_wvo2r"]
 [ext_resource type="Texture2D" uid="uid://78tht04yc4ap" path="res://assets/sprites/utils/wine_bottle.png" id="4_l5mhi"]
 [ext_resource type="Texture2D" uid="uid://bvjuowjnsxptj" path="res://assets/sprites/utils/picnic_blanket.png" id="5_tu1a6"]
@@ -9,6 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://bqngl4dap8dw" path="res://assets/sprites/characters/heroine_sitting.png" id="7_a2i2v"]
 [ext_resource type="Texture2D" uid="uid://dm7cylwek2boj" path="res://assets/sprites/utils/cake.png" id="7_vwf68"]
 [ext_resource type="PackedScene" uid="uid://dpc3uv2h0ppfo" path="res://scenes/utils/falling_leaves.tscn" id="9_xejwb"]
+[ext_resource type="Texture2D" uid="uid://cnynui6yu4xka" path="res://assets/sprites/characters/doggy.png" id="10_kn8ft"]
+[ext_resource type="Texture2D" uid="uid://8yxjss2chffo" path="res://assets/sprites/characters/shadow.png" id="11_iuq6p"]
+[ext_resource type="FontFile" uid="uid://brgc8ctbo381j" path="res://assets/fonts/teeny_tiny_pixels.ttf" id="12_yqe5p"]
+[ext_resource type="PackedScene" uid="uid://0hhnmxxla0lt" path="res://scenes/utils/transitions.tscn" id="13_t0gim"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vj3qn"]
 atlas = ExtResource("7_a2i2v")
@@ -44,6 +49,28 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 6.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqw6a"]
+atlas = ExtResource("3_0qgy2")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpfx7"]
+atlas = ExtResource("3_0qgy2")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3xnm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqw6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpfx7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac8ta"]
@@ -82,10 +109,39 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_evx46"]
+atlas = ExtResource("10_kn8ft")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0phs4"]
+atlas = ExtResource("10_kn8ft")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j5jnk"]
+atlas = ExtResource("10_kn8ft")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qb2kj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evx46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0phs4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j5jnk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
 [node name="PostEndingScene" type="Node2D"]
 script = ExtResource("1_l1hei")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="EndingCamera" type="Camera2D" parent="."]
 position = Vector2(120, 33)
 
 [node name="Heroine" type="AnimatedSprite2D" parent="."]
@@ -95,6 +151,15 @@ sprite_frames = SubResource("SpriteFrames_4qvlm")
 autoplay = "default"
 frame = 2
 frame_progress = 0.712241
+
+[node name="Heart" type="AnimatedSprite2D" parent="Heroine"]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(-1, -12)
+scale = Vector2(1.125, 1.125)
+sprite_frames = SubResource("SpriteFrames_w3xnm")
+autoplay = "default"
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -142,6 +207,15 @@ frame = 1
 frame_progress = 0.635402
 flip_h = true
 
+[node name="Heart" type="AnimatedSprite2D" parent="HeroineBoyfriend"]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(-1, -12)
+scale = Vector2(1.125, 1.125)
+sprite_frames = SubResource("SpriteFrames_w3xnm")
+autoplay = "default"
+
 [node name="WineBottle" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(77, 40)
@@ -172,3 +246,48 @@ position = Vector2(27, 9)
 [node name="FallingLeaves2" parent="." instance=ExtResource("9_xejwb")]
 z_index = 12
 position = Vector2(186, -17)
+
+[node name="Doggy" type="AnimatedSprite2D" parent="."]
+position = Vector2(126, 39)
+sprite_frames = SubResource("SpriteFrames_qb2kj")
+autoplay = "default"
+frame_progress = 0.266581
+
+[node name="Sprite2D" type="Sprite2D" parent="Doggy"]
+show_behind_parent = true
+position = Vector2(-1, 4)
+texture = ExtResource("11_iuq6p")
+
+[node name="Heart" type="AnimatedSprite2D" parent="Doggy"]
+visible = false
+z_index = 4
+y_sort_enabled = true
+position = Vector2(-1, -12)
+scale = Vector2(1.125, 1.125)
+sprite_frames = SubResource("SpriteFrames_w3xnm")
+autoplay = "default"
+
+[node name="StartCamera" type="Camera2D" parent="."]
+position = Vector2(160, -24)
+
+[node name="TheEnd" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 20.0
+offset_right = 107.0
+offset_bottom = 43.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("12_yqe5p")
+theme_override_font_sizes/font_size = 10
+text = "The End"
+
+[node name="ZoomCamera" type="Camera2D" parent="."]
+position = Vector2(81, 51)
+zoom = Vector2(1.8, 1.8)
+
+[node name="Transitions" parent="." instance=ExtResource("13_t0gim")]
+
+[node name="ExitToTittleScreenTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="ExitToTittleScreenTimer" to="." method="_on_exit_to_tittle_screen_timer_timeout"]
