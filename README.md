@@ -1,5 +1,5 @@
 # to_you
-A videogame I made for someone special
+A videogame I made for someone special using Godot 4
 
 # showcase 
 ![](https://github.com/gynura/to_you/blob/main/showcase/showcase_1.gif)
